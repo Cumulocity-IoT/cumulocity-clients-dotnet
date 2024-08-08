@@ -13,7 +13,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
-public sealed class PlatformApiResource<TCustomProperties, TAlarm, TAuditRecord, TMeasurement, TManagedObject, TEvent> where TCustomProperties : CustomProperties where TAlarm : Alarm where TManagedObject : ManagedObject where TAuditRecord : AuditRecord where TEvent : Event where TMeasurement : Measurement
+public sealed class PlatformApiResource<TCustomProperties, TAlarm, TAuditRecord, TMeasurement, TEvent, TManagedObject> where TCustomProperties : CustomProperties where TAlarm : Alarm where TManagedObject : ManagedObject where TAuditRecord : AuditRecord where TEvent : Event where TMeasurement : Measurement
 {
 
 	/// <summary> 

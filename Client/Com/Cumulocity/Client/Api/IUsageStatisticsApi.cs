@@ -266,6 +266,7 @@ public interface IUsageStatisticsApi
 	/// Retrieve usage statistics files metadata <br />
 	/// Retrieve usage statistics summary files report metadata. <br />
 	/// ⓘ Info: This is only accessible by the Management tenant. <br />
+	/// Date range defines the search criteria for files which have any data inside this range. For example, query containing <c>dateFrom=2023-03-01&dateTo=2023-03-31</c>will return files with statistics from ranges 2023-02-25---2023-03-03, 2023-03-04---2023-03-05, 2023-03-15---2023-04-15, but not the files wherethe whole range of data is outside of queried range, like 2023-02-01---2023-02-27. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_TENANT_MANAGEMENT_ADMIN 
@@ -285,8 +286,8 @@ public interface IUsageStatisticsApi
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
-	/// <param name="dateFrom">Start date or date and time of the statistics file generation. <br /></param>
-	/// <param name="dateTo">End date or date and time of the statistics file generation. <br /></param>
+	/// <param name="dateFrom">Start date or date and time of the range included in statistics file. <br /></param>
+	/// <param name="dateTo">End date or date and time of the range included in statistics file. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	///
@@ -306,6 +307,7 @@ public interface IUsageStatisticsApi
 	/// 		</description>
 	/// 	</item>
 	/// </list>
+	/// <c>dateFrom</c> and <c>dateTo</c> are using daily granularity and each day is stored with respect to local Time Zone of the server. <br />
 	/// ⓘ Info: This is only accessible by the Management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
@@ -323,7 +325,7 @@ public interface IUsageStatisticsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

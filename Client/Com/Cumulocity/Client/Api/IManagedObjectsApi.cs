@@ -15,7 +15,7 @@ using Client.Com.Cumulocity.Client.Model;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, for example, smart electricity meters, home automation gateways or GPS devices. <br />
+/// The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be ���smart objects���, for example, smart electricity meters, home automation gateways or GPS devices. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -63,7 +63,7 @@ public interface IManagedObjectsApi
 	/// <param name="withParents">When set to <c>true</c>, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
+	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />������ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
 	///
 	Task<ManagedObjectCollection<TManagedObject>?> GetManagedObjects<TManagedObject>(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? withLatestValues = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -115,7 +115,7 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -156,7 +156,7 @@ public interface IManagedObjectsApi
 	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
 	/// <param name="withParents">When set to <c>true</c>, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array. <br /></param>
-	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
+	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />������ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
 	///
 	Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null, bool? withLatestValues = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -218,7 +218,7 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Conflict – The managed object is associated to other objects, for example child devices. <br /> <br />
+	/// 		<description>HTTP 409 Conflict ��� The managed object is associated to other objects, for example child devices. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

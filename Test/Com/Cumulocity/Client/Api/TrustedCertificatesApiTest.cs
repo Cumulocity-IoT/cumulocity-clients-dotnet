@@ -39,4 +39,11 @@ public sealed class TrustedCertificatesApiTest
 		};
 	}
 
+	[TestMethod]
+	public async void TestDownloadCrl()
+	{
+		var api = new TrustedCertificatesApi(HttpClient!);
+		var response = await api.DownloadCrl();
+		Debug.Assert(response != null);
+	}
 }

@@ -119,7 +119,7 @@ public class ManagedObject
 
 	/// <summary> 
 	/// The read only fragment which contains the latest measurements reported by the device.The returned optionally only if the query parameter <c>withLatestValues=true</c> is used. <br />
-	/// ⚠️ Feature Preview: The feature is part of the Latest Measurement feature which is still under public feature preview. <br />
+	/// ������ Feature Preview: The feature is part of the Latest Measurement feature which is still under public feature preview. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("c8y_LatestMeasurements")]

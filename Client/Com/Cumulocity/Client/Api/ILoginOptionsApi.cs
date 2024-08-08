@@ -34,7 +34,7 @@ public interface ILoginOptionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 400 Bad request – invalid parameters. <br /> <br />
+	/// 		<description>HTTP 400 Bad request ��� invalid parameters. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -60,7 +60,7 @@ public interface ILoginOptionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 400 Duplicated – The login option already exists. <br /> <br />
+	/// 		<description>HTTP 400 Duplicated ��� The login option already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -68,7 +68,7 @@ public interface ILoginOptionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

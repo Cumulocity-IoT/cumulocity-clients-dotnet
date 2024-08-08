@@ -70,7 +70,7 @@ public interface IExternalIDsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate – Identity already bound to a different Global ID. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate ��� Identity already bound to a different Global ID. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

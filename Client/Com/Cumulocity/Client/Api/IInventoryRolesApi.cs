@@ -68,11 +68,11 @@ public interface IInventoryRolesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate – The inventory role already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate ��� The inventory role already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -134,7 +134,7 @@ public interface IInventoryRolesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -241,7 +241,7 @@ public interface IInventoryRolesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -317,7 +317,7 @@ public interface IInventoryRolesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

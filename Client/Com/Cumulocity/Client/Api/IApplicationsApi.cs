@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to retrieve, create, update and delete applications. <br />
-/// ### Application names <br />
+/// ###��Application names <br />
 /// For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name). <br />
 /// Refer to the tables in <see href="https://cumulocity.com/docs/standard-tenant/ecosystem/#managing-applications" langword="Platform administration > Standard tenant administration > Managing the ecosystem > Managing applications" /> in the Cumulocity IoT user documentation for the respective application name to be used. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
@@ -84,7 +84,7 @@ public interface IApplicationsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -158,7 +158,7 @@ public interface IApplicationsApi
 	/// <summary> 
 	/// Delete an application <br />
 	/// Delete an application (by a given ID).This method is not supported by microservice applications. <br />
-	/// ⓘ Info: With regards to a hosted application, there is a caching mechanism in place that keeps the information about the placement of application files (html, javascript, css, fonts, etc.). Removing a hosted application, in normal circumstances, will cause the subsequent requests for application files to fail with an HTTP 404 error because the application is removed synchronously, its files are immediately removed on the node serving the request and at the same time the information is propagated to other nodes – but in rare cases there might be a delay with this propagation. In such situations, the files of the removed application can be served from those nodes up until the aforementioned cache expires. For the same reason, the cache can also cause HTTP 404 errors when the application is updated as it will keep the path to the files of the old version of the application. The cache is filled on demand, so there should not be issues if application files were not accessed prior to the delete request. The expiration delay of the cache can differ, but should not take more than one minute. <br />
+	/// ⓘ Info: With regards to a hosted application, there is a caching mechanism in place that keeps the information about the placement of application files (html, javascript, css, fonts, etc.). Removing a hosted application, in normal circumstances, will cause the subsequent requests for application files to fail with an HTTP 404 error because the application is removed synchronously, its files are immediately removed on the node serving the request and at the same time the information is propagated to other nodes ��� but in rare cases there might be a delay with this propagation. In such situations, the files of the removed application can be served from those nodes up until the aforementioned cache expires. For the same reason, the cache can also cause HTTP 404 errors when the application is updated as it will keep the path to the files of the old version of the application. The cache is filled on demand, so there should not be issues if application files were not accessed prior to the delete request. The expiration delay of the cache can differ, but should not take more than one minute. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_APPLICATION_MANAGEMENT_ADMIN AND tenant is the owner of the application 
@@ -215,7 +215,7 @@ public interface IApplicationsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – method not supported <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� method not supported <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

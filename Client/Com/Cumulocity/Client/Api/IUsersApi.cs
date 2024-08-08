@@ -50,11 +50,11 @@ public interface IUsersApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="groups">Numeric group identifiers. The response will contain only users which belong to at least one of the specified groups. <br />ⓘ Info: If you query for multiple user groups at once, comma-separate the values. <br /></param>
-	/// <param name="onlyDevices">If set to <c>true</c>, the response will only contain users created during bootstrap process (starting with “device_”).If the flag is absent or <c>false</c> the result will not contain “device_” users. <br /></param>
+	/// <param name="onlyDevices">If set to <c>true</c>, the response will only contain users created during bootstrap process (starting with ���device_���).If the flag is absent or <c>false</c> the result will not contain ���device_��� users. <br /></param>
 	/// <param name="owner">Exact username of the owner of the user <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="username">Prefix or full username <br /></param>
-	/// <param name="withSubusersCount">If set to <c>true</c>, then each of returned user will contain an additional field “subusersCount”.It is the number of direct subusers (users with corresponding “owner”). <br /></param>
+	/// <param name="withSubusersCount">If set to <c>true</c>, then each of returned user will contain an additional field ���subusersCount���.It is the number of direct subusers (users with corresponding ���owner���). <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	///
@@ -83,11 +83,11 @@ public interface IUsersApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate – The userName or alias already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate ��� The userName or alias already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -165,7 +165,7 @@ public interface IUsersApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -345,7 +345,7 @@ public interface IUsersApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

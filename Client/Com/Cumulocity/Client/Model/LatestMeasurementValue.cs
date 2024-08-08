@@ -15,7 +15,7 @@ namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
 /// The read only fragment which contains the latest measurements series values reported by the device. <br />
-/// ⚠️ Feature Preview: The feature is part of the Latest Measurement feature which is still under public feature preview. <br />
+/// ������ Feature Preview: The feature is part of the Latest Measurement feature which is still under public feature preview. <br />
 /// </summary>
 ///
 public sealed class LatestMeasurementValue 

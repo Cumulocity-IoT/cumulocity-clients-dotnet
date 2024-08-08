@@ -29,6 +29,7 @@ public interface ICurrentUserApi
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
 	/// 
+	/// Users with ROLE_SYSTEM are not allowed to query with Accept header <c>application/vnd.com.nsn.cumulocity.user+json</c> <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
@@ -65,7 +66,7 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -78,7 +79,7 @@ public interface ICurrentUserApi
 	/// <summary> 
 	/// Update the current user's password <br />
 	/// Update the current user's  password. <br />
-	/// ⚠️ Important: If the tenant uses OAI-Secure authentication, the current user will not be logged out. Instead, a new cookie will be set with a new token, and the previous token will expire within a minute. <br />
+	/// ������ Important: If the tenant uses OAI-Secure authentication, the current user will not be logged out. Instead, a new cookie will be set with a new token, and the previous token will expire within a minute. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_ADMIN 
@@ -95,7 +96,7 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -219,7 +220,7 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

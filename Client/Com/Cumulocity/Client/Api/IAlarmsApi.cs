@@ -94,7 +94,7 @@ public interface IAlarmsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -164,7 +164,7 @@ public interface IAlarmsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -178,7 +178,7 @@ public interface IAlarmsApi
 	/// <summary> 
 	/// Remove alarm collections <br />
 	/// Remove alarm collections specified by query parameters. <br />
-	/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>, <c>createdFrom</c>, <c>createdTo</c>.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
+	/// ������ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>, <c>createdFrom</c>, <c>createdTo</c>.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_ALARM_ADMIN 
@@ -252,7 +252,7 @@ public interface IAlarmsApi
 	/// <summary> 
 	/// Update a specific alarm <br />
 	/// Update a specific alarm by a given ID.Only text, status, severity and custom properties can be modified. A request will be rejected when non-modifiable properties are provided in the request body. <br />
-	/// ⓘ Info: Changes to alarms will generate a new audit record. The audit record will include the username and application that triggered the update, if applicable. If the update operation doesn’t change anything (that is, the request body contains data that is identical to the already present in the database), there will be no audit record added and no notifications will be sent. <br />
+	/// ⓘ Info: Changes to alarms will generate a new audit record. The audit record will include the username and application that triggered the update, if applicable. If the update operation doesn���t change anything (that is, the request body contains data that is identical to the already present in the database), there will be no audit record added and no notifications will be sent. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_ALARM_ADMIN OR owner of the source OR ALARM_ADMIN permission on the source 
@@ -277,7 +277,7 @@ public interface IAlarmsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

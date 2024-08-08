@@ -77,6 +77,13 @@ public interface IOperationsApi
 	/// Create an operation <br />
 	/// Create an operation. <br />
 	/// It is possible to add custom fragments to operations, for example <c>com_cumulocity_model_WebCamDevice</c> is a custom object of the webcam operation. <br />
+	/// There are some custom fragments which are used by web applications (like Device management) to provide additional context to operations, for example: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description><c>description</c> - this fragment can be used to provide a brief user-friendly description of the operation which is later displayed in the operations list views within web applications. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_DEVICE_CONTROL_ADMIN OR owner of the device OR ADMIN permissions on the device 
@@ -93,7 +100,7 @@ public interface IOperationsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

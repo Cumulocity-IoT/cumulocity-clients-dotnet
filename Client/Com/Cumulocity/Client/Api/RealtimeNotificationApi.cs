@@ -205,7 +205,7 @@ public sealed class RealtimeNotificationApi : IRealtimeNotificationApi
 		jsonNode?.RemoveFromNode("data");
 		jsonNode?.RemoveFromNode("error");
 		jsonNode?.RemoveFromNode("successful");
-		const string resourcePath = "/notification/realtime";
+		const string resourcePath = $"notification/realtime";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

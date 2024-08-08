@@ -83,11 +83,11 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate – A certificate with the same fingerprint already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate ��� A certificate with the same fingerprint already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – Invalid certificate data. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� Invalid certificate data. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -123,11 +123,11 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate – A certificate with the same fingerprint already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate ��� A certificate with the same fingerprint already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – Invalid certificates data. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� Invalid certificates data. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -188,7 +188,7 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -387,10 +387,9 @@ public interface ITrustedCertificatesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DownloadCrl(string tenantId, CancellationToken cToken = default) ;
+	Task<System.IO.Stream> DownloadCrl(CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Add revoked certificates <br />
@@ -437,7 +436,7 @@ public interface ITrustedCertificatesApi
 	/// <br /> Required roles <br />
 	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND is the current tenant 
 	/// 
-	/// ⚠️ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
+	/// ������ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
@@ -509,7 +508,7 @@ public interface ITrustedCertificatesApi
 	/// <br /> Required roles <br />
 	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND is the current tenant 
 	/// 
-	/// ⚠️ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
+	/// ������ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
@@ -538,7 +537,7 @@ public interface ITrustedCertificatesApi
 	
 	/// <summary> 
 	/// Obtain device access token <br />
-	/// Only those devices which are registered to use cert auth can authenticate via mTLS protocol and retrieve JWT token.To establish a Two-Way SSL (Mutual Authentication) connection, you must have the following: <br />
+	/// Only those devices which are registered to use cert auth can authenticate via mTLS protocol and retrieve JWT token. Device access token API works only on port 8443 via mutual TLS (mTLS) connection.Immediate issuer of client certificate must present in Platform's truststore, if not then whole certificate chain needs to send in header and root or any intermediate certificate must be present in the Platform's truststore.We must have the following: <br />
 	/// <list type="bullet">
 	/// 	<item>
 	/// 		<description>private_key <br />
@@ -549,11 +548,7 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>certificate authority root certificate <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>certificate authority intermediate certificates (Optional) <br />
+	/// 		<description>whole certificate chain (optional) <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

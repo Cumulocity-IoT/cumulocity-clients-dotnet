@@ -38,7 +38,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 	/// <inheritdoc />
 	public async Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/devicecontrol/newDeviceRequests";
+		const string resourcePath = $"devicecontrol/newDeviceRequests";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -68,7 +68,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 		jsonNode?.RemoveFromNode("tenantId");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("status");
-		const string resourcePath = "/devicecontrol/newDeviceRequests";
+		const string resourcePath = $"devicecontrol/newDeviceRequests";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -88,7 +88,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 	/// <inheritdoc />
 	public async Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
+		string resourcePath = $"devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -113,7 +113,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
 		jsonNode?.RemoveFromNode("type");
-		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
+		string resourcePath = $"devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -132,7 +132,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteNewDeviceRequest(string requestId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
+		string resourcePath = $"devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

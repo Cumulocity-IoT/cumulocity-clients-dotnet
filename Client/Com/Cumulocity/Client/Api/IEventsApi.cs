@@ -25,7 +25,7 @@ public interface IEventsApi
 	/// <summary> 
 	/// Retrieve all events <br />
 	/// Retrieve all events on your tenant. <br />
-	/// In case of executing <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" /> between an upper and lower boundary, for example, querying using <c>dateFrom</c>–<c>dateTo</c> or <c>createdFrom</c>–<c>createdTo</c>, the newest registered events are returned first. It is possible to change the order using the query parameter <c>revert=true</c>. <br />
+	/// In case of executing <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" /> between an upper and lower boundary, for example, querying using <c>dateFrom</c>���<c>dateTo</c> or <c>createdFrom</c>���<c>createdTo</c>, the newest registered events are returned first. It is possible to change the order using the query parameter <c>revert=true</c>. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_EVENT_READ 
@@ -50,7 +50,7 @@ public interface IEventsApi
 	/// <param name="dateFrom">Start date or date and time of the event occurrence (provided by the device). <br /></param>
 	/// <param name="dateTo">End date or date and time of the event occurrence (provided by the device). <br /></param>
 	/// <param name="fragmentType">A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state. <br /></param>
-	/// <param name="fragmentValue">Allows filtering events by the fragment's value, but only when provided together with <c>fragmentType</c>. <br />⚠️ Important: Only fragments with a string value are supported. <br /></param>
+	/// <param name="fragmentValue">Allows filtering events by the fragment's value, but only when provided together with <c>fragmentType</c>. <br />������ Important: Only fragments with a string value are supported. <br /></param>
 	/// <param name="lastUpdatedFrom">Start date or date and time of the last update made. <br /></param>
 	/// <param name="lastUpdatedTo">End date or date and time of the last update made. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
@@ -106,7 +106,7 @@ public interface IEventsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -121,7 +121,7 @@ public interface IEventsApi
 	/// Remove event collections <br />
 	/// Remove event collections specified by query parameters. <br />
 	/// DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted event has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested event is deleted after all associated data has been deleted. <br />
-	/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>, <c>createdFrom</c>, <c>createdTo</c>. <br />
+	/// ������ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>, <c>createdFrom</c>, <c>createdTo</c>. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_EVENT_ADMIN 
@@ -207,7 +207,7 @@ public interface IEventsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

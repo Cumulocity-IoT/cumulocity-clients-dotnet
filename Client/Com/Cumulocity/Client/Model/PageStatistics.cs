@@ -43,7 +43,7 @@ public sealed class PageStatistics
 
 	/// <summary> 
 	/// The total number of paginated results (pages). <br />
-	/// ⓘ Info: This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using <c>dateFrom</c>–<c>dateTo</c>. In such cases, the query parameter <c>withTotalPages=true</c> should be used to include the total number of pages (at the expense of slightly slower performance). <br />
+	/// ⓘ Info: This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using <c>dateFrom</c>���<c>dateTo</c>. In such cases, the query parameter <c>withTotalPages=true</c> should be used to include the total number of pages (at the expense of slightly slower performance). <br />
 	/// </summary>
 	///
 	[JsonPropertyName("totalPages")]

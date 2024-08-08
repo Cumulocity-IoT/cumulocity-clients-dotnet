@@ -51,7 +51,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// 	</item>
 /// </list>
 /// The wildcard "*" enables you to access every API and stored object regardless of the fragments that are inside it. <br />
-/// ⚠️ Important: If there is no fragment in an object, for example, to read the object, you must use the wildcard "*" for the fragment_name part of the device permission (see the structure above). For example: <c>"10200":["MEASUREMENT:*:READ"]</c>. <br />
+/// ������ Important: If there is no fragment in an object, for example, to read the object, you must use the wildcard "*" for the fragment_name part of the device permission (see the structure above). For example: <c>"10200":["MEASUREMENT:*:READ"]</c>. <br />
 /// </summary>
 ///
 public sealed class DevicePermissionsApi : IDevicePermissionsApi
@@ -66,7 +66,7 @@ public sealed class DevicePermissionsApi : IDevicePermissionsApi
 	/// <inheritdoc />
 	public async Task<DevicePermissionOwners<TCustomProperties>?> GetDevicePermissionAssignments<TCustomProperties>(string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
-		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
+		string resourcePath = $"user/devicePermissions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -84,7 +84,7 @@ public sealed class DevicePermissionsApi : IDevicePermissionsApi
 	public async Task<string?> UpdateDevicePermissionAssignments(UpdatedDevicePermissions body, string id, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<UpdatedDevicePermissions>();
-		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
+		string resourcePath = $"user/devicePermissions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

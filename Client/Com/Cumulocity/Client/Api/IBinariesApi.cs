@@ -57,11 +57,11 @@ public interface IBinariesApi
 	/// Uploading a file (binary) requires providing the following properties: <br />
 	/// <list type="bullet">
 	/// 	<item>
-	/// 		<description><c>object</c> – In JSON format, it contains information about the file. <br />
+	/// 		<description><c>object</c> ��� In JSON format, it contains information about the file. <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description><c>file</c> – Contains the file to be uploaded. <br />
+	/// 		<description><c>file</c> ��� Contains the file to be uploaded. <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -78,7 +78,7 @@ public interface IBinariesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 400 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 400 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>

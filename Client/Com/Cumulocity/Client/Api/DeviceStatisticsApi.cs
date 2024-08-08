@@ -80,7 +80,7 @@ public sealed class DeviceStatisticsApi : IDeviceStatisticsApi
 	/// <inheritdoc />
 	public async Task<DeviceStatisticsCollection?> GetMonthlyDeviceStatistics(string tenantId, System.DateTime date, int? currentPage = null, string? deviceId = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/statistics/device/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/monthly/{HttpUtility.UrlPathEncode(date.GetStringValue())}";
+		string resourcePath = $"tenant/statistics/device/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/monthly/{HttpUtility.UrlPathEncode(date.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -103,7 +103,7 @@ public sealed class DeviceStatisticsApi : IDeviceStatisticsApi
 	/// <inheritdoc />
 	public async Task<DeviceStatisticsCollection?> GetDailyDeviceStatistics(string tenantId, System.DateTime date, int? currentPage = null, string? deviceId = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/statistics/device/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/daily/{HttpUtility.UrlPathEncode(date.GetStringValue())}";
+		string resourcePath = $"tenant/statistics/device/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/daily/{HttpUtility.UrlPathEncode(date.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);

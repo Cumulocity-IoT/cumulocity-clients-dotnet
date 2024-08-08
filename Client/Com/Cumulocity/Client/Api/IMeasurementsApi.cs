@@ -25,7 +25,7 @@ public interface IMeasurementsApi
 	/// <summary> 
 	/// Retrieve all measurements <br />
 	/// Retrieve all measurements on your tenant, or a specific subset based on queries. <br />
-	/// In case of executing <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" /> between an upper and lower boundary, for example, querying using <c>dateFrom</c>–<c>dateTo</c>, the oldest registered measurements are returned first. It is possible to change the order using the query parameter <c>revert=true</c>. <br />
+	/// In case of executing <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" /> between an upper and lower boundary, for example, querying using <c>dateFrom</c>���<c>dateTo</c>, the oldest registered measurements are returned first. It is possible to change the order using the query parameter <c>revert=true</c>. <br />
 	/// For large measurement collections, querying older records without filters can be slow as the server needs to scan from the beginning of the input results set before beginning to return the results. For cases when older measurements should be retrieved, it is recommended to narrow the scope by using range queries based on the time stamp reported by a device. The scope of query can also be reduced significantly when a source device is provided. <br />
 	/// Review <see href="#tag/Measurements-specifics" langword="Measurements Specifics" /> for details about data streaming and response formats. <br />
 	/// 
@@ -76,7 +76,7 @@ public interface IMeasurementsApi
 	/// </list>
 	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
 	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
-	/// ⚠️ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
+	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
 	/// ⓘ Info: For more details about fragments with specific meanings, review the sections <see href="#section/Device-management-library" langword="Device management library" /> and <see href="#section/Sensor-library" langword="Sensor library" />. <br />
@@ -100,7 +100,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -127,7 +127,7 @@ public interface IMeasurementsApi
 	/// </list>
 	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
 	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
-	/// ⚠️ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
+	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
 	/// ⓘ Info: For more details about fragments with specific meanings, review the sections <see href="#section/Device-management-library" langword="Device management library" /> and <see href="#section/Sensor-library" langword="Sensor library" />. <br />
@@ -151,7 +151,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -166,7 +166,7 @@ public interface IMeasurementsApi
 	/// Remove measurement collections <br />
 	/// Remove measurement collections specified by query parameters. <br />
 	/// DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when there are a lot of measurements to be deleted. <br />
-	/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>. <br />
+	/// ������ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>. <br />
 	/// In case of enhanced time series measurements, both <c>dateFrom</c> and <c>dateTo</c> parameters must be truncated to full hours (for example, 2022-08-19T14:00:00.000Z), otherwise an error will be returned.The <c>fragmentType</c> parameter allows to delete measurements only by a measurement fragment when enhanced time series measurements are used.It's not possible to delete by a custom (non-measurement) fragment. <br />
 	/// Example for a valid measurement value fragment: <br />
 	/// <![CDATA[
@@ -203,7 +203,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -286,7 +286,7 @@ public interface IMeasurementsApi
 	/// Retrieve a list of series (all or only those matching the specified names) and their values within a given period of a specific managed object (source).<br />
 	/// A series is any fragment in measurement that contains a <c>value</c> property. <br />
 	/// It is possible to fetch aggregated results using the <c>aggregationType</c> parameter. If the aggregation is not specified, the result will contain no more than 5000 values. <br />
-	/// ⚠️ Important: For the aggregation to be done correctly, a device shall always use the same time zone when it sends dates. <br />
+	/// ������ Important: For the aggregation to be done correctly, a device shall always use the same time zone when it sends dates. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_READ OR owner of the source OR MEASUREMENT_READ permission on the source 
@@ -309,7 +309,7 @@ public interface IMeasurementsApi
 	/// <param name="dateFrom">Start date or date and time of the measurement. <br /></param>
 	/// <param name="dateTo">End date or date and time of the measurement. <br /></param>
 	/// <param name="revert">If you are using a range query (that is, at least one of the <c>dateFrom</c> or <c>dateTo</c> parameters is included in the request), then setting <c>revert=true</c> will sort the results by the newest measurements first.By default, the results are sorted by the oldest measurements first. <br /></param>
-	/// <param name="series">The specific series to search for. <br />ⓘ Info: If you query for multiple series at once, comma-separate the values. <br /></param>
+	/// <param name="series">The specific series to search for. <br />ⓘ Info: If you want to query multiple series at once, you must specify the parameter multiple times. <br /></param>
 	/// <param name="source">The managed object ID to which the measurement is associated. <br /></param>
 	///
 	Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null, CancellationToken cToken = default) ;

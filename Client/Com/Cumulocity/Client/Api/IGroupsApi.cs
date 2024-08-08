@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to create, retrieve, update and delete user groups. <br />
-/// ⚠️ Important: In the Cumulocity IoT user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles. <br />
+/// ������ Important: In the Cumulocity IoT user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -79,11 +79,11 @@ public interface IGroupsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate – Group name already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate ��� Group name already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -155,7 +155,7 @@ public interface IGroupsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

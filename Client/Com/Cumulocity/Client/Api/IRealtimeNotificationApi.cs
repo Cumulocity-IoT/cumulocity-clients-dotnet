@@ -194,7 +194,7 @@ public interface IRealtimeNotificationApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 400 Unprocessable Entity – invalid payload. <br /> <br />
+	/// 		<description>HTTP 400 Unprocessable Entity ��� invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>

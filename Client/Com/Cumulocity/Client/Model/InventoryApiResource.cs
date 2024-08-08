@@ -32,7 +32,7 @@ public sealed class InventoryApiResource<TManagedObject> where TManagedObject : 
 	public string? ManagedObjectsForType { get; set; }
 
 	/// <summary> 
-	/// Read-only collection of managed objects fetched for a given list of ids, for example, “ids=41,43,68”. <br />
+	/// Read-only collection of managed objects fetched for a given list of ids, for example, ���ids=41,43,68���. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("managedObjectsForListOfIds")]

@@ -53,7 +53,7 @@ public interface IApplicationBinariesApi
 	/// <summary> 
 	/// Upload an application attachment <br />
 	/// Upload an application attachment (by a given application ID). <br />
-	/// For the applications of type “microservice” and “web application” to be available for Cumulocity IoT platform users, an attachment ZIP file must be uploaded. <br />
+	/// For the applications of type ���microservice��� and ���web application��� to be available for Cumulocity IoT platform users, an attachment ZIP file must be uploaded. <br />
 	/// For a microservice application, the ZIP file must consist of: <br />
 	/// <list type="bullet">
 	/// 	<item>
