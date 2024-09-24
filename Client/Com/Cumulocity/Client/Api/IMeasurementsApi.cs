@@ -79,7 +79,7 @@ public interface IMeasurementsApi
 	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
-	/// ⓘ Info: For more details about fragments with specific meanings, review the sections <see href="#section/Device-management-library" langword="Device management library" /> and <see href="#section/Sensor-library" langword="Sensor library" />. <br />
+	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_ADMIN OR owner of the source OR MEASUREMENT_ADMIN permission on the source 
@@ -130,7 +130,7 @@ public interface IMeasurementsApi
 	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
-	/// ⓘ Info: For more details about fragments with specific meanings, review the sections <see href="#section/Device-management-library" langword="Device management library" /> and <see href="#section/Sensor-library" langword="Sensor library" />. <br />
+	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_ADMIN OR owner of the source OR MEASUREMENT_ADMIN permission on the source 

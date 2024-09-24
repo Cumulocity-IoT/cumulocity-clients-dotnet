@@ -231,7 +231,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<VerifyCertificateChain?> ValidateChain(string tenantId, byte[] file, string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) 
+	public async Task<VerifyCertificateChain?> ValidateChain(string tenantId, byte[] file, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) 
 	{
 		const string resourcePath = $"tenant/trusted-certificates/verify-cert-chain";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -248,7 +248,6 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 			Method = HttpMethod.Post,
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
-		request.Headers.TryAddWithoutValidation("X-Cumulocity-TenantId", xCumulocityTenantId);
 		request.Headers.TryAddWithoutValidation("X-Cumulocity-Client-Cert-Chain", xCumulocityClientCertChain);
 		request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");

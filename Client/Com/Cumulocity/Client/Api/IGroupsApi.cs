@@ -125,8 +125,9 @@ public interface IGroupsApi
 	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	/// <param name="forceLogout">If set to <c>true</c>, users with this global role will be force logged out. <br /></param>
 	///
-	Task<Group<TCustomProperties>?> GetUserGroup<TCustomProperties>(string tenantId, int groupId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
+	Task<Group<TCustomProperties>?> GetUserGroup<TCustomProperties>(string tenantId, int groupId, bool? forceLogout = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 	
 	/// <summary> 
 	/// Update a specific user group for a specific tenant <br />
@@ -164,8 +165,9 @@ public interface IGroupsApi
 	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	/// <param name="forceLogout">If set to <c>true</c>, users with this global role will be force logged out. <br /></param>
 	///
-	Task<Group<TCustomProperties>?> UpdateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, int groupId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
+	Task<Group<TCustomProperties>?> UpdateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, int groupId, bool? forceLogout = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 	
 	/// <summary> 
 	/// Delete a specific user group for a specific tenant <br />
@@ -198,8 +200,9 @@ public interface IGroupsApi
 	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	/// <param name="forceLogout">If set to <c>true</c>, users with this global role will be force logged out. <br /></param>
 	///
-	Task<string?> DeleteUserGroup(string tenantId, int groupId, CancellationToken cToken = default) ;
+	Task<string?> DeleteUserGroup(string tenantId, int groupId, bool? forceLogout = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve a user group by group name for a specific tenant <br />

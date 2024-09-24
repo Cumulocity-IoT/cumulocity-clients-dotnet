@@ -199,4 +199,23 @@ public sealed class TenantsApi : ITenantsApi
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<TenantTfaData?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
+	
+	/// <inheritdoc />
+	public async Task<string?> UpdateTenantTfaSettings(TenantTfaStrategy body, string tenantId, CancellationToken cToken = default) 
+	{
+		var jsonNode = body.ToJsonNode<TenantTfaStrategy>();
+		string resourcePath = $"tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/tfa";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/json"),
+			Method = HttpMethod.Put,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+	}
 }

@@ -262,4 +262,34 @@ public interface ITenantsApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<TenantTfaData?> GetTenantTfaSettings(string tenantId, CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Sets TFA settings for a specific tenant <br />
+	/// Sets the two-factor authentication settings of a specific tenant for a specific tenant ID. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  ((ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_MANAGEMENT_UPDATE) AND (the current tenant is its parent OR the current user belongs to the tenant))) 
+	/// 
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 204 The tenant's TFA configuration was updated. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Tenant not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="body"></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<string?> UpdateTenantTfaSettings(TenantTfaStrategy body, string tenantId, CancellationToken cToken = default) ;
 }

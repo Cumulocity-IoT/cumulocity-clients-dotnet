@@ -23,6 +23,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be ���smart objects���, for example, smart electricity meters, home automation gateways or GPS devices. <br />
+/// For further information, refer to <see href="https://cumulocity.com/docs/concepts/domain-model/#managed-objects" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Managed objects" /> in the Cumulocity IoT user documentation. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///

@@ -1,5 +1,5 @@
 //
-// ICurrentUserApi.cs
+// IFeatureTogglesApi.cs
 // CumulocityCoreLibrary
 //
 // Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -14,27 +14,21 @@ using Client.Com.Cumulocity.Client.Model;
 
 namespace Client.Com.Cumulocity.Client.Api;
 
-/// <summary> 
-/// The current user is the user that is currently authenticated with Cumulocity IoT for the API calls. <br />
-/// ⓘ Info: The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned. <br />
-/// </summary>
-///
-public interface ICurrentUserApi
+public interface IFeatureTogglesApi
 {
 
 	/// <summary> 
-	/// Retrieve the current user <br />
-	/// Retrieve the user reference of the current user. <br />
+	/// Retrieve list of feature toggles with values for current tenant. <br />
+	/// Retrieve a list of all defined feature toggles with values calculated for a tenant of authenticated user. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
+	///  none, any authenticated user can call this endpoint 
 	/// 
-	/// Users with ROLE_SYSTEM are not allowed to query with Accept header <c>application/vnd.com.nsn.cumulocity.user+json</c> <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
 	/// 	<item>
-	/// 		<description>HTTP 200 The request has succeeded and the current user is sent in the response. <br /> <br />
+	/// 		<description>HTTP 200 The request has succeeded and the feature toggles are sent in the response. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -45,20 +39,20 @@ public interface ICurrentUserApi
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<CurrentUser?> GetCurrentUser(CancellationToken cToken = default) ;
+	Task<List<FeatureToggle>?> ListCurrentTenantFeatures(CancellationToken cToken = default) ;
 	
 	/// <summary> 
-	/// Update the current user <br />
-	/// Update the current user. <br />
+	/// Retrieve a specific feature toggle with value for current tenant. <br />
+	/// Retrieve a specific feature toggles defined under given key, with value calculated for a tenant of authenticated user. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_OWN_ADMIN 
+	///  none, any authenticated user can call this endpoint 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
 	/// 	<item>
-	/// 		<description>HTTP 200 The current user was updated. <br /> <br />
+	/// 		<description>HTTP 200 The request has succeeded and the feature toggle is sent in the response. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -66,7 +60,71 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<FeatureToggle?> GetCurrentTenantFeature(CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Retrieve list of feature toggles values overrides of all tenants. <br />
+	/// Retrieve a list of all existing feature toggle value overrides for all tenants. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  ROLE_TENANT_MANAGEMENT_ADMIN AND current tenant is management 
+	/// 
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 200 The request has succeeded and the feature toggles are sent in the response. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<List<TenantFeatureToggleValue>?> ListTenantFeatureToggleValues(CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Sets the value of feature toggle override for the current tenant. <br />
+	/// Sets the value of feature toggle override for a tenant of authenticated user. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  ROLE_TENANT_MANAGEMENT_ADMIN AND (current tenant is management OR the feature toggle phase is PUBLIC_PREVIEW or GENERALLY_AVAILABLE) 
+	/// 
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 200 The request has succeeded and the feature toggle value override was set. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -74,21 +132,20 @@ public interface ICurrentUserApi
 	/// <param name="body"></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<CurrentUser?> UpdateCurrentUser(CurrentUser body, CancellationToken cToken = default) ;
+	Task<string?> SetCurrentTenantFeatureToggleValue(FeatureToggleValue body, CancellationToken cToken = default) ;
 	
 	/// <summary> 
-	/// Update the current user's password <br />
-	/// Update the current user's  password. <br />
-	/// ������ Important: If the tenant uses OAI-Secure authentication, the current user will not be logged out. Instead, a new cookie will be set with a new token, and the previous token will expire within a minute. <br />
+	/// Removes the feature toggle override for the current tenant. <br />
+	/// Removes the feature toggle override for a tenant of authenticated user. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_OWN_ADMIN 
+	///  ROLE_TENANT_MANAGEMENT_ADMIN AND (current tenant is management OR the feature toggle phase is PUBLIC_PREVIEW or GENERALLY_AVAILABLE) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
 	/// 	<item>
-	/// 		<description>HTTP 200 The current user password was updated. <br /> <br />
+	/// 		<description>HTTP 200 The request has succeeded and the feature toggle value override was removed. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -96,7 +153,43 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<string?> UnsetCurrentTenantFeatureToggleValue(CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Sets the value of feature toggle override for a given tenant. <br />
+	/// Sets the value of feature toggle override for a given tenant. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  ROLE_TENANT_MANAGEMENT_ADMIN AND current tenant is management. 
+	/// 
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 200 The request has succeeded and the feature toggle value override was set. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -104,45 +197,20 @@ public interface ICurrentUserApi
 	/// <param name="body"></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<string?> UpdateCurrentUserPassword(PasswordChange body, CancellationToken cToken = default) ;
+	Task<string?> SetGivenTenantFeatureToggleValue(FeatureToggleValue body, CancellationToken cToken = default) ;
 	
 	/// <summary> 
-	/// Generate secret to set up TFA <br />
-	/// Generate a secret code to create a QR code to set up the two-factor authentication functionality using a TFA app/service. <br />
-	/// For more information about the feature, see <see href="https://cumulocity.com/docs/authentication/tfa/" langword="Platform administration > Authentication > Two-factor authentication" /> in the Cumulocity IoT user documentation. <br />
+	/// Removes the feature toggle override for a given tenant. <br />
+	/// Removes the feature toggle override for a given tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
+	///  ROLE_TENANT_MANAGEMENT_ADMIN AND current tenant is management. 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
 	/// 	<item>
-	/// 		<description>HTTP 200 The request has succeeded and the secret is sent in the response. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// </list>
-	/// </summary>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	///
-	Task<CurrentUserTotpSecret?> GenerateTfaSecret(CancellationToken cToken = default) ;
-	
-	/// <summary> 
-	/// Returns the activation state of the two-factor authentication feature. <br />
-	/// Returns the activation state of the two-factor authentication feature for the current user. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
-	/// 
-	/// <br /> Response Codes <br />
-	/// The following table gives an overview of the possible response codes and their meanings: <br />
-	/// <list type="bullet">
-	/// 	<item>
-	/// 		<description>HTTP 200 Returns the activation state. <br /> <br />
+	/// 		<description>HTTP 200 The request has succeeded and the feature toggle value override was removed. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -150,83 +218,16 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 404 User not found. <br /> <br />
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<CurrentUserTotpSecretActivity?> GetTfaState(CancellationToken cToken = default) ;
-	
-	/// <summary> 
-	/// Activates or deactivates the two-factor authentication feature <br />
-	/// Activates or deactivates the two-factor authentication feature for the current user. <br />
-	/// For more information about the feature, see <see href="https://cumulocity.com/docs/authentication/tfa/" langword="Platform administration > Authentication > Two-factor authentication" /> in the Cumulocity IoT user documentation. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
-	/// 
-	/// <br /> Response Codes <br />
-	/// The following table gives an overview of the possible response codes and their meanings: <br />
-	/// <list type="bullet">
-	/// 	<item>
-	/// 		<description>HTTP 204 The two-factor authentication was activated or deactivated. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 403 Cannot deactivate TOTP setup. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 409 TFA TOTP secret does not exist. First generate secret. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// </list>
-	/// </summary>
-	/// <param name="body"></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	///
-	Task<string?> SetTfaState(CurrentUserTotpSecretActivity body, CancellationToken cToken = default) ;
-	
-	/// <summary> 
-	/// Verify TFA code <br />
-	/// Verifies the authentication code that the current user received from a TFA app/service and uploaded to the platform to gain access or enable the two-factor authentication feature. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
-	/// 
-	/// <br /> Response Codes <br />
-	/// The following table gives an overview of the possible response codes and their meanings: <br />
-	/// <list type="bullet">
-	/// 	<item>
-	/// 		<description>HTTP 204 The sent code was correct and the access can be granted. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 403 Invalid verification code. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 404 Cannot validate TFA TOTP code - user's TFA TOTP secret does not exist. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// </list>
-	/// </summary>
-	/// <param name="body"></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	///
-	Task<string?> VerifyTfaCode(CurrentUserTotpCode body, CancellationToken cToken = default) ;
+	Task<string?> UnsetGivenTenantFeatureToggleValue(CancellationToken cToken = default) ;
 }

@@ -106,7 +106,7 @@ public sealed class AuthConfig
 	public string? ProviderName { get; set; }
 
 	/// <summary> 
-	/// SSO specific. URL used for redirecting to the Cumulocity IoT platform. <br />
+	/// SSO specific. URL used for redirecting to the Cumulocity IoT platform. Do not set or leave it empty to allow SSO flow to be controlled by client (UI) applications. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("redirectToPlatform")]
@@ -123,7 +123,7 @@ public sealed class AuthConfig
 	public string? Self { get; set; }
 
 	/// <summary> 
-	/// The session configuration properties are only available for OAuth internal. See <see href="https://cumulocity.com/guides/10.11.0/users-guide/administration/#oauth-internal" langword="Administration > Changing settings > OAuth internal" /> in the 10.11.0 user guide for more details. <br />
+	/// The session configuration properties are only available for OAI-Secure. See <see href="https://cumulocity.com/docs/authentication/basic-settings/#oai-secure-session-configuration" langword="Platform administration > Authentication > Basic settings > OAI Secure session configuration " /> in the Cumulocity IoT user documentation. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("sessionConfiguration")]

@@ -28,7 +28,7 @@ public interface ITrustedCertificatesApi
 	/// Retrieve all the trusted certificates of a specific tenant (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND (is the current tenant) 
+	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN OR ROLE_TENANT_MANAGEMENT_READ) AND (is the current tenant) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -144,7 +144,7 @@ public interface ITrustedCertificatesApi
 	/// Retrieve the data of a stored trusted certificate (by a given fingerprint) of a specific tenant (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND (is the current tenant OR is the management tenant) 
+	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN OR ROLE_TENANT_MANAGEMENT_READ) AND (is the current tenant OR is the management tenant) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -369,15 +369,18 @@ public interface ITrustedCertificatesApi
 	/// </summary>
 	/// <param name="tenantId"></param>
 	/// <param name="file">File to be uploaded. <br /></param>
-	/// <param name="xCumulocityTenantId">Used to send a tenant ID. <br /></param>
 	/// <param name="xCumulocityClientCertChain">Used to send a certificate chain in the header. Separate the chain with <c>,</c> and also each 64 bit block with <c> </c> (a space character). <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<VerifyCertificateChain?> ValidateChain(string tenantId, byte[] file, string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) ;
+	Task<VerifyCertificateChain?> ValidateChain(string tenantId, byte[] file, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Get revoked certificates <br />
 	/// This endpoint downloads current CRL file containing list of revoked certificate ina binary file format with <c>content-type</c> as <c>application/pkix-crl</c>. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN OR ROLE_TENANT_MANAGEMENT_READ) 
+	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
@@ -548,7 +551,7 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>whole certificate chain (optional) <br />
+	/// 		<description>whole certificate chain (Optional - This API requires the client to send a custom header <c>X-SSL-CERT-CHAIN</c> only if the immediate issuer of the client's certificate is not uploaded as a trusted certificate on the platform. If the immediate issuer is already uploaded and trusted, the header can be omitted) <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
