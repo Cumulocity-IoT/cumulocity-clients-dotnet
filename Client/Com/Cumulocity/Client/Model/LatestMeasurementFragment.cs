@@ -1,5 +1,5 @@
 //
-// ApplicationVersionTag.cs
+// LatestMeasurementFragment.cs
 // CumulocityCoreLibrary
 //
 // Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -14,23 +14,22 @@ using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
-public sealed class ApplicationVersionTag 
+/// <summary> 
+/// The read only fragment which contains the latest measurements series reported by the device. <br />
+/// ⚠️ Feature Preview: The feature is part of the Latest Measurement feature which is still under public feature preview. <br />
+/// </summary>
+///
+public sealed class LatestMeasurementFragment 
 {
 
-	/// <summary> 
-	/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions. <br />
-	/// </summary>
-	///
-	[JsonPropertyName("tags")]
-	public List<string> Tags { get; set; } = new List<string>();
-
-	public ApplicationVersionTag() 
+	[JsonPropertyName("additionalProperties")]
+	public IDictionary<string, LatestMeasurementValue?> AdditionalProperties { get; set; } = new Dictionary<string, LatestMeasurementValue?>();
+	
+	[JsonIgnore]
+	public LatestMeasurementValue? this[string key]
 	{
-	}
-
-	public ApplicationVersionTag(List<string> tags)
-	{
-		this.Tags = tags;
+		get => AdditionalProperties[key];
+		set => AdditionalProperties[key] = value;
 	}
 
 	public override string ToString()

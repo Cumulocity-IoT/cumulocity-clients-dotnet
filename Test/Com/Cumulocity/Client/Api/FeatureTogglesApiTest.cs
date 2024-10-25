@@ -1,5 +1,5 @@
 //
-// TrustedCertificatesApiTest.cs
+// FeatureTogglesApiTest.cs
 // CumulocityCoreLibrary
 //
 // Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -18,7 +18,7 @@ using Test.Com.Cumulocity.Client.Supplementary;
 namespace Test.Com.Cumulocity.Client.Api;
 
 [TestClass]
-public sealed class TrustedCertificatesApiTest
+public sealed class FeatureTogglesApiTest
 {
 
 	private static HttpClient? HttpClient { get; set; }
@@ -33,17 +33,17 @@ public sealed class TrustedCertificatesApiTest
 		{
 			Credentials = new NetworkCredential(configuration.Username, configuration.Password)
 		};
-		TrustedCertificatesApiTest.HttpClient = new HttpClient(httpClientHandler)
+		FeatureTogglesApiTest.HttpClient = new HttpClient(httpClientHandler)
 		{
 			BaseAddress = new Uri(configuration.Hostname)
 		};
 	}
 
 	[TestMethod]
-	public async void TestDownloadCrl()
+	public async void TestListCurrentTenantFeatures()
 	{
-		var api = new TrustedCertificatesApi(HttpClient!);
-		var response = await api.DownloadCrl();
+		var api = new FeatureTogglesApi(HttpClient!);
+		var response = await api.ListCurrentTenantFeatures();
 		Debug.Assert(response != null);
 	}
 }

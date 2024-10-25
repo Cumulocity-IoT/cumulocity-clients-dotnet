@@ -46,9 +46,9 @@ public interface IBinariesApi
 	/// <param name="ids">The managed object IDs to search for. <br />ⓘ Info: If you query for multiple IDs at once, comma-separate the values. <br /></param>
 	/// <param name="owner">Username of the owner of the managed objects. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
-	/// <param name="text">Search for managed objects where any property value is equal to the given one. Only string values are supported. <br /></param>
+	/// <param name="text">Search for managed objects where a property value is equal to the given one.The following properties are examined: <c>id, type, name, owner, externalIds</c>. <br /></param>
 	/// <param name="type">The type of managed object to search for. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
 	Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 	
@@ -68,7 +68,7 @@ public interface IBinariesApi
 	/// After the file has been uploaded, the corresponding managed object will contain the fragment <c>c8y_IsBinary</c>. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ROLE_INVENTORY_CREATE 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_INVENTORY_CREATE OR ROLE_BINARY_ADMIN OR ROLE_BINARY_CREATE 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -102,7 +102,7 @@ public interface IBinariesApi
 	/// Retrieve a stored file (managed object) by a given ID.Supports chunk download and resuming an interrupted download using the <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range" langword="<c>Range</c> header" />. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the resource OR MANAGE_OBJECT_READ permission on the resource 
+	///  ROLE_INVENTORY_READ OR ROLE_BINARY_READ OR owner of the resource OR MANAGE_OBJECT_READ permission on the resource 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -128,7 +128,7 @@ public interface IBinariesApi
 	///  <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_BINARY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -154,7 +154,7 @@ public interface IBinariesApi
 	/// Remove a managed object and its stored file by a given ID. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_BINARY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />

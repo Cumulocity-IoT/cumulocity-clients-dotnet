@@ -40,7 +40,7 @@ public sealed class SystemOptionsApi : ISystemOptionsApi
 	/// <inheritdoc />
 	public async Task<SystemOptionCollection?> GetSystemOptions(CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/tenant/system/options";
+		const string resourcePath = $"tenant/system/options";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -57,7 +57,7 @@ public sealed class SystemOptionsApi : ISystemOptionsApi
 	/// <inheritdoc />
 	public async Task<SystemOption?> GetSystemOption(string category, string key, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/system/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
+		string resourcePath = $"tenant/system/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

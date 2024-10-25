@@ -184,6 +184,8 @@ namespace Client.Com.Cumulocity.Client.Api;
 ///   }
 /// ]
 /// ]]>
+/// <br /> Long-running connections <br />
+/// To keep a long-running connection alive when there are no new notifications to deliver, the server will periodically send an empty <c>/meta/connect</c> response to the client.The client should send a new <c>/meta/connect</c> request immediately after receiving such a response, to ensure that the connection remains active and future notifications are delivered. <br />
 /// </summary>
 ///
 public sealed class RealtimeNotificationApi : IRealtimeNotificationApi
@@ -203,7 +205,7 @@ public sealed class RealtimeNotificationApi : IRealtimeNotificationApi
 		jsonNode?.RemoveFromNode("data");
 		jsonNode?.RemoveFromNode("error");
 		jsonNode?.RemoveFromNode("successful");
-		const string resourcePath = "/notification/realtime";
+		const string resourcePath = $"notification/realtime";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

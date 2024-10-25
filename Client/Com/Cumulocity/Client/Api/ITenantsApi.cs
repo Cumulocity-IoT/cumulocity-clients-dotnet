@@ -22,12 +22,12 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// In general, the tenant domain should be used for communication if it is known. <br />
 /// ⚠️ Important: For support user access, the tenant ID must be used and not the tenant domain. <br />
 /// See <see href="#operation/getCurrentTenantResource" langword="Tenant > Current tenant" /> for information on how to retrieve the tenant ID and domain of the current tenant via the API. <br />
-/// In the UI, the tenant ID is displayed in the user dropdown menu, see <see href="https://cumulocity.com/guides/users-guide/getting-started/#user-settings" langword="Getting started > User options and settings" /> in the User guide. <br />
+/// In the UI, the tenant ID is displayed in the user dropdown menu, see <see href="https://cumulocity.com/docs/get-familiar-with-the-ui/user-settings/" langword="Getting started > Get familiar with the UI > User options and settings" /> in the Cumulocity IoT user documentation. <br />
 /// <br /> Access rights and permissions <br />
 /// There are two types of roles in Cumulocity IoT – global and inventory. Global roles are applied at the tenant level. In a Role Based Access Control (RBAC) approach you must use the inventory roles in order to have the correct level of separation. Apart from some global permissions (like "own user management") customer users will not be assigned any roles. Inventory roles must be created, or the default roles used, and then assigned to the user in combination with the assets the roles apply to. This needs to be done at least once for each customer. <br />
 /// In a multi-tenancy approach, as the tenant is completely separated from all other customers you do not necessarily need to be involved in setting up the access rights of the customer. If customers are given administration rights for their tenants, they can set up permissions on their own. It is not possible for customers to have any sight or knowledge of other customers. <br />
 /// In the RBAC approach, managing access is the most complicated part because a misconfiguration can potentially give customers access to data that they must not see, like other customers' data. The inventory roles allow you to granularly define access for only certain parts of data, but they don't protect you from accidental misconfigurations. A limitation here is that customers won't be able to create their own roles. <br />
-/// For more details, see <see href="https://cumulocity.com/guides/concepts/tenant-hierarchy/#comparison" langword="RBAC versus multi-tenancy approach" />. <br />
+/// For more details, see <see href="https://cumulocity.com/docs/concepts/tenant-hierarchy/#comparison-of-various-use-cases" langword="RBAC versus multi-tenancy approach" />. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -57,8 +57,8 @@ public interface ITenantsApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
-	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	/// <param name="company">Company name associated with the Cumulocity IoT tenant. <br /></param>
 	/// <param name="domain">Domain name of the Cumulocity IoT tenant. <br /></param>
 	/// <param name="parent">Identifier of the Cumulocity IoT tenant's parent. <br /></param>
@@ -262,4 +262,34 @@ public interface ITenantsApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<TenantTfaData?> GetTenantTfaSettings(string tenantId, CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Sets TFA settings for a specific tenant <br />
+	/// Sets the two-factor authentication settings of a specific tenant for a specific tenant ID. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  ((ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_MANAGEMENT_UPDATE) AND (the current tenant is its parent OR the current user belongs to the tenant))) 
+	/// 
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 204 The tenant's TFA configuration was updated. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Tenant not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="body"></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<string?> UpdateTenantTfaSettings(TenantTfaStrategy body, string tenantId, CancellationToken cToken = default) ;
 }

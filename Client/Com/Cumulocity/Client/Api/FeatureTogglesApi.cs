@@ -1,5 +1,5 @@
 //
-// OptionsApi.cs
+// FeatureTogglesApi.cs
 // CumulocityCoreLibrary
 //
 // Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -21,85 +21,71 @@ using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Api;
 
-/// <summary> 
-/// API methods to retrieve the options configured in the tenant. <br />
-/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
-/// </summary>
-///
-public sealed class OptionsApi : IOptionsApi
+public sealed class FeatureTogglesApi : IFeatureTogglesApi
 {
 	private readonly HttpClient _httpClient;
 
-	public OptionsApi(HttpClient httpClient)
+	public FeatureTogglesApi(HttpClient httpClient)
 	{
 		_httpClient = httpClient;
 	}
 
 	/// <inheritdoc />
-	public async Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) 
+	public async Task<List<FeatureToggle>?> ListCurrentTenantFeatures(CancellationToken cToken = default) 
 	{
-		const string resourcePath = $"tenant/options";
-		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
-		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-		queryString.TryAdd("currentPage", currentPage);
-		queryString.TryAdd("pageSize", pageSize);
-		queryString.TryAdd("withTotalPages", withTotalPages);
-		uriBuilder.Query = queryString.ToString();
-		using var request = new HttpRequestMessage 
-		{
-			Method = HttpMethod.Get,
-			RequestUri = new Uri(uriBuilder.ToString())
-		};
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.optioncollection+json");
-		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<OptionCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
-	}
-	
-	/// <inheritdoc />
-	public async Task<Option?> CreateOption(Option body, CancellationToken cToken = default) 
-	{
-		var jsonNode = body.ToJsonNode<Option>();
-		jsonNode?.RemoveFromNode("self");
-		const string resourcePath = $"tenant/options";
-		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
-		using var request = new HttpRequestMessage 
-		{
-			Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.option+json"),
-			Method = HttpMethod.Post,
-			RequestUri = new Uri(uriBuilder.ToString())
-		};
-		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.option+json");
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
-		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
-	}
-	
-	/// <inheritdoc />
-	public async Task<TCategoryOptions?> GetOptionsByCategory<TCategoryOptions>(string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions
-	{
-		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
+		const string resourcePath = $"features";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
 			Method = HttpMethod.Get,
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<TCategoryOptions?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<List<FeatureToggle>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
-	public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions
+	public async Task<FeatureToggle?> GetCurrentTenantFeature(string featureKey, CancellationToken cToken = default) 
 	{
-		var jsonNode = body.ToJsonNode<TCategoryOptions>();
-		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Method = HttpMethod.Get,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<FeatureToggle?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+	}
+	
+	/// <inheritdoc />
+	public async Task<List<TenantFeatureToggleValue>?> ListTenantFeatureToggleValues(string featureKey, CancellationToken cToken = default) 
+	{
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Method = HttpMethod.Get,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<List<TenantFeatureToggleValue>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+	}
+	
+	/// <inheritdoc />
+	public async Task<string?> SetCurrentTenantFeatureToggleValue(FeatureToggleValue body, string featureKey, CancellationToken cToken = default) 
+	{
+		var jsonNode = body.ToJsonNode<FeatureToggleValue>();
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -108,35 +94,33 @@ public sealed class OptionsApi : IOptionsApi
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<TCategoryOptions?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
-	public async Task<Option?> GetOption(string category, string key, CancellationToken cToken = default) 
+	public async Task<string?> UnsetCurrentTenantFeatureToggleValue(string featureKey, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
-			Method = HttpMethod.Get,
+			Method = HttpMethod.Delete,
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
-	public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, CancellationToken cToken = default) 
+	public async Task<string?> SetGivenTenantFeatureToggleValue(FeatureToggleValue body, string featureKey, string tenantId, CancellationToken cToken = default) 
 	{
-		var jsonNode = body.ToJsonNode<CategoryKeyOption>();
-		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
+		var jsonNode = body.ToJsonNode<FeatureToggleValue>();
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -145,17 +129,16 @@ public sealed class OptionsApi : IOptionsApi
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> DeleteOption(string category, string key, CancellationToken cToken = default) 
+	public async Task<string?> UnsetGivenTenantFeatureToggleValue(string featureKey, string tenantId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

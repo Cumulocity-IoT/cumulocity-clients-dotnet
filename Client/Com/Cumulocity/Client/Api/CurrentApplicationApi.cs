@@ -37,7 +37,7 @@ public sealed class CurrentApplicationApi : ICurrentApplicationApi
 	/// <inheritdoc />
 	public async Task<Application?> GetCurrentApplication(CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/application/currentApplication";
+		const string resourcePath = $"application/currentApplication";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -60,7 +60,7 @@ public sealed class CurrentApplicationApi : ICurrentApplicationApi
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
 		jsonNode?.RemoveFromNode("resourcesUrl");
-		const string resourcePath = "/application/currentApplication";
+		const string resourcePath = $"application/currentApplication";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -79,7 +79,7 @@ public sealed class CurrentApplicationApi : ICurrentApplicationApi
 	/// <inheritdoc />
 	public async Task<List<ApplicationSettings>?> GetCurrentApplicationSettings(CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/application/currentApplication/settings";
+		const string resourcePath = $"application/currentApplication/settings";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -96,7 +96,7 @@ public sealed class CurrentApplicationApi : ICurrentApplicationApi
 	/// <inheritdoc />
 	public async Task<ApplicationUserCollection?> GetSubscribedUsers(CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/application/currentApplication/subscriptions";
+		const string resourcePath = $"application/currentApplication/subscriptions";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

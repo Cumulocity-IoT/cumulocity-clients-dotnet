@@ -59,14 +59,14 @@ public interface IAuditsApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="application">Name of the application from which the audit was carried out. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
-	/// <param name="dateFrom">Start date or date and time of the audit record. <br /></param>
-	/// <param name="dateTo">End date or date and time of the audit record. <br /></param>
+	/// <param name="dateFrom">Start date or date and time of the audit record (device time). <br /></param>
+	/// <param name="dateTo">End date or date and time of the audit record (device time). <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="source">The platform component ID to which the audit is associated. <br /></param>
 	/// <param name="type">The type of audit record to search for. <br /></param>
 	/// <param name="user">The username to search for. <br /></param>
-	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
 	Task<AuditRecordCollection<TAuditRecord>?> GetAuditRecords<TAuditRecord>(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAuditRecord : AuditRecord;
 	

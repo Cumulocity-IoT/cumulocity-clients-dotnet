@@ -38,7 +38,7 @@ public sealed class BinariesApi : IBinariesApi
 	/// <inheritdoc />
 	public async Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/inventory/binaries";
+		const string resourcePath = $"inventory/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("childAdditionId", childAdditionId);
@@ -67,7 +67,7 @@ public sealed class BinariesApi : IBinariesApi
 	/// <inheritdoc />
 	public async Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/inventory/binaries";
+		const string resourcePath = $"inventory/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var requestContent = new MultipartFormDataContent();
 		var fileContentObject = new StringContent(JsonSerializerWrapper.Serialize(pObject));
@@ -93,7 +93,7 @@ public sealed class BinariesApi : IBinariesApi
 	/// <inheritdoc />
 	public async Task<string?> GetBinary(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/binaries/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
+		string resourcePath = $"inventory/binaries/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -109,7 +109,7 @@ public sealed class BinariesApi : IBinariesApi
 	/// <inheritdoc />
 	public async Task<Binary?> ReplaceBinary(byte[] body, string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/binaries/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
+		string resourcePath = $"inventory/binaries/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -128,7 +128,7 @@ public sealed class BinariesApi : IBinariesApi
 	/// <inheritdoc />
 	public async Task<string?> RemoveBinary(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/binaries/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
+		string resourcePath = $"inventory/binaries/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

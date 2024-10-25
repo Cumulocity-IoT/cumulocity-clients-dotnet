@@ -38,7 +38,7 @@ public sealed class IdentityApi : IIdentityApi
 	/// <inheritdoc />
 	public async Task<IdentityApiResource?> GetIdentityApiResource(CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/identity";
+		const string resourcePath = $"identity";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

@@ -1,5 +1,5 @@
 //
-// ApplicationVersionTag.cs
+// UpdateCRLEntries.cs
 // CumulocityCoreLibrary
 //
 // Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -14,24 +14,15 @@ using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
-public sealed class ApplicationVersionTag 
+/// <summary> 
+/// A list of serial numbers. <br />
+/// </summary>
+///
+public sealed class UpdateCRLEntries 
 {
 
-	/// <summary> 
-	/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions. <br />
-	/// </summary>
-	///
-	[JsonPropertyName("tags")]
-	public List<string> Tags { get; set; } = new List<string>();
-
-	public ApplicationVersionTag() 
-	{
-	}
-
-	public ApplicationVersionTag(List<string> tags)
-	{
-		this.Tags = tags;
-	}
+	[JsonPropertyName("crls")]
+	public List<CRLEntry> Crls { get; set; } = new List<CRLEntry>();
 
 	public override string ToString()
 	{

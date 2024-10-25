@@ -17,6 +17,7 @@ public interface ICumulocityCoreLibrary
 	IApplicationsFactory Applications { get; }
 	IMeasurementsFactory Measurements { get; }
 	IAlarmsFactory Alarms { get; }
+	IFeatureTogglesFactory FeatureToggles { get; }
 	ITenantsFactory Tenants { get; }
 	IUsersFactory Users { get; }
 	IAuditsFactory Audits { get; }
@@ -45,6 +46,11 @@ public interface ICumulocityCoreLibrary
 	public interface IAlarmsFactory
 	{
 		IAlarmsApi AlarmsApi { get; }
+	}
+
+	public interface IFeatureTogglesFactory
+	{
+		IFeatureTogglesApi FeatureTogglesApi { get; }
 	}
 
 	public interface ITenantsFactory
