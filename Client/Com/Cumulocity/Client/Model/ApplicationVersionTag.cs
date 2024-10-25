@@ -21,16 +21,16 @@ public sealed class ApplicationVersionTag
 	/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions. <br />
 	/// </summary>
 	///
-	[JsonPropertyName("tag")]
-	public List<string> Tag { get; set; } = new List<string>();
+	[JsonPropertyName("tags")]
+	public List<string> Tags { get; set; } = new List<string>();
 
 	public ApplicationVersionTag() 
 	{
 	}
 
-	public ApplicationVersionTag(List<string> tag)
+	public ApplicationVersionTag(List<string> tags)
 	{
-		this.Tag = tag;
+		this.Tags = tags;
 	}
 
 	public override string ToString()

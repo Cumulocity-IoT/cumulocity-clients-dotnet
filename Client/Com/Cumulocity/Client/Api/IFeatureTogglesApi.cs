@@ -65,9 +65,10 @@ public interface IFeatureTogglesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<FeatureToggle?> GetCurrentTenantFeature(CancellationToken cToken = default) ;
+	Task<FeatureToggle?> GetCurrentTenantFeature(string featureKey, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve list of feature toggles values overrides of all tenants. <br />
@@ -97,9 +98,10 @@ public interface IFeatureTogglesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<List<TenantFeatureToggleValue>?> ListTenantFeatureToggleValues(CancellationToken cToken = default) ;
+	Task<List<TenantFeatureToggleValue>?> ListTenantFeatureToggleValues(string featureKey, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Sets the value of feature toggle override for the current tenant. <br />
@@ -130,9 +132,10 @@ public interface IFeatureTogglesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
+	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<string?> SetCurrentTenantFeatureToggleValue(FeatureToggleValue body, CancellationToken cToken = default) ;
+	Task<string?> SetCurrentTenantFeatureToggleValue(FeatureToggleValue body, string featureKey, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Removes the feature toggle override for the current tenant. <br />
@@ -162,9 +165,10 @@ public interface IFeatureTogglesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<string?> UnsetCurrentTenantFeatureToggleValue(CancellationToken cToken = default) ;
+	Task<string?> UnsetCurrentTenantFeatureToggleValue(string featureKey, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Sets the value of feature toggle override for a given tenant. <br />
@@ -195,9 +199,11 @@ public interface IFeatureTogglesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
+	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<string?> SetGivenTenantFeatureToggleValue(FeatureToggleValue body, CancellationToken cToken = default) ;
+	Task<string?> SetGivenTenantFeatureToggleValue(FeatureToggleValue body, string featureKey, string tenantId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Removes the feature toggle override for a given tenant. <br />
@@ -227,7 +233,9 @@ public interface IFeatureTogglesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<string?> UnsetGivenTenantFeatureToggleValue(CancellationToken cToken = default) ;
+	Task<string?> UnsetGivenTenantFeatureToggleValue(string featureKey, string tenantId, CancellationToken cToken = default) ;
 }

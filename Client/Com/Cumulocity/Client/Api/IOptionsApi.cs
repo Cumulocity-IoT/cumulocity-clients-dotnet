@@ -25,6 +25,7 @@ public interface IOptionsApi
 	/// <summary> 
 	/// Retrieve all options <br />
 	/// Retrieve all the options available on the tenant. <br />
+	/// ������ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_OPTION_MANAGEMENT_READ 
@@ -45,7 +46,7 @@ public interface IOptionsApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
 	Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 	
@@ -98,6 +99,7 @@ public interface IOptionsApi
 	/// <summary> 
 	/// Retrieve all options by category <br />
 	/// Retrieve all the options (by a specified category) on your tenant. <br />
+	/// ������ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_OPTION_MANAGEMENT_READ 
@@ -153,6 +155,7 @@ public interface IOptionsApi
 	/// <summary> 
 	/// Retrieve a specific option <br />
 	/// Retrieve a specific option (by a given category and key) on your tenant. <br />
+	/// ������ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_OPTION_MANAGEMENT_READ 

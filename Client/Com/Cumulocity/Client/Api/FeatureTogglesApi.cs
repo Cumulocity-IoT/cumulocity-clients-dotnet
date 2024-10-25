@@ -48,9 +48,9 @@ public sealed class FeatureTogglesApi : IFeatureTogglesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<FeatureToggle?> GetCurrentTenantFeature(CancellationToken cToken = default) 
+	public async Task<FeatureToggle?> GetCurrentTenantFeature(string featureKey, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featurekey.GetStringValue())}";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -65,9 +65,9 @@ public sealed class FeatureTogglesApi : IFeatureTogglesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<List<TenantFeatureToggleValue>?> ListTenantFeatureToggleValues(CancellationToken cToken = default) 
+	public async Task<List<TenantFeatureToggleValue>?> ListTenantFeatureToggleValues(string featureKey, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featurekey.GetStringValue())}/by-tenant";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -82,10 +82,10 @@ public sealed class FeatureTogglesApi : IFeatureTogglesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> SetCurrentTenantFeatureToggleValue(FeatureToggleValue body, CancellationToken cToken = default) 
+	public async Task<string?> SetCurrentTenantFeatureToggleValue(FeatureToggleValue body, string featureKey, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<FeatureToggleValue>();
-		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featurekey.GetStringValue())}/by-tenant";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -101,9 +101,9 @@ public sealed class FeatureTogglesApi : IFeatureTogglesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> UnsetCurrentTenantFeatureToggleValue(CancellationToken cToken = default) 
+	public async Task<string?> UnsetCurrentTenantFeatureToggleValue(string featureKey, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featurekey.GetStringValue())}/by-tenant";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -117,10 +117,10 @@ public sealed class FeatureTogglesApi : IFeatureTogglesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> SetGivenTenantFeatureToggleValue(FeatureToggleValue body, CancellationToken cToken = default) 
+	public async Task<string?> SetGivenTenantFeatureToggleValue(FeatureToggleValue body, string featureKey, string tenantId, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<FeatureToggleValue>();
-		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featurekey.GetStringValue())}/by-tenant/{HttpUtility.UrlPathEncode(tenantid.GetStringValue())}";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -136,9 +136,9 @@ public sealed class FeatureTogglesApi : IFeatureTogglesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> UnsetGivenTenantFeatureToggleValue(CancellationToken cToken = default) 
+	public async Task<string?> UnsetGivenTenantFeatureToggleValue(string featureKey, string tenantId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featurekey.GetStringValue())}/by-tenant/{HttpUtility.UrlPathEncode(tenantid.GetStringValue())}";
+		string resourcePath = $"features/{HttpUtility.UrlPathEncode(featureKey.GetStringValue())}/by-tenant/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

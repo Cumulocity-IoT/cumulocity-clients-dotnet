@@ -18,6 +18,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 	private readonly Lazy<IApplicationsFactory> _lazyApplications;
 	private readonly Lazy<IMeasurementsFactory> _lazyMeasurements;
 	private readonly Lazy<IAlarmsFactory> _lazyAlarms;
+	private readonly Lazy<IFeatureTogglesFactory> _lazyFeatureToggles;
 	private readonly Lazy<ITenantsFactory> _lazyTenants;
 	private readonly Lazy<IUsersFactory> _lazyUsers;
 	private readonly Lazy<IAuditsFactory> _lazyAudits;
@@ -34,6 +35,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 		_lazyApplications = new Lazy<IApplicationsFactory>(() => new ApplicationsFactory(client));
 		_lazyMeasurements = new Lazy<IMeasurementsFactory>(() => new MeasurementsFactory(client));
 		_lazyAlarms = new Lazy<IAlarmsFactory>(() => new AlarmsFactory(client));
+		_lazyFeatureToggles = new Lazy<IFeatureTogglesFactory>(() => new FeatureTogglesFactory(client));
 		_lazyTenants = new Lazy<ITenantsFactory>(() => new TenantsFactory(client));
 		_lazyUsers = new Lazy<IUsersFactory>(() => new UsersFactory(client));
 		_lazyAudits = new Lazy<IAuditsFactory>(() => new AuditsFactory(client));
@@ -57,6 +59,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 	public IApplicationsFactory Applications => _lazyApplications.Value;
 	public IMeasurementsFactory Measurements => _lazyMeasurements.Value;
 	public IAlarmsFactory Alarms => _lazyAlarms.Value;
+	public IFeatureTogglesFactory FeatureToggles => _lazyFeatureToggles.Value;
 	public ITenantsFactory Tenants => _lazyTenants.Value;
 	public IUsersFactory Users => _lazyUsers.Value;
 	public IAuditsFactory Audits => _lazyAudits.Value;
@@ -114,6 +117,18 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 		}
 		
 		public IAlarmsApi AlarmsApi => _lazyAlarmsApi.Value;
+	}
+
+	public class FeatureTogglesFactory: IFeatureTogglesFactory
+	{
+		private readonly Lazy<IFeatureTogglesApi> _lazyFeatureTogglesApi;
+
+		internal FeatureTogglesFactory(HttpClient client)
+		{
+			_lazyFeatureTogglesApi = new Lazy<IFeatureTogglesApi>(() => new FeatureTogglesApi(client));
+		}
+		
+		public IFeatureTogglesApi FeatureTogglesApi => _lazyFeatureTogglesApi.Value;
 	}
 
 	public class TenantsFactory: ITenantsFactory

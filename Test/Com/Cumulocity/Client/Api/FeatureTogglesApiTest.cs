@@ -46,20 +46,4 @@ public sealed class FeatureTogglesApiTest
 		var response = await api.ListCurrentTenantFeatures();
 		Debug.Assert(response != null);
 	}
-	
-	[TestMethod]
-	public async void TestGetCurrentTenantFeature()
-	{
-		var api = new FeatureTogglesApi(HttpClient!);
-		var response = await api.GetCurrentTenantFeature();
-		Debug.Assert(response != null);
-	}
-	
-	[TestMethod]
-	public async void TestListTenantFeatureToggleValues()
-	{
-		var api = new FeatureTogglesApi(HttpClient!);
-		var response = await api.ListTenantFeatureToggleValues();
-		Debug.Assert(response != null);
-	}
 }

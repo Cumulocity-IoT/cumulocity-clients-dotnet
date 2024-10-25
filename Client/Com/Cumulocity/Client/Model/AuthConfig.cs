@@ -154,6 +154,13 @@ public sealed class AuthConfig
 	public Type? PType { get; set; }
 
 	/// <summary> 
+	/// If set to <c>true</c>, user data and the userId are retrieved using the claims from the id_token; otherwise, they are based on the access_token. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("useIdToken")]
+	public bool? UseIdToken { get; set; }
+
+	/// <summary> 
 	/// SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform. <br />
 	/// </summary>
 	///
@@ -336,6 +343,13 @@ public sealed class AuthConfig
 				///
 				[JsonPropertyName("manageRolesOnlyFromAccessMapping")]
 				public bool? ManageRolesOnlyFromAccessMapping { get; set; }
+			
+				/// <summary> 
+				/// If set to <c>true</c>, dynamic access mapping is performed using the claims from the id_token; otherwise, it is based on the access_token. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("mapFromIdToken")]
+				public bool? MapFromIdToken { get; set; }
 			
 				public override string ToString()
 				{
