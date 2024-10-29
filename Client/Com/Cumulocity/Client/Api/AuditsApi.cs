@@ -57,7 +57,7 @@ public sealed class AuditsApi : IAuditsApi
 	/// <inheritdoc />
 	public async Task<AuditRecordCollection<TAuditRecord>?> GetAuditRecords<TAuditRecord>(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAuditRecord : AuditRecord
 	{
-		const string resourcePath = "/audit/auditRecords";
+		const string resourcePath = $"audit/auditRecords";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("application", application);
@@ -95,7 +95,7 @@ public sealed class AuditsApi : IAuditsApi
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
 		jsonNode?.RemoveFromNode("source", "self");
-		const string resourcePath = "/audit/auditRecords";
+		const string resourcePath = $"audit/auditRecords";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -114,7 +114,7 @@ public sealed class AuditsApi : IAuditsApi
 	/// <inheritdoc />
 	public async Task<TAuditRecord?> GetAuditRecord<TAuditRecord>(string id, CancellationToken cToken = default) where TAuditRecord : AuditRecord
 	{
-		string resourcePath = $"/audit/auditRecords/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
+		string resourcePath = $"audit/auditRecords/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

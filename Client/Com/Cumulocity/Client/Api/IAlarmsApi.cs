@@ -53,15 +53,15 @@ public interface IAlarmsApi
 	/// <param name="lastUpdatedFrom">Start date or date and time of the last update made. <br /></param>
 	/// <param name="lastUpdatedTo">End date or date and time of the last update made. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
-	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. <br /></param>
+	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <c>status</c> parameter. <br /></param>
 	/// <param name="severity">The severity of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm severities at once, comma-separate the values. <br /></param>
 	/// <param name="source">The managed object ID to which the alarm is associated. <br /></param>
-	/// <param name="status">The status of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
+	/// <param name="status">The status of the alarm to search for. Should not be used when <c>resolved</c> parameter is provided. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
 	/// <param name="type">The types of alarm to search for. <br />ⓘ Info: If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. <br /></param>
 	/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
-	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
 	Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAlarm : Alarm;
 	
@@ -106,10 +106,10 @@ public interface IAlarmsApi
 	/// <param name="createdTo">End date or date and time of the alarm creation. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the alarm occurrence. <br /></param>
 	/// <param name="dateTo">End date or date and time of the alarm occurrence. <br /></param>
-	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. <br /></param>
+	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <c>status</c> parameter. <br /></param>
 	/// <param name="severity">The severity of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm severities at once, comma-separate the values. <br /></param>
 	/// <param name="source">The managed object ID to which the alarm is associated. <br /></param>
-	/// <param name="status">The status of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
+	/// <param name="status">The status of the alarm to search for. Should not be used when <c>resolved</c> parameter is provided. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
 	/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	///
@@ -178,7 +178,7 @@ public interface IAlarmsApi
 	/// <summary> 
 	/// Remove alarm collections <br />
 	/// Remove alarm collections specified by query parameters. <br />
-	/// ⚠️ Important: Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
+	/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>, <c>createdFrom</c>, <c>createdTo</c>.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_ALARM_ADMIN 
@@ -206,10 +206,10 @@ public interface IAlarmsApi
 	/// <param name="createdTo">End date or date and time of the alarm creation. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the alarm occurrence. <br /></param>
 	/// <param name="dateTo">End date or date and time of the alarm occurrence. <br /></param>
-	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. <br /></param>
+	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <c>status</c> parameter. <br /></param>
 	/// <param name="severity">The severity of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm severities at once, comma-separate the values. <br /></param>
 	/// <param name="source">The managed object ID to which the alarm is associated. <br /></param>
-	/// <param name="status">The status of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
+	/// <param name="status">The status of the alarm to search for. Should not be used when <c>resolved</c> parameter is provided. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
 	/// <param name="type">The types of alarm to search for. <br />ⓘ Info: If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. <br /></param>
 	/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
@@ -312,10 +312,10 @@ public interface IAlarmsApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the alarm occurrence. <br /></param>
 	/// <param name="dateTo">End date or date and time of the alarm occurrence. <br /></param>
-	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. <br /></param>
+	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. Takes precedence over the <c>status</c> parameter. <br /></param>
 	/// <param name="severity">The severity of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm severities at once, comma-separate the values. <br /></param>
 	/// <param name="source">The managed object ID to which the alarm is associated. <br /></param>
-	/// <param name="status">The status of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
+	/// <param name="status">The status of the alarm to search for. Should not be used when <c>resolved</c> parameter is provided. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
 	/// <param name="type">The types of alarm to search for. <br />ⓘ Info: If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. <br /></param>
 	/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>

@@ -38,7 +38,7 @@ public sealed class TokensApi : ITokensApi
 	public async Task<NotificationToken?> CreateToken(NotificationTokenClaims body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<NotificationTokenClaims>();
-		const string resourcePath = "/notification2/token";
+		const string resourcePath = $"notification2/token";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -58,7 +58,7 @@ public sealed class TokensApi : ITokensApi
 	/// <inheritdoc />
 	public async Task<NotificationSubscriptionResult?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/notification2/unsubscribe";
+		const string resourcePath = $"notification2/unsubscribe";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("token", token);

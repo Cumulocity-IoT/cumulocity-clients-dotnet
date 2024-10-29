@@ -29,6 +29,7 @@ public interface ICurrentUserApi
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
 	/// 
+	/// Users with ROLE_SYSTEM are not allowed to query with Accept header <c>application/vnd.com.nsn.cumulocity.user+json</c> <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
@@ -108,7 +109,7 @@ public interface ICurrentUserApi
 	/// <summary> 
 	/// Generate secret to set up TFA <br />
 	/// Generate a secret code to create a QR code to set up the two-factor authentication functionality using a TFA app/service. <br />
-	/// For more information about the feature, see <see href="https://cumulocity.com/guides/users-guide/administration/#tfa" langword="User Guide > Administration > Two-factor authentication" /> in the Cumulocity IoT documentation. <br />
+	/// For more information about the feature, see <see href="https://cumulocity.com/docs/authentication/tfa/" langword="Platform administration > Authentication > Two-factor authentication" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
@@ -161,7 +162,7 @@ public interface ICurrentUserApi
 	/// <summary> 
 	/// Activates or deactivates the two-factor authentication feature <br />
 	/// Activates or deactivates the two-factor authentication feature for the current user. <br />
-	/// For more information about the feature, see <see href="https://cumulocity.com/guides/users-guide/administration/#tfa" langword="User Guide > Administration > Two-factor authentication" /> in the Cumulocity IoT documentation. <br />
+	/// For more information about the feature, see <see href="https://cumulocity.com/docs/authentication/tfa/" langword="Platform administration > Authentication > Two-factor authentication" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
@@ -182,7 +183,7 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 404 User not found. <br /> <br />
+	/// 		<description>HTTP 409 TFA TOTP secret does not exist. First generate secret. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

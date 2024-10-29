@@ -14,7 +14,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// The session configuration properties are only available for OAuth internal. See <see href="https://cumulocity.com/guides/users-guide/administration/#oauth-internal" langword="Changing settings > OAuth internal" /> for more details. <br />
+/// The session configuration properties are only available for OAI-Secure. See <see href="https://cumulocity.com/docs/authentication/basic-settings/#oai-secure-session-configuration" langword="Platform administration > Authentication > Basic settings > OAI Secure session configuration " /> in the Cumulocity IoT user documentation. <br />
 /// </summary>
 ///
 public sealed class OAuthSessionConfiguration 

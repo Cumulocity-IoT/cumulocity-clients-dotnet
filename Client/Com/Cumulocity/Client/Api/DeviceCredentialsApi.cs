@@ -23,7 +23,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to create device credentials in Cumulocity IoT. <br />
-/// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://cumulocity.com/guides/about-doc/contacting-support/" langword="contacting support" />. <br />
+/// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://cumulocity.com/docs/additional-resources/contacting-support/" langword="contacting support" />. <br />
 /// ⚠️ Important: Do not use your tenant credentials with this API. <br />
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>
@@ -45,7 +45,7 @@ public sealed class DeviceCredentialsApi : IDeviceCredentialsApi
 		jsonNode?.RemoveFromNode("tenantId");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("username");
-		const string resourcePath = "/devicecontrol/deviceCredentials";
+		const string resourcePath = $"devicecontrol/deviceCredentials";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -65,7 +65,7 @@ public sealed class DeviceCredentialsApi : IDeviceCredentialsApi
 	/// <inheritdoc />
 	public async Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/devicecontrol/bulkNewDeviceRequests";
+		const string resourcePath = $"devicecontrol/bulkNewDeviceRequests";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var requestContent = new MultipartFormDataContent();
 		var fileContentFile = new ByteArrayContent(file);

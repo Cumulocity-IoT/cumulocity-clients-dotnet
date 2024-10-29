@@ -27,7 +27,7 @@ public interface IChildOperationsApi
 	/// Retrieve all child additions of a specific managed object by a given ID, or a subset based on queries. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -57,8 +57,8 @@ public interface IChildOperationsApi
 	/// <param name="query">Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in <see href="#tag/Query-language" langword="Query language" />. <br /></param>
 	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
-	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
 	Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAdditions<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -81,7 +81,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -126,7 +126,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -171,7 +171,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -202,7 +202,7 @@ public interface IChildOperationsApi
 	/// Remove specific child additions (by given child IDs) from its parent (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -237,7 +237,7 @@ public interface IChildOperationsApi
 	/// Retrieve a specific child addition (by a given child ID) of a specific managed object (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR MANAGE_OBJECT_READ permission on the source (parent) 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR MANAGE_OBJECT_READ permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -271,7 +271,7 @@ public interface IChildOperationsApi
 	/// Remove a specific child addition (by a given child ID) from its parent (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -306,7 +306,7 @@ public interface IChildOperationsApi
 	/// Retrieve all child assets of a specific managed object by a given ID, or a subset based on queries. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -336,8 +336,8 @@ public interface IChildOperationsApi
 	/// <param name="query">Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in <see href="#tag/Query-language" langword="Query language" />. <br /></param>
 	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
-	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
 	Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAssets<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -360,7 +360,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -405,7 +405,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -450,7 +450,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -481,7 +481,7 @@ public interface IChildOperationsApi
 	/// Remove specific child assets (by given child IDs) from its parent (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -516,7 +516,7 @@ public interface IChildOperationsApi
 	/// Retrieve a specific child asset (by a given child ID) of a specific managed object (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR MANAGE_OBJECT_READ permission on the source (parent) 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR MANAGE_OBJECT_READ permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -550,7 +550,7 @@ public interface IChildOperationsApi
 	/// Remove a specific child asset (by a given child ID) from its parent (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -585,7 +585,7 @@ public interface IChildOperationsApi
 	/// Retrieve all child devices of a specific managed object by a given ID, or a subset based on queries. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -615,8 +615,8 @@ public interface IChildOperationsApi
 	/// <param name="query">Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in <see href="#tag/Query-language" langword="Query language" />. <br /></param>
 	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
-	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
+	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
 	Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildDevices<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -639,7 +639,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -684,7 +684,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -729,7 +729,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR ((owner of the source OR MANAGE_OBJECT_ADMIN permission on the source) AND (owner of the child OR MANAGE_OBJECT_ADMIN permission on the child)) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -760,7 +760,7 @@ public interface IChildOperationsApi
 	/// Remove specific child devices (by given child IDs) from its parent (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -795,7 +795,7 @@ public interface IChildOperationsApi
 	/// Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR MANAGE_OBJECT_READ permission on the source (parent) 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR MANAGE_OBJECT_READ permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -829,7 +829,7 @@ public interface IChildOperationsApi
 	/// Remove a specific child device (by a given child ID) from its parent (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source (parent) OR owner of the child OR MANAGE_OBJECT_ADMIN permission on the source (parent) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />

@@ -106,7 +106,7 @@ public sealed class AuthConfig
 	public string? ProviderName { get; set; }
 
 	/// <summary> 
-	/// SSO specific. URL used for redirecting to the Cumulocity IoT platform. <br />
+	/// SSO specific. URL used for redirecting to the Cumulocity IoT platform. Do not set or leave it empty to allow SSO flow to be controlled by client (UI) applications. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("redirectToPlatform")]
@@ -123,7 +123,7 @@ public sealed class AuthConfig
 	public string? Self { get; set; }
 
 	/// <summary> 
-	/// The session configuration properties are only available for OAuth internal. See <see href="https://cumulocity.com/guides/users-guide/administration/#oauth-internal" langword="Changing settings > OAuth internal" /> for more details. <br />
+	/// The session configuration properties are only available for OAI-Secure. See <see href="https://cumulocity.com/docs/authentication/basic-settings/#oai-secure-session-configuration" langword="Platform administration > Authentication > Basic settings > OAI Secure session configuration " /> in the Cumulocity IoT user documentation. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("sessionConfiguration")]
@@ -154,6 +154,13 @@ public sealed class AuthConfig
 	public Type? PType { get; set; }
 
 	/// <summary> 
+	/// If set to <c>true</c>, user data and the userId are retrieved using the claims from the id_token; otherwise, they are based on the access_token. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("useIdToken")]
+	public bool? UseIdToken { get; set; }
+
+	/// <summary> 
 	/// SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform. <br />
 	/// </summary>
 	///
@@ -173,6 +180,13 @@ public sealed class AuthConfig
 	///
 	[JsonPropertyName("visibleOnLoginPage")]
 	public bool? VisibleOnLoginPage { get; set; }
+
+	/// <summary> 
+	/// A configuration for authentication with an access token from the authorization server. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("externalTokenConfig")]
+	public ExternalTokenConfig? PExternalTokenConfig { get; set; }
 
 	public AuthConfig() 
 	{
@@ -303,6 +317,13 @@ public sealed class AuthConfig
 			public List<Mappings> PMappings { get; set; } = new List<Mappings>();
 		
 			/// <summary> 
+			/// Represents rules used to assign inventory roles. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("inventoryMappings")]
+			public List<InventoryMappings> PInventoryMappings { get; set; } = new List<InventoryMappings>();
+		
+			/// <summary> 
 			/// Configuration of the mapping. <br />
 			/// </summary>
 			///
@@ -315,6 +336,20 @@ public sealed class AuthConfig
 				///
 				[JsonPropertyName("mapRolesOnlyForNewUser")]
 				public bool? MapRolesOnlyForNewUser { get; set; }
+			
+				/// <summary> 
+				/// If set to <c>true</c>, dynamic access mapping is only managed for global roles, applications and inventory roles which are listed in the configuration. Others remain unchanged. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("manageRolesOnlyFromAccessMapping")]
+				public bool? ManageRolesOnlyFromAccessMapping { get; set; }
+			
+				/// <summary> 
+				/// If set to <c>true</c>, dynamic access mapping is performed using the claims from the id_token; otherwise, it is based on the access_token. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("mapFromIdToken")]
+				public bool? MapFromIdToken { get; set; }
 			
 				public override string ToString()
 				{
@@ -330,7 +365,7 @@ public sealed class AuthConfig
 			{
 			
 				/// <summary> 
-				/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications. <br />
+				/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups. <br />
 				/// </summary>
 				///
 				[JsonPropertyName("when")]
@@ -349,6 +384,60 @@ public sealed class AuthConfig
 				///
 				[JsonPropertyName("thenGroups")]
 				public List<int> ThenGroups { get; set; } = new List<int>();
+			
+				public override string ToString()
+				{
+					return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
+				}
+			}
+		
+			/// <summary> 
+			/// Represents information of mapping access to inventory roles. <br />
+			/// </summary>
+			///
+			public sealed class InventoryMappings 
+			{
+			
+				/// <summary> 
+				/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("when")]
+				public JSONPredicateRepresentation? When { get; set; }
+			
+				/// <summary> 
+				/// List of the OAuth inventory assignments. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("thenInventoryRoles")]
+				public List<ThenInventoryRoles> PThenInventoryRoles { get; set; } = new List<ThenInventoryRoles>();
+			
+				/// <summary> 
+				/// Represents inventory roles for a specific device group. <br />
+				/// </summary>
+				///
+				public sealed class ThenInventoryRoles 
+				{
+				
+					/// <summary> 
+					/// A unique identifier for the managed object for which the roles are assigned. <br />
+					/// </summary>
+					///
+					[JsonPropertyName("managedObject")]
+					public string? ManagedObject { get; set; }
+				
+					/// <summary> 
+					/// List of the inventory roles' identifiers. <br />
+					/// </summary>
+					///
+					[JsonPropertyName("roleIds")]
+					public List<int> RoleIds { get; set; } = new List<int>();
+				
+					public override string ToString()
+					{
+						return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
+					}
+				}
 			
 				public override string ToString()
 				{
@@ -593,6 +682,105 @@ public sealed class AuthConfig
 		}
 	}
 
+
+	/// <summary> 
+	/// A configuration for authentication with an access token from the authorization server. <br />
+	/// </summary>
+	///
+	public sealed class ExternalTokenConfig 
+	{
+	
+		/// <summary> 
+		/// Indicates whether authentication is enabled or disabled. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("enabled")]
+		public bool? Enabled { get; set; }
+	
+		/// <summary> 
+		/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("userOrAppIdConfig")]
+		public UserOrAppIdConfig? PUserOrAppIdConfig { get; set; }
+	
+		/// <summary> 
+		/// If set to <c>true</c>, the access token is validated against the authorization server by way of introspection or user info request. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("validationRequired")]
+		public bool? ValidationRequired { get; set; }
+	
+		/// <summary> 
+		/// The method of validation of the access token. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("validationMethod")]
+		public ValidationMethod? PValidationMethod { get; set; }
+	
+		[JsonPropertyName("tokenValidationRequest")]
+		public RequestRepresentation? TokenValidationRequest { get; set; }
+	
+		/// <summary> 
+		/// The frequency (in Minutes) in which Cumulocity sends a validation request to authorization server. The recommended frequency is 1 minute. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("accessTokenValidityCheckIntervalInMinutes")]
+		public int? AccessTokenValidityCheckIntervalInMinutes { get; set; }
+	
+		/// <summary> 
+		/// The method of validation of the access token. <br />
+		/// </summary>
+		///
+		[JsonConverter(typeof(EnumConverterFactory))]
+		public enum ValidationMethod 
+		{
+			[EnumMember(Value = "INTROSPECTION")]
+			INTROSPECTION,
+			[EnumMember(Value = "USERINFO")]
+			USERINFO
+		}
+	
+		/// <summary> 
+		/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform. <br />
+		/// </summary>
+		///
+		public sealed class UserOrAppIdConfig 
+		{
+		
+			/// <summary> 
+			/// Used only if <c>useConstantValue</c> is set to <c>true</c>. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("constantValue")]
+			public string? ConstantValue { get; set; }
+		
+			/// <summary> 
+			/// The name of the field containing the JWT. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("jwtField")]
+			public string? JwtField { get; set; }
+		
+			/// <summary> 
+			/// Not recommended. If set to <c>true</c>, all users share a single account in the Cumulocity IoT platform. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("useConstantValue")]
+			public bool? UseConstantValue { get; set; }
+		
+			public override string ToString()
+			{
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
+			}
+		}
+	
+	
+		public override string ToString()
+		{
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
+		}
+	}
 
 	public override string ToString()
 	{

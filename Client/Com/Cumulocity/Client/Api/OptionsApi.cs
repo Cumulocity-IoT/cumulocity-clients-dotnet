@@ -38,7 +38,7 @@ public sealed class OptionsApi : IOptionsApi
 	/// <inheritdoc />
 	public async Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/tenant/options";
+		const string resourcePath = $"tenant/options";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -62,7 +62,7 @@ public sealed class OptionsApi : IOptionsApi
 	{
 		var jsonNode = body.ToJsonNode<Option>();
 		jsonNode?.RemoveFromNode("self");
-		const string resourcePath = "/tenant/options";
+		const string resourcePath = $"tenant/options";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -81,7 +81,7 @@ public sealed class OptionsApi : IOptionsApi
 	/// <inheritdoc />
 	public async Task<TCategoryOptions?> GetOptionsByCategory<TCategoryOptions>(string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions
 	{
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
+		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -99,7 +99,7 @@ public sealed class OptionsApi : IOptionsApi
 	public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions
 	{
 		var jsonNode = body.ToJsonNode<TCategoryOptions>();
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
+		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -118,7 +118,7 @@ public sealed class OptionsApi : IOptionsApi
 	/// <inheritdoc />
 	public async Task<Option?> GetOption(string category, string key, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
+		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -136,7 +136,7 @@ public sealed class OptionsApi : IOptionsApi
 	public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<CategoryKeyOption>();
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
+		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -155,7 +155,7 @@ public sealed class OptionsApi : IOptionsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteOption(string category, string key, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
+		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
