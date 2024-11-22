@@ -76,7 +76,7 @@ public class AuditRecord
 	public Severity? PSeverity { get; set; }
 
 	/// <summary> 
-	/// The managed object to which the audit is associated. <br />
+	/// The platform component ID to which the audit is associated. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("source")]
@@ -303,7 +303,7 @@ public class AuditRecord
 
 
 	/// <summary> 
-	/// The managed object to which the audit is associated. <br />
+	/// The platform component ID to which the audit is associated. <br />
 	/// </summary>
 	///
 	public sealed class Source 

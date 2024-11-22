@@ -14,18 +14,18 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// The availability information computed by Cumulocity IoT is stored in fragments <c>c8y_Availability</c> and <c>c8y_Connection</c> of the device. <br />
+/// The connection information computed by Cumulocity IoT is stored in fragments <c>c8y_Connection</c> of the device. <br />
 /// </summary>
 ///
 public sealed class C8yConnection 
 {
 
 	/// <summary> 
-	/// The current status, one of <c>AVAILABLE</c>, <c>CONNECTED</c>, <c>MAINTENANCE</c>, <c>DISCONNECTED</c>. <br />
+	/// The current status of connection, one of <c>CONNECTED</c>, <c>DISCONNECTED</c>, <c>MAINTENANCE</c>. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("status")]
-	public C8yAvailabilityStatus? Status { get; set; }
+	public C8yAvailabilityConnectionStatus? Status { get; set; }
 
 	public override string ToString()
 	{

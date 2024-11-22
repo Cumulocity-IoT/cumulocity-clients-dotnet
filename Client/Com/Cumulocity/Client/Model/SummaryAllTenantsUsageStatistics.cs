@@ -120,6 +120,20 @@ public sealed class SummaryAllTenantsUsageStatistics<TCustomProperties> where TC
 	public int? MeasurementsCreatedCount { get; set; }
 
 	/// <summary> 
+	/// Number of created operations. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("operationsCreatedCount")]
+	public int? OperationsCreatedCount { get; set; }
+
+	/// <summary> 
+	/// Number of updates made to the operations. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("operationsUpdatedCount")]
+	public int? OperationsUpdatedCount { get; set; }
+
+	/// <summary> 
 	/// ID of the parent tenant. <br />
 	/// </summary>
 	///

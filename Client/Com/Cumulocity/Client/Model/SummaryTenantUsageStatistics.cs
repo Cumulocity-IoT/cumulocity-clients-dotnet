@@ -117,6 +117,20 @@ public sealed class SummaryTenantUsageStatistics
 	public int? MeasurementsCreatedCount { get; set; }
 
 	/// <summary> 
+	/// Number of created operations. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("operationsCreatedCount")]
+	public int? OperationsCreatedCount { get; set; }
+
+	/// <summary> 
+	/// Number of updates made to the operations. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("operationsUpdatedCount")]
+	public int? OperationsUpdatedCount { get; set; }
+
+	/// <summary> 
 	/// Number of requests that were made against the tenant. Updated every 5 minutes. The following requests are not included: <br />
 	/// <list type="bullet">
 	/// 	<item>

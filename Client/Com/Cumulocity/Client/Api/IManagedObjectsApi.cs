@@ -252,7 +252,7 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
+	/// 		<description>HTTP 404 A device with provided ID is not monitored. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -260,7 +260,7 @@ public interface IManagedObjectsApi
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.DateTime> GetLatestAvailability(string id, CancellationToken cToken = default) ;
+	Task<ManagedObjectAvailability?> GetLatestAvailability(string id, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve all supported measurement fragments of a specific managed object <br />

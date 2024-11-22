@@ -105,7 +105,6 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildAddition<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
 		var jsonNode = body.ToJsonNode<TManagedObject>();
-		jsonNode?.RemoveFromNode("owner");
 		jsonNode?.RemoveFromNode("additionParents");
 		jsonNode?.RemoveFromNode("lastUpdated");
 		jsonNode?.RemoveFromNode("childDevices");
@@ -257,7 +256,6 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildAsset<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
 		var jsonNode = body.ToJsonNode<TManagedObject>();
-		jsonNode?.RemoveFromNode("owner");
 		jsonNode?.RemoveFromNode("additionParents");
 		jsonNode?.RemoveFromNode("lastUpdated");
 		jsonNode?.RemoveFromNode("childDevices");
@@ -409,7 +407,6 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildDevice<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
 		var jsonNode = body.ToJsonNode<TManagedObject>();
-		jsonNode?.RemoveFromNode("owner");
 		jsonNode?.RemoveFromNode("additionParents");
 		jsonNode?.RemoveFromNode("lastUpdated");
 		jsonNode?.RemoveFromNode("childDevices");

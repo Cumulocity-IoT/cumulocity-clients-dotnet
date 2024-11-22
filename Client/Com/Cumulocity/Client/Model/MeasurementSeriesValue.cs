@@ -1,5 +1,5 @@
 //
-// C8yAvailability.cs
+// MeasurementSeriesValue.cs
 // CumulocityCoreLibrary
 //
 // Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -13,26 +13,14 @@ using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
-/// <summary> 
-/// The availability information computed by Cumulocity IoT is stored in fragments <c>c8y_Availability</c> of the device. <br />
-/// </summary>
-///
-public sealed class C8yAvailability 
+public sealed class MeasurementSeriesValue 
 {
 
-	/// <summary> 
-	/// The current status of availability, one of <c>AVAILABLE</c>, <c>UNAVAILABLE</c>, <c>MAINTENANCE</c>. <br />
-	/// </summary>
-	///
-	[JsonPropertyName("status")]
-	public C8yAvailabilityDataStatus? Status { get; set; }
+	[JsonPropertyName("min")]
+	public decimal? Min { get; set; }
 
-	/// <summary> 
-	/// The time when the device sent the last message to Cumulocity IoT. <br />
-	/// </summary>
-	///
-	[JsonPropertyName("lastMessage")]
-	public System.DateTime? LastMessage { get; set; }
+	[JsonPropertyName("max")]
+	public decimal? Max { get; set; }
 
 	public override string ToString()
 	{

@@ -45,6 +45,16 @@ public sealed class MeasurementSeries
 	public sealed class Values 
 	{
 	
+		[JsonPropertyName("additionalProperties")]
+		public IDictionary<string, List<MeasurementSeriesValue>?> AdditionalProperties { get; set; } = new Dictionary<string, List<MeasurementSeriesValue>?>();
+		
+		[JsonIgnore]
+		public List<MeasurementSeriesValue>? this[string key]
+		{
+			get => AdditionalProperties[key];
+			set => AdditionalProperties[key] = value;
+		}
+	
 		public override string ToString()
 		{
 			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);

@@ -137,7 +137,6 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	public async Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
 		var jsonNode = body.ToJsonNode<TManagedObject>();
-		jsonNode?.RemoveFromNode("owner");
 		jsonNode?.RemoveFromNode("additionParents");
 		jsonNode?.RemoveFromNode("lastUpdated");
 		jsonNode?.RemoveFromNode("childDevices");
@@ -189,7 +188,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.DateTime> GetLatestAvailability(string id, CancellationToken cToken = default) 
+	public async Task<ManagedObjectAvailability?> GetLatestAvailability(string id, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/availability";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -198,11 +197,11 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 			Method = HttpMethod.Get,
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain, application/json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<System.DateTime>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectAvailability?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
