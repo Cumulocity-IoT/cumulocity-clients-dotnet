@@ -74,12 +74,12 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// </list>
-	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
+	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
 	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
 	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
-	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
+	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_ADMIN OR owner of the source OR MEASUREMENT_ADMIN permission on the source 
@@ -125,12 +125,12 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// </list>
-	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
+	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
 	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
 	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
-	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
+	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_ADMIN OR owner of the source OR MEASUREMENT_ADMIN permission on the source 

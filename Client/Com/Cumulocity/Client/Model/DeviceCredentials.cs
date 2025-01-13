@@ -52,7 +52,7 @@ public sealed class DeviceCredentials
 	public string? Username { get; set; }
 
 	/// <summary> 
-	/// Security token which is required and verified against during device request acceptance.See <see href="https://cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for more details on configuration.See <see href="/#operation/putNewDeviceRequestResource" langword="Update specific new device request status" /> for details on submitting token upon device acceptance. <br />
+	/// Security token which is required and verified against during device request acceptance.See <see href="https://www.cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for more details on configuration.See <see href="/#operation/putNewDeviceRequestResource" langword="Update specific new device request status" /> for details on submitting token upon device acceptance. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("securityToken")]

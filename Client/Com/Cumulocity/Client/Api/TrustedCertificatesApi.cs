@@ -23,7 +23,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods for managing trusted certificates used to establish device connections via MQTT. <br />
-/// More detailed information about trusted certificates and their role can be found in <see href="https://cumulocity.com/docs/device-management-application/managing-device-data/" langword="Device management > Device management application > Managing device data" /> in the Cumulocity IoT user documentation. <br />
+/// More detailed information about trusted certificates and their role can be found in <see href="https://www.cumulocity.com/docs/device-management-application/managing-device-data/" langword="Device management > Device management application > Managing device data" /> in the Cumulocity IoT user documentation. <br />
 /// ⓘ Info: The Accept header must be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///

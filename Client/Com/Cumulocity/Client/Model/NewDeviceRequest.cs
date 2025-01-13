@@ -74,7 +74,7 @@ public sealed class NewDeviceRequest
 	public System.DateTime? CreationTime { get; set; }
 
 	/// <summary> 
-	/// When accepting a device request, the security token is verified against the token submitted by the device when requesting credentials.See <see href="https://cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for details on configuration.See <see href="/#operation/postDeviceCredentialsCollectionResource" langword="Create device credentials" /> for details on creating token for device registration.<c>securityToken</c> parameter can be added only when submitting <c>ACCEPTED</c> status. <br />
+	/// When accepting a device request, the security token is verified against the token submitted by the device when requesting credentials.See <see href="https://www.cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for details on configuration.See <see href="/#operation/postDeviceCredentialsCollectionResource" langword="Create device credentials" /> for details on creating token for device registration.<c>securityToken</c> parameter can be added only when submitting <c>ACCEPTED</c> status. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("securityToken")]
