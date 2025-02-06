@@ -109,7 +109,7 @@ public sealed class TrustedCertificate
 	public string? SerialNumber { get; set; }
 
 	/// <summary> 
-	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform. <br />
+	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity platform. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("status")]
@@ -130,7 +130,7 @@ public sealed class TrustedCertificate
 	public int? Version { get; set; }
 
 	/// <summary> 
-	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform. <br />
+	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity platform. <br />
 	/// </summary>
 	///
 	[JsonConverter(typeof(EnumConverterFactory))]

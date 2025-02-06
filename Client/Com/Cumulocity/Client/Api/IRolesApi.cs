@@ -107,7 +107,7 @@ public interface IRolesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
@@ -152,7 +152,7 @@ public interface IRolesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -186,7 +186,7 @@ public interface IRolesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="roleId">Unique identifier of the user role. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -229,7 +229,7 @@ public interface IRolesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -263,7 +263,7 @@ public interface IRolesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="roleId">Unique identifier of the user role. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>

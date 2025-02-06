@@ -15,7 +15,7 @@ using Client.Com.Cumulocity.Client.Model;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// Measurements are produced by reading sensor values. In some cases, this data is read in static intervals and sent to the platform (for example, temperature sensors or electrical meters). In other cases, the data is read on demand or at irregular intervals (for example, health devices such as weight scales). Regardless what kind of protocol the device supports, the agent is responsible for converting it into a "push" protocol by uploading data to Cumulocity IoT. <br />
+/// Measurements are produced by reading sensor values. In some cases, this data is read in static intervals and sent to the platform (for example, temperature sensors or electrical meters). In other cases, the data is read on demand or at irregular intervals (for example, health devices such as weight scales). Regardless what kind of protocol the device supports, the agent is responsible for converting it into a "push" protocol by uploading data to Cumulocity. <br />
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -74,12 +74,119 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// </list>
-	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
+	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity user documentation. <br />
 	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
 	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
+	/// Handling of Correct and Incorrect Fragments and Series: <br />
+	/// <list type="number">
+	/// 	<item>
+	/// 		<description>Mixed Series Fragments: <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// When creating a measurement with a fragment containing both valid and invalid series: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>Valid series (those with numeric value fields) are processed and persisted. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Invalid series (e.g., Booleans, Lists, Strings, Structs) are silently ignored and are not included in the resulting measurement. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>The measurement is created successfully (HTTP 201 Created), but the invalid series are removed. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// Example: <br />
+	/// <![CDATA[
+	/// {
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "type": "temperatureMeasurement",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
+	///       "validSeries_INTEGER": { "value": 42, "unit": "C" },
+	///       "ignoredField_BOOLEAN": { "value": false, "unit": "t/f" },
+	///       "ignoredField_LIST": { "value": [42, 43, 44] },
+	///       "ignoredField_STRUCT": { "value": { "a": 1, "b": 2 }, "unit": "C" },
+	///       "ignoredField0": 42,
+	///       "ignoredField1": { "value": { "a": 1, "b": 2 }, "unit": "C" },
+	///       "ignoredField2": { "unit": "C" },
+	///       "ignoredField3": { "val": 42 },
+	///       "ignoredField4": { "subseries": { "value": 42 } }
+	///     }
+	///   }
+	/// }
+	/// ]]>
+	/// Response: <br />
+	/// <![CDATA[
+	/// {
+	///   "self": "https://example.cumulocity.com/measurement/measurements/124",
+	///   "id": "124",
+	///   "type": "temperatureMeasurement",
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
+	///       "validSeries_INTEGER": { "value": 42, "unit": "C" }
+	///     }
+	///   }
+	/// }
+	/// ]]>
+	/// <list type="number">
+	/// 	<item>
+	/// 		<description>Fragments with Only Invalid Series: <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// If a measurement fragment contains only invalid series, the entire fragment is preserved as a plain object, and no fields are removed or validated further. This means that such fragments are treated as normal document properties rather than as series fragments. As a result: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>These objects are not included in series fragment aggregation. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>They are not treated as part of the measurement's series data but remain accessible as regular property within the measurement document. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// Example: <br />
+	/// <![CDATA[
+	/// {
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "type": "temperatureMeasurement",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
+	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
+	///     }
+	///   }
+	/// }
+	/// ]]>
+	/// Response: <br />
+	/// <![CDATA[
+	/// {
+	///   "self": "https://example.cumulocity.com/measurement/measurements/125",
+	///   "id": "125",
+	///   "type": "temperatureMeasurement",
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
+	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
+	///     }
+	///   }
+	/// }
+	/// ]]>
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
-	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
+	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_ADMIN OR owner of the source OR MEASUREMENT_ADMIN permission on the source 
@@ -125,12 +232,119 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// </list>
-	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation. <br />
+	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity user documentation. <br />
 	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
 	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
+	/// Handling of Correct and Incorrect Fragments and Series: <br />
+	/// <list type="number">
+	/// 	<item>
+	/// 		<description>Mixed Series Fragments: <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// When creating a measurement with a fragment containing both valid and invalid series: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>Valid series (those with numeric value fields) are processed and persisted. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Invalid series (e.g., Booleans, Lists, Strings, Structs) are silently ignored and are not included in the resulting measurement. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>The measurement is created successfully (HTTP 201 Created), but the invalid series are removed. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// Example: <br />
+	/// <![CDATA[
+	/// {
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "type": "temperatureMeasurement",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
+	///       "validSeries_INTEGER": { "value": 42, "unit": "C" },
+	///       "ignoredField_BOOLEAN": { "value": false, "unit": "t/f" },
+	///       "ignoredField_LIST": { "value": [42, 43, 44] },
+	///       "ignoredField_STRUCT": { "value": { "a": 1, "b": 2 }, "unit": "C" },
+	///       "ignoredField0": 42,
+	///       "ignoredField1": { "value": { "a": 1, "b": 2 }, "unit": "C" },
+	///       "ignoredField2": { "unit": "C" },
+	///       "ignoredField3": { "val": 42 },
+	///       "ignoredField4": { "subseries": { "value": 42 } }
+	///     }
+	///   }
+	/// }
+	/// ]]>
+	/// Response: <br />
+	/// <![CDATA[
+	/// {
+	///   "self": "https://example.cumulocity.com/measurement/measurements/124",
+	///   "id": "124",
+	///   "type": "temperatureMeasurement",
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
+	///       "validSeries_INTEGER": { "value": 42, "unit": "C" }
+	///     }
+	///   }
+	/// }
+	/// ]]>
+	/// <list type="number">
+	/// 	<item>
+	/// 		<description>Fragments with Only Invalid Series: <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// If a measurement fragment contains only invalid series, the entire fragment is preserved as a plain object, and no fields are removed or validated further. This means that such fragments are treated as normal document properties rather than as series fragments. As a result: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>These objects are not included in series fragment aggregation. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>They are not treated as part of the measurement's series data but remain accessible as regular property within the measurement document. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// Example: <br />
+	/// <![CDATA[
+	/// {
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "type": "temperatureMeasurement",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
+	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
+	///     }
+	///   }
+	/// }
+	/// ]]>
+	/// Response: <br />
+	/// <![CDATA[
+	/// {
+	///   "self": "https://example.cumulocity.com/measurement/measurements/125",
+	///   "id": "125",
+	///   "type": "temperatureMeasurement",
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "c8y_Steam": {
+	///     "Temperature": {
+	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
+	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
+	///     }
+	///   }
+	/// }
+	/// ]]>
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
-	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity IoT user documentation. <br />
+	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_ADMIN OR owner of the source OR MEASUREMENT_ADMIN permission on the source 

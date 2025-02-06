@@ -15,7 +15,7 @@ using Client.Com.Cumulocity.Client.Model;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// API methods to create, retrieve, update and delete new device requests in Cumulocity IoT. <br />
+/// API methods to create, retrieve, update and delete new device requests in Cumulocity. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///

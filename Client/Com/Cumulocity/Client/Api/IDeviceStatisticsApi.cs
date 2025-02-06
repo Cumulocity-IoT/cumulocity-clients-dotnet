@@ -14,7 +14,7 @@ using Client.Com.Cumulocity.Client.Model;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// Device statistics are collected for each inventory object with at least one measurement, event or alarm. There are no additional checks if the inventory object is marked as device using the <c>c8y_IsDevice</c> fragment. When the first measurement, event or alarm is created for a specific inventory object, Cumulocity IoT is always considering this as a device and starts counting. <br />
+/// Device statistics are collected for each inventory object with at least one measurement, event or alarm. There are no additional checks if the inventory object is marked as device using the <c>c8y_IsDevice</c> fragment. When the first measurement, event or alarm is created for a specific inventory object, Cumulocity is always considering this as a device and starts counting. <br />
 /// Device statistics are counted with daily and monthy rate. All requests are considered when counting device statistics, no matter which processing mode is used. <br />
 /// The following requests are counted: <br />
 /// <list type="bullet">
@@ -87,7 +87,7 @@ public interface IDeviceStatisticsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="date">Date (format YYYY-MM-dd) of the queried month (the day value is ignored). <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
@@ -121,7 +121,7 @@ public interface IDeviceStatisticsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="date">Date (format YYYY-MM-dd) of the queried day. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>

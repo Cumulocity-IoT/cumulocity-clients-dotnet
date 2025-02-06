@@ -138,7 +138,7 @@ public interface IAlarmsApi
 	/// 	</item>
 	/// </list>
 	/// <br /> Alarm suppression <br />
-	/// If the source device is in maintenance mode, the alarm is not created and not reported to the Cumulocity IoT event processing engine. When sending a POST request to create a new alarm and if the source device is in maintenance mode, the self link of the alarm will be: <br />
+	/// If the source device is in maintenance mode, the alarm is not created and not reported to the Cumulocity event processing engine. When sending a POST request to create a new alarm and if the source device is in maintenance mode, the self link of the alarm will be: <br />
 	/// <![CDATA[
 	/// "self": "https://<TENANT_DOMAIN>/alarm/alarms/null"
 	/// ]]>

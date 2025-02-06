@@ -39,7 +39,7 @@ public sealed class UploadedTrustedCertificate
 	public string? Name { get; set; }
 
 	/// <summary> 
-	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform. <br />
+	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity platform. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("status")]
@@ -56,7 +56,7 @@ public sealed class UploadedTrustedCertificate
 	}
 
 	/// <summary> 
-	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform. <br />
+	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity platform. <br />
 	/// </summary>
 	///
 	[JsonConverter(typeof(EnumConverterFactory))]

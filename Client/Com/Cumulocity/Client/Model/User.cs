@@ -33,7 +33,7 @@ public sealed class User<TCustomProperties> where TCustomProperties : CustomProp
 	public TCustomProperties? PCustomProperties { get; set; }
 
 	/// <summary> 
-	/// The user's display name in Cumulocity IoT. <br />
+	/// The user's display name in Cumulocity. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("displayName")]
@@ -139,7 +139,7 @@ public sealed class User<TCustomProperties> where TCustomProperties : CustomProp
 	public string? Self { get; set; }
 
 	/// <summary> 
-	/// When set to <c>true</c>, this field will cause Cumulocity IoT to send a password reset email to the email address specified. <br />
+	/// When set to <c>true</c>, this field will cause Cumulocity to send a password reset email to the email address specified. <br />
 	/// If there is no password specified when creating a new user with a POST request, this must be specified and it must be set to <c>true</c>. <br />
 	/// </summary>
 	///

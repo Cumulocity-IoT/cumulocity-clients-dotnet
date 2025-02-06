@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to create, retrieve, update and delete user groups. <br />
-/// ������ Important: In the Cumulocity IoT user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles. <br />
+/// ������ Important: In the Cumulocity user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -47,7 +47,7 @@ public interface IGroupsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
@@ -89,7 +89,7 @@ public interface IGroupsApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<Group<TCustomProperties>?> CreateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
@@ -122,7 +122,7 @@ public interface IGroupsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="forceLogout">If set to <c>true</c>, users with this global role will be force logged out. <br /></param>
@@ -162,7 +162,7 @@ public interface IGroupsApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="forceLogout">If set to <c>true</c>, users with this global role will be force logged out. <br /></param>
@@ -197,7 +197,7 @@ public interface IGroupsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="forceLogout">If set to <c>true</c>, users with this global role will be force logged out. <br /></param>
@@ -232,7 +232,7 @@ public interface IGroupsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupName">The name of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -266,7 +266,7 @@ public interface IGroupsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>

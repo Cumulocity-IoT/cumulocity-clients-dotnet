@@ -200,7 +200,7 @@ public interface IFeatureTogglesApi
 	/// </summary>
 	/// <param name="body"></param>
 	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> SetGivenTenantFeatureToggleValue(FeatureToggleValue body, string featureKey, string tenantId, CancellationToken cToken = default) ;
@@ -234,7 +234,7 @@ public interface IFeatureTogglesApi
 	/// </list>
 	/// </summary>
 	/// <param name="featureKey">A unique key of the feature toggle. <br /></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> UnsetGivenTenantFeatureToggleValue(string featureKey, string tenantId, CancellationToken cToken = default) ;

@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to retrieve the login options configured in the tenant. <br />
-/// More detailed information about the parameters and their meaning can be found in <see href="https://www.cumulocity.com/docs/standard-tenant/changing-settings/" langword="Platform administration > Standard tenant administration > Changing settings" /> in the Cumulocity IoT user documentation. <br />
+/// More detailed information about the parameters and their meaning can be found in <see href="https://www.cumulocity.com/docs/standard-tenant/changing-settings/" langword="Platform administration > Standard tenant administration > Changing settings" /> in the Cumulocity user documentation. <br />
 /// ⓘ Info: If OAuth external is the only login option shown in the response, the user will be automatically redirected to the SSO login screen. <br />
 /// </summary>
 ///
@@ -41,7 +41,7 @@ public interface ILoginOptionsApi
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="management">If this is set to <c>true</c>, the management tenant login options will be returned. <br />ⓘ Info: The <c>tenantId</c> parameter must not be present in the request when using the <c>management</c> parameter, otherwise it will cause an error. <br /></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	///
 	Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null, CancellationToken cToken = default) ;
 	
@@ -206,7 +206,7 @@ public interface ILoginOptionsApi
 	/// <param name="body"></param>
 	/// <param name="typeOrId">The type or ID of the login option. The type's value is case insensitive and can be <c>OAUTH2</c>, <c>OAUTH2_INTERNAL</c> or <c>BASIC</c>. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	/// <param name="targetTenant">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="targetTenant">Unique identifier of a Cumulocity tenant. <br /></param>
 	///
 	Task<AuthConfig?> UpdateLoginOptionAccess(AuthConfigAccess body, string typeOrId, string? targetTenant = null, CancellationToken cToken = default) ;
 }

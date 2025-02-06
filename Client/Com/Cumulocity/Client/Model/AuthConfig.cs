@@ -54,7 +54,7 @@ public sealed class AuthConfig
 	public string? ButtonName { get; set; }
 
 	/// <summary> 
-	/// SSO specific. The identifier of the Cumulocity IoT tenant on the external authorization server. <br />
+	/// SSO specific. The identifier of the Cumulocity tenant on the external authorization server. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("clientId")]
@@ -106,7 +106,7 @@ public sealed class AuthConfig
 	public string? ProviderName { get; set; }
 
 	/// <summary> 
-	/// SSO specific. URL used for redirecting to the Cumulocity IoT platform. Do not set or leave it empty to allow SSO flow to be controlled by client (UI) applications. <br />
+	/// SSO specific. URL used for redirecting to the Cumulocity platform. Do not set or leave it empty to allow SSO flow to be controlled by client (UI) applications. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("redirectToPlatform")]
@@ -123,14 +123,14 @@ public sealed class AuthConfig
 	public string? Self { get; set; }
 
 	/// <summary> 
-	/// The session configuration properties are only available for OAI-Secure. See <see href="https://www.cumulocity.com/docs/authentication/basic-settings/#oai-secure-session-configuration" langword="Platform administration > Authentication > Basic settings > OAI Secure session configuration " /> in the Cumulocity IoT user documentation. <br />
+	/// The session configuration properties are only available for OAI-Secure. See <see href="https://www.cumulocity.com/docs/authentication/basic-settings/#oai-secure-session-configuration" langword="Platform administration > Authentication > Basic settings > OAI Secure session configuration " /> in the Cumulocity user documentation. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("sessionConfiguration")]
 	public OAuthSessionConfiguration? SessionConfiguration { get; set; }
 
 	/// <summary> 
-	/// SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity IoT platform. <br />
+	/// SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity platform. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("signatureVerificationConfig")]
@@ -161,14 +161,14 @@ public sealed class AuthConfig
 	public bool? UseIdToken { get; set; }
 
 	/// <summary> 
-	/// SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform. <br />
+	/// SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity platform. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("userIdConfig")]
 	public UserIdConfig? PUserIdConfig { get; set; }
 
 	/// <summary> 
-	/// Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive. <br />
+	/// Indicates whether user data are managed internally by the Cumulocity platform or by an external server. Note that the value is case insensitive. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("userManagementSource")]
@@ -227,7 +227,7 @@ public sealed class AuthConfig
 	}
 
 	/// <summary> 
-	/// Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive. <br />
+	/// Indicates whether user data are managed internally by the Cumulocity platform or by an external server. Note that the value is case insensitive. <br />
 	/// </summary>
 	///
 	[JsonConverter(typeof(EnumConverterFactory))]
@@ -458,7 +458,7 @@ public sealed class AuthConfig
 	}
 
 	/// <summary> 
-	/// SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity IoT platform. <br />
+	/// SSO specific and authorization server dependent. Describes the method of access token signature verification on the Cumulocity platform. <br />
 	/// </summary>
 	///
 	public sealed class SignatureVerificationConfig 
@@ -649,7 +649,7 @@ public sealed class AuthConfig
 
 
 	/// <summary> 
-	/// SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity IoT platform. <br />
+	/// SSO specific. Points to the field in the obtained JWT access token that should be used as the username in the Cumulocity platform. <br />
 	/// </summary>
 	///
 	public sealed class UserIdConfig 
@@ -670,7 +670,7 @@ public sealed class AuthConfig
 		public string? JwtField { get; set; }
 	
 		/// <summary> 
-		/// Not recommended. If set to <c>true</c>, all SSO users will share one account in the Cumulocity IoT platform. <br />
+		/// Not recommended. If set to <c>true</c>, all SSO users will share one account in the Cumulocity platform. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("useConstantValue")]
@@ -698,7 +698,7 @@ public sealed class AuthConfig
 		public bool? Enabled { get; set; }
 	
 		/// <summary> 
-		/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform. <br />
+		/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity platform. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("userOrAppIdConfig")]
@@ -742,7 +742,7 @@ public sealed class AuthConfig
 		}
 	
 		/// <summary> 
-		/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform. <br />
+		/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity platform. <br />
 		/// </summary>
 		///
 		public sealed class UserOrAppIdConfig 
@@ -763,7 +763,7 @@ public sealed class AuthConfig
 			public string? JwtField { get; set; }
 		
 			/// <summary> 
-			/// Not recommended. If set to <c>true</c>, all users share a single account in the Cumulocity IoT platform. <br />
+			/// Not recommended. If set to <c>true</c>, all users share a single account in the Cumulocity platform. <br />
 			/// </summary>
 			///
 			[JsonPropertyName("useConstantValue")]

@@ -14,7 +14,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// The availability information computed by Cumulocity IoT is stored in fragments <c>c8y_Availability</c> of the device. <br />
+/// The availability information computed by Cumulocity is stored in fragments <c>c8y_Availability</c> of the device. <br />
 /// </summary>
 ///
 public sealed class C8yAvailability 
@@ -28,7 +28,7 @@ public sealed class C8yAvailability
 	public C8yAvailabilityDataStatus? Status { get; set; }
 
 	/// <summary> 
-	/// The time when the device sent the last message to Cumulocity IoT. <br />
+	/// The time when the device sent the last message to Cumulocity. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("lastMessage")]

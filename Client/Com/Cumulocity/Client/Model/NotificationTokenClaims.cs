@@ -46,7 +46,7 @@ public sealed class NotificationTokenClaims
 	public Type? PType { get; set; }
 
 	/// <summary> 
-	/// If <c>true</c>, the token will be securely signed by the Cumulocity IoT platform. <br />
+	/// If <c>true</c>, the token will be securely signed by the Cumulocity platform. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("signed")]

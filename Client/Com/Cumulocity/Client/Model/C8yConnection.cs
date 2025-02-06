@@ -14,7 +14,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// The connection information computed by Cumulocity IoT is stored in fragments <c>c8y_Connection</c> of the device. <br />
+/// The connection information computed by Cumulocity is stored in fragments <c>c8y_Connection</c> of the device. <br />
 /// </summary>
 ///
 public sealed class C8yConnection 

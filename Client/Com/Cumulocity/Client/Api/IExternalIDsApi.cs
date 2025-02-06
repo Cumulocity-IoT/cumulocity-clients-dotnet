@@ -105,7 +105,7 @@ public interface IExternalIDsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with. <br /></param>
+	/// <param name="type">The identifier used in the external system that Cumulocity interfaces with. <br /></param>
 	/// <param name="externalId">The type of the external identifier. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -135,7 +135,7 @@ public interface IExternalIDsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with. <br /></param>
+	/// <param name="type">The identifier used in the external system that Cumulocity interfaces with. <br /></param>
 	/// <param name="externalId">The type of the external identifier. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///

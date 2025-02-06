@@ -15,7 +15,7 @@ using Client.Com.Cumulocity.Client.Model;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// API methods to create, retrieve, update and delete users in Cumulocity IoT. <br />
+/// API methods to create, retrieve, update and delete users in Cumulocity. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -46,7 +46,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="groups">Numeric group identifiers. The response will contain only users which belong to at least one of the specified groups. <br />ⓘ Info: If you query for multiple user groups at once, comma-separate the values. <br /></param>
@@ -93,7 +93,7 @@ public interface IUsersApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
@@ -127,7 +127,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -171,7 +171,7 @@ public interface IUsersApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -205,7 +205,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -239,7 +239,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -273,7 +273,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="username">The username of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -307,7 +307,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
@@ -351,7 +351,7 @@ public interface IUsersApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -385,7 +385,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -440,7 +440,7 @@ public interface IUsersApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> LogoutAllUsers(string tenantId, CancellationToken cToken = default) ;

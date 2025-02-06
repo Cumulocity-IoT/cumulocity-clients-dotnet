@@ -78,7 +78,7 @@ public sealed class LoginOption
 	public string? Self { get; set; }
 
 	/// <summary> 
-	/// The session configuration properties are only available for OAI-Secure. See <see href="https://www.cumulocity.com/docs/authentication/basic-settings/#oai-secure-session-configuration" langword="Platform administration > Authentication > Basic settings > OAI Secure session configuration " /> in the Cumulocity IoT user documentation. <br />
+	/// The session configuration properties are only available for OAI-Secure. See <see href="https://www.cumulocity.com/docs/authentication/basic-settings/#oai-secure-session-configuration" langword="Platform administration > Authentication > Basic settings > OAI Secure session configuration " /> in the Cumulocity user documentation. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("sessionConfiguration")]
@@ -106,7 +106,7 @@ public sealed class LoginOption
 	public string? Type { get; set; }
 
 	/// <summary> 
-	/// Specifies if the users are managed internally by Cumulocity IoT (<c>INTERNAL</c>) or if the users data are managed by a external system (<c>REMOTE</c>). <br />
+	/// Specifies if the users are managed internally by Cumulocity (<c>INTERNAL</c>) or if the users data are managed by a external system (<c>REMOTE</c>). <br />
 	/// </summary>
 	///
 	[JsonPropertyName("userManagementSource")]

@@ -15,9 +15,9 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// <br /> Real-time operations <br />
-/// Real-time notification services of Cumulocity IoT have their own subscription channel name format and URL. The real-time notifications are available for <see href="#tag/Alarm-notification-API" langword="Alarms" />, <see href="#tag/Device-control-notification-API" langword="Device control" />, <see href="#tag/Event-notification-API" langword="Events" />, <see href="#tag/Inventory-notification-API" langword="Inventory" /> and <see href="#tag/Measurement-notification-API" langword="Measurements" />. <br />
+/// Real-time notification services of Cumulocity have their own subscription channel name format and URL. The real-time notifications are available for <see href="#tag/Alarm-notification-API" langword="Alarms" />, <see href="#tag/Device-control-notification-API" langword="Device control" />, <see href="#tag/Event-notification-API" langword="Events" />, <see href="#tag/Inventory-notification-API" langword="Inventory" /> and <see href="#tag/Measurement-notification-API" langword="Measurements" />. <br />
 /// Note that when using long-polling, all POST requests must contain the Accept header, otherwise an empty response body will be returned.All requests are sent to the <kbd>/notification/realtime</kbd> endpoint. <br />
-/// ⓘ Info: The long-polling interface is designed as a mechanism for custom applications to poll infrequent events from Cumulocity IoT. The long-polling interface is not designed as a mechanism to stream large data volumes (>100kB/sec) or frequent data (>50 events/sec) out of Cumulocity IoT. The usage of long-polling is not supported for such use cases. <br />
+/// ⓘ Info: The long-polling interface is designed as a mechanism for custom applications to poll infrequent events from Cumulocity. The long-polling interface is not designed as a mechanism to stream large data volumes (>100kB/sec) or frequent data (>50 events/sec) out of Cumulocity. The usage of long-polling is not supported for such use cases. <br />
 /// <br /> Handshake <br />
 /// A real-time notifications client initiates the connection negotiation by sending a message to the <c>/meta/handshake</c> channel. In response, the client receives a <c>clientId</c> which identifies a conversation and must be passed in every non-handshake request. <br />
 /// ⓘ Info: The number of parallel connections that can be opened at the same time by a single user is limited. After exceeding this limit when a new connection is created, the oldest one will be closed and the newly created one will be added in its place. This limit is configurable and managed per installation. Its default value is 10 connections per user, subscription channel and server node. <br />
@@ -64,7 +64,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ]
 /// ]]>
 /// <br /> Subscribe <br />
-/// A notification client can send subscribe messages and specify the desired channel to receive output messages from the Cumulocity IoT server. The client will receive the messages in succeeding connect requests. <br />
+/// A notification client can send subscribe messages and specify the desired channel to receive output messages from the Cumulocity server. The client will receive the messages in succeeding connect requests. <br />
 /// Each REST API that uses the real-time notification service has its own format for channel names. See <see href="#tag/Device-control-notification-API" langword="Device control" /> for more details. <br />
 /// <br /> Request example <br />
 /// <![CDATA[
@@ -185,7 +185,7 @@ public interface IRealtimeNotificationApi
 
 	/// <summary> 
 	/// Responsive communication <br />
-	/// The Real-time notification API enables responsive communication from Cumulocity IoT over restricted networks towards clients such as web browser and mobile devices. All clients subscribe to so-called channels to receive messages. These channels are filled by Cumulocity IoT with the output of <see href="#tag/Operations" langword="Operations" />. In addition, particular system channels are used for the initial handshake with clients, subscription to channels, removal from channels and connection. The <see href="https://docs.cometd.org/current/reference/#_concepts_bayeux_protocol" langword="Bayeux protocol" /> over HTTPS or WSS is used as communication mechanism. <br />
+	/// The Real-time notification API enables responsive communication from Cumulocity over restricted networks towards clients such as web browser and mobile devices. All clients subscribe to so-called channels to receive messages. These channels are filled by Cumulocity with the output of <see href="#tag/Operations" langword="Operations" />. In addition, particular system channels are used for the initial handshake with clients, subscription to channels, removal from channels and connection. The <see href="https://docs.cometd.org/current/reference/#_concepts_bayeux_protocol" langword="Bayeux protocol" /> over HTTPS or WSS is used as communication mechanism. <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">

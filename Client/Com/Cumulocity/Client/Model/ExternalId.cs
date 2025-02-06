@@ -17,7 +17,7 @@ public sealed class ExternalId
 {
 
 	/// <summary> 
-	/// The identifier used in the external system that Cumulocity IoT interfaces with. <br />
+	/// The identifier used in the external system that Cumulocity interfaces with. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("externalId")]

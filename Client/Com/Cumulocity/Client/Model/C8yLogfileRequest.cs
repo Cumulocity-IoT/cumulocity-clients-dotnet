@@ -14,7 +14,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// Request a device to send a log file and view it in Cumulocity IoT's log viewer. <br />
+/// Request a device to send a log file and view it in Cumulocity's log viewer. <br />
 /// </summary>
 ///
 public sealed class C8yLogfileRequest 
@@ -49,7 +49,7 @@ public sealed class C8yLogfileRequest
 	public string? SearchText { get; set; }
 
 	/// <summary> 
-	/// Upper limit of the number of lines that should be sent to Cumulocity IoT after filtering. <br />
+	/// Upper limit of the number of lines that should be sent to Cumulocity after filtering. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("maximumLines")]

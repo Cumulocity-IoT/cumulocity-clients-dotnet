@@ -115,7 +115,7 @@ public interface IBulkOperationsApi
 	/// <param name="id">Unique identifier of the bulk operation. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<BulkOperation?> GetBulkOperation(string id, CancellationToken cToken = default) ;
+	Task<BulkOperation?> GetBulkOperation(int id, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Update a specific bulk operation <br />
@@ -146,7 +146,7 @@ public interface IBulkOperationsApi
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
+	Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, int id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Delete a specific bulk operation <br />
@@ -180,5 +180,5 @@ public interface IBulkOperationsApi
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<string?> DeleteBulkOperation(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
+	Task<string?> DeleteBulkOperation(int id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 }

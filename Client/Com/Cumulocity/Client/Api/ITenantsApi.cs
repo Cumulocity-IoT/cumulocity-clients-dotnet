@@ -17,14 +17,14 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// <summary> 
 /// Tenants are physically separated data spaces with a separate URL, with own users, a separate application management and no sharing of data by default. Users in a single tenant by default share the same URL and the same data space. <br />
 /// <br /> Tenant ID and tenant domain <br />
-/// The tenant ID is a unique identifier across all tenants in Cumulocity IoT and it follows the format t<number>, for example, t07007007. It is possible to specify the tenant ID while creating a subtenant, but the ID cannot be changed after creation. If the ID is not specified (recommended), it gets auto-generated for all tenant types. <br />
+/// The tenant ID is a unique identifier across all tenants in Cumulocity and it follows the format t<number>, for example, t07007007. It is possible to specify the tenant ID while creating a subtenant, but the ID cannot be changed after creation. If the ID is not specified (recommended), it gets auto-generated for all tenant types. <br />
 /// The location where a tenant can be accessed is called tenant domain, for example, mytenant.cumulocity.com. It needs to be unique across all tenants and it can be changed after tenant creation.The tenant domain may contain only lowercase letters, digits and hyphens. It must start with a lowercase letter, hyphens are only allowed in the middle, and the minimum length is 2 characters. Note that the usage of underscore characters is deprecated but still possible for backward compatibility reasons. <br />
 /// In general, the tenant domain should be used for communication if it is known. <br />
 /// ������ Important: For support user access, the tenant ID must be used and not the tenant domain. <br />
 /// See <see href="#operation/getCurrentTenantResource" langword="Tenant > Current tenant" /> for information on how to retrieve the tenant ID and domain of the current tenant via the API. <br />
-/// In the UI, the tenant ID is displayed in the user dropdown menu, see <see href="https://www.cumulocity.com/docs/get-familiar-with-the-ui/user-settings/" langword="Getting started > Get familiar with the UI > User options and settings" /> in the Cumulocity IoT user documentation. <br />
+/// In the UI, the tenant ID is displayed in the user dropdown menu, see <see href="https://www.cumulocity.com/docs/get-familiar-with-the-ui/user-settings/" langword="Getting started > Get familiar with the UI > User options and settings" /> in the Cumulocity user documentation. <br />
 /// <br /> Access rights and permissions <br />
-/// There are two types of roles in Cumulocity IoT ��� global and inventory. Global roles are applied at the tenant level. In a Role Based Access Control (RBAC) approach you must use the inventory roles in order to have the correct level of separation. Apart from some global permissions (like "own user management") customer users will not be assigned any roles. Inventory roles must be created, or the default roles used, and then assigned to the user in combination with the assets the roles apply to. This needs to be done at least once for each customer. <br />
+/// There are two types of roles in Cumulocity ��� global and inventory. Global roles are applied at the tenant level. In a Role Based Access Control (RBAC) approach you must use the inventory roles in order to have the correct level of separation. Apart from some global permissions (like "own user management") customer users will not be assigned any roles. Inventory roles must be created, or the default roles used, and then assigned to the user in combination with the assets the roles apply to. This needs to be done at least once for each customer. <br />
 /// In a multi-tenancy approach, as the tenant is completely separated from all other customers you do not necessarily need to be involved in setting up the access rights of the customer. If customers are given administration rights for their tenants, they can set up permissions on their own. It is not possible for customers to have any sight or knowledge of other customers. <br />
 /// In the RBAC approach, managing access is the most complicated part because a misconfiguration can potentially give customers access to data that they must not see, like other customers' data. The inventory roles allow you to granularly define access for only certain parts of data, but they don't protect you from accidental misconfigurations. A limitation here is that customers won't be able to create their own roles. <br />
 /// For more details, see <see href="https://www.cumulocity.com/docs/concepts/tenant-hierarchy/#comparison-of-various-use-cases" langword="RBAC versus multi-tenancy approach" />. <br />
@@ -59,9 +59,9 @@ public interface ITenantsApi
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
-	/// <param name="company">Company name associated with the Cumulocity IoT tenant. <br /></param>
-	/// <param name="domain">Domain name of the Cumulocity IoT tenant. <br /></param>
-	/// <param name="parent">Identifier of the Cumulocity IoT tenant's parent. <br /></param>
+	/// <param name="company">Company name associated with the Cumulocity tenant. <br /></param>
+	/// <param name="domain">Domain name of the Cumulocity tenant. <br /></param>
+	/// <param name="parent">Identifier of the Cumulocity tenant's parent. <br /></param>
 	///
 	Task<TenantCollection<TCustomProperties>?> GetTenants<TCustomProperties>(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, string? company = null, string? domain = null, string? parent = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 	
@@ -155,7 +155,7 @@ public interface ITenantsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<Tenant<TCustomProperties>?> GetTenant<TCustomProperties>(string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
@@ -194,7 +194,7 @@ public interface ITenantsApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
@@ -229,7 +229,7 @@ public interface ITenantsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteTenant(string tenantId, CancellationToken cToken = default) ;
@@ -258,7 +258,7 @@ public interface ITenantsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<TenantTfaData?> GetTenantTfaSettings(string tenantId, CancellationToken cToken = default) ;
@@ -288,7 +288,7 @@ public interface ITenantsApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> UpdateTenantTfaSettings(TenantTfaStrategy body, string tenantId, CancellationToken cToken = default) ;

@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods for managing trusted certificates used to establish device connections via MQTT. <br />
-/// More detailed information about trusted certificates and their role can be found in <see href="https://www.cumulocity.com/docs/device-management-application/managing-device-data/" langword="Device management > Device management application > Managing device data" /> in the Cumulocity IoT user documentation. <br />
+/// More detailed information about trusted certificates and their role can be found in <see href="https://www.cumulocity.com/docs/device-management-application/managing-device-data/" langword="Device management > Device management application > Managing device data" /> in the Cumulocity user documentation. <br />
 /// ⓘ Info: The Accept header must be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -51,7 +51,7 @@ public interface ITrustedCertificatesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
@@ -62,7 +62,7 @@ public interface ITrustedCertificatesApi
 	
 	/// <summary> 
 	/// Add a new certificate <br />
-	/// Add a new trusted certificate to a specific tenant (by a given ID) which can be further used by the devices to establish connections with the Cumulocity IoT platform. <br />
+	/// Add a new trusted certificate to a specific tenant (by a given ID) which can be further used by the devices to establish connections with the Cumulocity platform. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND (is the current tenant) 
@@ -93,16 +93,16 @@ public interface ITrustedCertificatesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	/// <param name="addToTrustStore">If set to <c>true</c> the certificate is added to the truststore. <br />The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity IoT with a certificate in the truststore. <br /></param>
+	/// <param name="addToTrustStore">If set to <c>true</c> the certificate is added to the truststore. <br />The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity with a certificate in the truststore. <br /></param>
 	///
 	Task<TrustedCertificate?> AddTrustedCertificate(UploadedTrustedCertificate body, string tenantId, string? xCumulocityProcessingMode = null, bool? addToTrustStore = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Add multiple certificates <br />
-	/// Add multiple trusted certificates to a specific tenant (by a given ID) which can be further used by the devices to establish connections with the Cumulocity IoT platform. <br />
+	/// Add multiple trusted certificates to a specific tenant (by a given ID) which can be further used by the devices to establish connections with the Cumulocity platform. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND (is the current tenant) 
@@ -133,9 +133,9 @@ public interface ITrustedCertificatesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	/// <param name="addToTrustStore">If set to <c>true</c> the certificate is added to the truststore. <br />The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity IoT with a certificate in the truststore. <br /></param>
+	/// <param name="addToTrustStore">If set to <c>true</c> the certificate is added to the truststore. <br />The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity with a certificate in the truststore. <br /></param>
 	///
 	Task<TrustedCertificateCollection?> AddTrustedCertificates(UploadedTrustedCertificateCollection body, string tenantId, bool? addToTrustStore = null, CancellationToken cToken = default) ;
 	
@@ -159,7 +159,7 @@ public interface ITrustedCertificatesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -194,7 +194,7 @@ public interface ITrustedCertificatesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -224,7 +224,7 @@ public interface ITrustedCertificatesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -263,7 +263,7 @@ public interface ITrustedCertificatesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -297,7 +297,7 @@ public interface ITrustedCertificatesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -327,7 +327,7 @@ public interface ITrustedCertificatesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -396,7 +396,7 @@ public interface ITrustedCertificatesApi
 	
 	/// <summary> 
 	/// Add revoked certificates <br />
-	/// ⓘ Info: A certificate revocation list (CRL) is a list of digital certificatesthat have been revoked by the issuing certificate authority (CA) before expiration date.In Cumulocity IoT, a CRL check can be in online or offline mode or both. <br />
+	/// ⓘ Info: A certificate revocation list (CRL) is a list of digital certificatesthat have been revoked by the issuing certificate authority (CA) before expiration date.In Cumulocity, a CRL check can be in online or offline mode or both. <br />
 	/// An endpoint to add revoked certificate serial numbers for offline CRL check via payload or file. <br />
 	/// For payload, a JSON object required with list of CRL entries, for example: <br />
 	/// <![CDATA[
@@ -468,7 +468,7 @@ public interface ITrustedCertificatesApi
 	
 	/// <summary> 
 	/// Add revoked certificates <br />
-	/// ⓘ Info: A certificate revocation list (CRL) is a list of digital certificatesthat have been revoked by the issuing certificate authority (CA) before expiration date.In Cumulocity IoT, a CRL check can be in online or offline mode or both. <br />
+	/// ⓘ Info: A certificate revocation list (CRL) is a list of digital certificatesthat have been revoked by the issuing certificate authority (CA) before expiration date.In Cumulocity, a CRL check can be in online or offline mode or both. <br />
 	/// An endpoint to add revoked certificate serial numbers for offline CRL check via payload or file. <br />
 	/// For payload, a JSON object required with list of CRL entries, for example: <br />
 	/// <![CDATA[

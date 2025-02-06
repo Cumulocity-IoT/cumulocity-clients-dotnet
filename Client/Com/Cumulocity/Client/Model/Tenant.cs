@@ -97,7 +97,7 @@ public sealed class Tenant<TCustomProperties> where TCustomProperties : CustomPr
 	public string? Domain { get; set; }
 
 	/// <summary> 
-	/// Unique identifier of a Cumulocity IoT tenant. <br />
+	/// Unique identifier of a Cumulocity tenant. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("id")]

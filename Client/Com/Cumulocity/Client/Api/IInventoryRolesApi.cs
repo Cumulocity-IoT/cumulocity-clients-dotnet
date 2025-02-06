@@ -206,7 +206,7 @@ public interface IInventoryRolesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -247,7 +247,7 @@ public interface IInventoryRolesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
@@ -281,7 +281,7 @@ public interface IInventoryRolesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="id">Unique identifier of the inventory assignment. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -323,7 +323,7 @@ public interface IInventoryRolesApi
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="id">Unique identifier of the inventory assignment. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -358,7 +358,7 @@ public interface IInventoryRolesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="id">Unique identifier of the inventory assignment. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>

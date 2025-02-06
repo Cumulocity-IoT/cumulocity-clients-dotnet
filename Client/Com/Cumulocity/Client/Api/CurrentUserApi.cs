@@ -22,7 +22,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// The current user is the user that is currently authenticated with Cumulocity IoT for the API calls. <br />
+/// The current user is the user that is currently authenticated with Cumulocity for the API calls. <br />
 /// ⓘ Info: The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///

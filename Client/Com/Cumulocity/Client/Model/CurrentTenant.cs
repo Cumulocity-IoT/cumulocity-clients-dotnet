@@ -46,7 +46,7 @@ public sealed class CurrentTenant<TCustomProperties> where TCustomProperties : C
 	public string? DomainName { get; set; }
 
 	/// <summary> 
-	/// Unique identifier of a Cumulocity IoT tenant. <br />
+	/// Unique identifier of a Cumulocity tenant. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("name")]

@@ -14,7 +14,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// The term "agent" refers to the piece of software that connects a device with Cumulocity IoT. <br />
+/// The term "agent" refers to the piece of software that connects a device with Cumulocity. <br />
 /// </summary>
 ///
 public sealed class C8yAgent 

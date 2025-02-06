@@ -38,7 +38,7 @@ public interface ITokensApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>The option to disable signing of the token by the Cumulocity IoT platform. <br />
+	/// 		<description>The option to disable signing of the token by the Cumulocity platform. <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>

@@ -172,7 +172,7 @@ public sealed class MicroserviceApplicationManifest
 	{
 	
 		/// <summary> 
-		/// The relative path in Cumulocity IoT for this microservice application. <br />
+		/// The relative path in Cumulocity for this microservice application. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("path")]

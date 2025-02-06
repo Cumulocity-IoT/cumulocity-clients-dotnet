@@ -24,14 +24,14 @@ public sealed class ManagedObjectAvailability
 	public string? DeviceId { get; set; }
 
 	/// <summary> 
-	/// The identifier used in the external system that Cumulocity IoT interfaces with. <br />
+	/// The identifier used in the external system that Cumulocity interfaces with. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("externalId")]
 	public string? ExternalId { get; set; }
 
 	/// <summary> 
-	/// The time when the device sent the last message to Cumulocity IoT. <br />
+	/// The time when the device sent the last message to Cumulocity. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("lastMessage")]

@@ -198,7 +198,7 @@ public sealed class SummaryAllTenantsUsageStatistics<TCustomProperties> where TC
 	public UsageStatisticsResources? Resources { get; set; }
 
 	/// <summary> 
-	/// Database storage in use, specified in bytes. It is affected by your retention rules and by the regularly running database optimization functions in Cumulocity IoT. If the size decreases, it does not necessarily mean that data was deleted. Updated only three times a day starting at 8:57, 16:57 and 23:57. <br />
+	/// Database storage in use, specified in bytes. It is affected by your retention rules and by the regularly running database optimization functions in Cumulocity. If the size decreases, it does not necessarily mean that data was deleted. Updated only three times a day starting at 8:57, 16:57 and 23:57. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("storageSize")]
@@ -233,7 +233,7 @@ public sealed class SummaryAllTenantsUsageStatistics<TCustomProperties> where TC
 	public string? TenantDomain { get; set; }
 
 	/// <summary> 
-	/// Unique identifier of a Cumulocity IoT tenant. <br />
+	/// Unique identifier of a Cumulocity tenant. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("tenantId")]
