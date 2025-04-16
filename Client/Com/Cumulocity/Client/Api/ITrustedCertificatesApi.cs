@@ -2,8 +2,8 @@
 // ITrustedCertificatesApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Collections.Generic;
@@ -83,11 +83,11 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate ��� A certificate with the same fingerprint already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate – A certificate with the same fingerprint already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� Invalid certificate data. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – Invalid certificate data. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -123,11 +123,11 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate ��� A certificate with the same fingerprint already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate – A certificate with the same fingerprint already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� Invalid certificates data. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – Invalid certificates data. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -188,7 +188,7 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -439,7 +439,7 @@ public interface ITrustedCertificatesApi
 	/// <br /> Required roles <br />
 	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND is the current tenant 
 	/// 
-	/// ������ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
+	/// ⚠️ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
@@ -511,7 +511,7 @@ public interface ITrustedCertificatesApi
 	/// <br /> Required roles <br />
 	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND is the current tenant 
 	/// 
-	/// ������ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
+	/// ⚠️ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">

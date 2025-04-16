@@ -2,8 +2,8 @@
 // IGroupsApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to create, retrieve, update and delete user groups. <br />
-/// ������ Important: In the Cumulocity user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles. <br />
+/// ⚠️ Important: In the Cumulocity user interface, user groups are referred to as "global roles". Global roles are not to be confused with user roles. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -79,11 +79,11 @@ public interface IGroupsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Duplicate ��� Group name already exists. <br /> <br />
+	/// 		<description>HTTP 409 Duplicate – Group name already exists. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -156,7 +156,7 @@ public interface IGroupsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

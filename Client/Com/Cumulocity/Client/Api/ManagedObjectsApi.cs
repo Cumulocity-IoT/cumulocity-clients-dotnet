@@ -2,8 +2,8 @@
 // ManagedObjectsApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System;
@@ -22,7 +22,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be ���smart objects���, for example, smart electricity meters, home automation gateways or GPS devices. <br />
+/// The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, for example, smart electricity meters, home automation gateways or GPS devices. <br />
 /// For further information, refer to <see href="https://www.cumulocity.com/docs/concepts/domain-model/#managed-objects" langword="Getting started > Technical concepts > Cumulocity's domain model > Inventory > Managed objects" /> in the Cumulocity user documentation. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>

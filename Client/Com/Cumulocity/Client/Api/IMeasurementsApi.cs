@@ -2,8 +2,8 @@
 // IMeasurementsApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ public interface IMeasurementsApi
 	/// <summary> 
 	/// Retrieve all measurements <br />
 	/// Retrieve all measurements on your tenant, or a specific subset based on queries. <br />
-	/// In case of executing <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" /> between an upper and lower boundary, for example, querying using <c>dateFrom</c>���<c>dateTo</c>, the oldest registered measurements are returned first. It is possible to change the order using the query parameter <c>revert=true</c>. <br />
+	/// In case of executing <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" /> between an upper and lower boundary, for example, querying using <c>dateFrom</c>–<c>dateTo</c>, the oldest registered measurements are returned first. It is possible to change the order using the query parameter <c>revert=true</c>. <br />
 	/// For large measurement collections, querying older records without filters can be slow as the server needs to scan from the beginning of the input results set before beginning to return the results. For cases when older measurements should be retrieved, it is recommended to narrow the scope by using range queries based on the time stamp reported by a device. The scope of query can also be reduced significantly when a source device is provided. <br />
 	/// Review <see href="#tag/Measurements-specifics" langword="Measurements Specifics" /> for details about data streaming and response formats. <br />
 	/// 
@@ -75,9 +75,21 @@ public interface IMeasurementsApi
 	/// 	</item>
 	/// </list>
 	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity user documentation. <br />
-	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
-	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
-	/// Handling of Correct and Incorrect Fragments and Series: <br />
+	/// The example below uses <c>c8y_SteamFragment</c> in the request body to illustrate recording two measurements called <c>Temperature</c> and <c>Humidity</c>. <br />
+	/// <![CDATA[
+	/// {
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "type": "temperatureMeasurement",
+	///   "c8y_SteamFragment": {
+	///       "Temperature": { "value": 42.7, "unit": "C" },
+	///       "Humidity": { "value": 13.37, "unit": "%RH" }
+	///     }
+	///   }
+	/// ]]>
+	/// ⚠️ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
+	/// Legacy compatibility: <br />
+	/// For legacy compatibility reasons, a measurement can contain custom fragments. The platform's behavior will vary based on whether the series in the custom fragment are valid or not: <br />
 	/// <list type="number">
 	/// 	<item>
 	/// 		<description>Mixed Series Fragments: <br />
@@ -105,8 +117,7 @@ public interface IMeasurementsApi
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
 	///   "type": "temperatureMeasurement",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
 	///       "validSeries_INTEGER": { "value": 42, "unit": "C" },
 	///       "ignoredField_BOOLEAN": { "value": false, "unit": "t/f" },
@@ -119,7 +130,6 @@ public interface IMeasurementsApi
 	///       "ignoredField4": { "subseries": { "value": 42 } }
 	///     }
 	///   }
-	/// }
 	/// ]]>
 	/// Response: <br />
 	/// <![CDATA[
@@ -129,13 +139,11 @@ public interface IMeasurementsApi
 	///   "type": "temperatureMeasurement",
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
 	///       "validSeries_INTEGER": { "value": 42, "unit": "C" }
 	///     }
 	///   }
-	/// }
 	/// ]]>
 	/// <list type="number">
 	/// 	<item>
@@ -160,11 +168,9 @@ public interface IMeasurementsApi
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
 	///   "type": "temperatureMeasurement",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
 	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
-	///     }
 	///   }
 	/// }
 	/// ]]>
@@ -176,14 +182,13 @@ public interface IMeasurementsApi
 	///   "type": "temperatureMeasurement",
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
 	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
 	///     }
 	///   }
-	/// }
 	/// ]]>
+	/// To ensure data integrity, custom fragments should be used only with valid series. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
 	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity user documentation. <br />
@@ -207,7 +212,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -233,9 +238,21 @@ public interface IMeasurementsApi
 	/// 	</item>
 	/// </list>
 	/// Review the <see href="#section/System-of-units" langword="System of units" /> section for details about the conversions of units. Also review <see href="https://www.cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity user documentation. <br />
-	/// The example below uses <c>c8y_Steam</c> in the request body to illustrate a fragment for recording temperature measurements. <br />
-	/// ������ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
-	/// Handling of Correct and Incorrect Fragments and Series: <br />
+	/// The example below uses <c>c8y_SteamFragment</c> in the request body to illustrate recording two measurements called <c>Temperature</c> and <c>Humidity</c>. <br />
+	/// <![CDATA[
+	/// {
+	///   "source": { "id": "681200" },
+	///   "time": "2020-03-19T12:03:27.845Z",
+	///   "type": "temperatureMeasurement",
+	///   "c8y_SteamFragment": {
+	///       "Temperature": { "value": 42.7, "unit": "C" },
+	///       "Humidity": { "value": 13.37, "unit": "%RH" }
+	///     }
+	///   }
+	/// ]]>
+	/// ⚠️ Important: Property names used for fragment and series must not contain whitespaces nor the special characters <c>. , * [ ] ( ) @ $</c>. This is required to ensure a correct processing and visualization of measurement series on UI graphs. <br />
+	/// Legacy compatibility: <br />
+	/// For legacy compatibility reasons, a measurement can contain custom fragments. The platform's behavior will vary based on whether the series in the custom fragment are valid or not: <br />
 	/// <list type="number">
 	/// 	<item>
 	/// 		<description>Mixed Series Fragments: <br />
@@ -263,8 +280,7 @@ public interface IMeasurementsApi
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
 	///   "type": "temperatureMeasurement",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
 	///       "validSeries_INTEGER": { "value": 42, "unit": "C" },
 	///       "ignoredField_BOOLEAN": { "value": false, "unit": "t/f" },
@@ -277,7 +293,6 @@ public interface IMeasurementsApi
 	///       "ignoredField4": { "subseries": { "value": 42 } }
 	///     }
 	///   }
-	/// }
 	/// ]]>
 	/// Response: <br />
 	/// <![CDATA[
@@ -287,13 +302,11 @@ public interface IMeasurementsApi
 	///   "type": "temperatureMeasurement",
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "validSeries_DOUBLE": { "value": 3.141592653589793, "unit": "RAD" },
 	///       "validSeries_INTEGER": { "value": 42, "unit": "C" }
 	///     }
 	///   }
-	/// }
 	/// ]]>
 	/// <list type="number">
 	/// 	<item>
@@ -318,11 +331,9 @@ public interface IMeasurementsApi
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
 	///   "type": "temperatureMeasurement",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
 	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
-	///     }
 	///   }
 	/// }
 	/// ]]>
@@ -334,14 +345,13 @@ public interface IMeasurementsApi
 	///   "type": "temperatureMeasurement",
 	///   "source": { "id": "681200" },
 	///   "time": "2020-03-19T12:03:27.845Z",
-	///   "c8y_Steam": {
-	///     "Temperature": {
+	///   "c8y_SteamFragment": {
 	///       "invalidSeries_BOOLEAN": { "value": false, "unit": "t/f" },
 	///       "invalidSeries_LIST": { "value": [1, 2, 3], "unit": "list" }
 	///     }
 	///   }
-	/// }
 	/// ]]>
+	/// To ensure data integrity, custom fragments should be used only with valid series. <br />
 	/// <br /> Create multiple measurements <br />
 	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
 	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity user documentation. <br />
@@ -365,7 +375,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -380,7 +390,7 @@ public interface IMeasurementsApi
 	/// Remove measurement collections <br />
 	/// Remove measurement collections specified by query parameters. <br />
 	/// DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when there are a lot of measurements to be deleted. <br />
-	/// ������ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>. <br />
+	/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>. <br />
 	/// In case of enhanced time series measurements, both <c>dateFrom</c> and <c>dateTo</c> parameters must be truncated to full hours (for example, 2022-08-19T14:00:00.000Z), otherwise an error will be returned.The <c>fragmentType</c> parameter allows to delete measurements only by a measurement fragment when enhanced time series measurements are used.It's not possible to delete by a custom (non-measurement) fragment. <br />
 	/// Example for a valid measurement value fragment: <br />
 	/// <![CDATA[
@@ -417,7 +427,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -500,7 +510,7 @@ public interface IMeasurementsApi
 	/// Retrieve a list of series (all or only those matching the specified names) and their values within a given period of a specific managed object (source).<br />
 	/// A series is any fragment in measurement that contains a <c>value</c> property. <br />
 	/// It is possible to fetch aggregated results using the <c>aggregationType</c> parameter. If the aggregation is not specified, the result will contain no more than 5000 values. <br />
-	/// ������ Important: For the aggregation to be done correctly, a device shall always use the same time zone when it sends dates. <br />
+	/// ⚠️ Important: For the aggregation to be done correctly, a device shall always use the same time zone when it sends dates. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_READ OR owner of the source OR MEASUREMENT_READ permission on the source 

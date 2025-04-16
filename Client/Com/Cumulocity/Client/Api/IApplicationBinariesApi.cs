@@ -2,8 +2,8 @@
 // IApplicationBinariesApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ public interface IApplicationBinariesApi
 	/// <summary> 
 	/// Upload an application attachment <br />
 	/// Upload an application attachment (by a given application ID). <br />
-	/// For the applications of type ���microservice��� and ���web application��� to be available for Cumulocity platform users, an attachment ZIP file must be uploaded. <br />
+	/// For the applications of type “microservice” and “web application” to be available for Cumulocity platform users, an attachment ZIP file must be uploaded. <br />
 	/// For a microservice application, the ZIP file must consist of: <br />
 	/// <list type="bullet">
 	/// 	<item>

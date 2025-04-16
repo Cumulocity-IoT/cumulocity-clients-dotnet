@@ -2,8 +2,8 @@
 // CumulocityCoreLibrary.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System;
@@ -29,6 +29,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 	private readonly Lazy<IIdentityFactory> _lazyIdentity;
 	private readonly Lazy<IDeviceControlFactory> _lazyDeviceControl;
 	private readonly Lazy<IInventoryFactory> _lazyInventory;
+	private readonly Lazy<ICertificateFactory> _lazyCertificate;
 
 	public CumulocityCoreLibrary(HttpClient client)
 	{
@@ -46,6 +47,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 		_lazyIdentity = new Lazy<IIdentityFactory>(() => new IdentityFactory(client));
 		_lazyDeviceControl = new Lazy<IDeviceControlFactory>(() => new DeviceControlFactory(client));
 		_lazyInventory = new Lazy<IInventoryFactory>(() => new InventoryFactory(client));
+		_lazyCertificate = new Lazy<ICertificateFactory>(() => new CertificateFactory(client));
 	}
 
 	public CumulocityCoreLibrary(IHttpClientFactory clientFactory): this(clientFactory.CreateClient())
@@ -70,6 +72,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 	public IIdentityFactory Identity => _lazyIdentity.Value;
 	public IDeviceControlFactory DeviceControl => _lazyDeviceControl.Value;
 	public IInventoryFactory Inventory => _lazyInventory.Value;
+	public ICertificateFactory Certificate => _lazyCertificate.Value;
 
 	public class ApplicationsFactory: IApplicationsFactory
 	{
@@ -309,5 +312,20 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 		public IManagedObjectsApi ManagedObjectsApi => _lazyManagedObjectsApi.Value;
 		public IBinariesApi BinariesApi => _lazyBinariesApi.Value;
 		public IChildOperationsApi ChildOperationsApi => _lazyChildOperationsApi.Value;
+	}
+
+	public class CertificateFactory: ICertificateFactory
+	{
+		private readonly Lazy<ICertificateAuthorityApi> _lazyCertificateAuthorityApi;
+		private readonly Lazy<IDeviceEnrollmentApi> _lazyDeviceEnrollmentApi;
+
+		internal CertificateFactory(HttpClient client)
+		{
+			_lazyCertificateAuthorityApi = new Lazy<ICertificateAuthorityApi>(() => new CertificateAuthorityApi(client));
+			_lazyDeviceEnrollmentApi = new Lazy<IDeviceEnrollmentApi>(() => new DeviceEnrollmentApi(client));
+		}
+		
+		public ICertificateAuthorityApi CertificateAuthorityApi => _lazyCertificateAuthorityApi.Value;
+		public IDeviceEnrollmentApi DeviceEnrollmentApi => _lazyDeviceEnrollmentApi.Value;
 	}
 }

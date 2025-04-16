@@ -2,8 +2,8 @@
 // NewDeviceRequest.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Text.Json;
@@ -74,7 +74,7 @@ public sealed class NewDeviceRequest
 	public System.DateTime? CreationTime { get; set; }
 
 	/// <summary> 
-	/// When accepting a device request, the security token is verified against the token submitted by the device when requesting credentials.See <see href="https://www.cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for details on configuration.See <see href="/#operation/postDeviceCredentialsCollectionResource" langword="Create device credentials" /> for details on creating token for device registration.<c>securityToken</c> parameter can be added only when submitting <c>ACCEPTED</c> status. <br />
+	/// When accepting a device request, the security token is verified against the token submitted by the device when requesting credentials.See <see href="https://www.cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for details on configuration.See <see href="#operation/postDeviceCredentialsCollectionResource" langword="Create device credentials" /> for details on creating token for device registration.<c>securityToken</c> parameter can be added only when submitting <c>ACCEPTED</c> status. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("securityToken")]

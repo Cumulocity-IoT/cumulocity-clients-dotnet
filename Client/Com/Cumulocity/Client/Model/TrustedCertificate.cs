@@ -2,8 +2,8 @@
 // TrustedCertificate.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Text.Json;
@@ -128,6 +128,13 @@ public sealed class TrustedCertificate
 	///
 	[JsonPropertyName("version")]
 	public int? Version { get; set; }
+
+	/// <summary> 
+	/// Indicates whether this certificate is tenant's CA. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("tenantCertificateAuthority")]
+	public bool? TenantCertificateAuthority { get; set; }
 
 	/// <summary> 
 	/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity platform. <br />

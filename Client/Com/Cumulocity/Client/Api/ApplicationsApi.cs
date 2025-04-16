@@ -2,8 +2,8 @@
 // ApplicationsApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System;
@@ -23,7 +23,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to retrieve, create, update and delete applications. <br />
-/// ###��Application names <br />
+/// ### Application names <br />
 /// For each tenant, Cumulocity manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name). <br />
 /// Refer to the tables in <see href="https://www.cumulocity.com/docs/standard-tenant/ecosystem/#managing-applications" langword="Platform administration > Standard tenant administration > Managing the ecosystem > Managing applications" /> in the Cumulocity user documentation for the respective application name to be used. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />

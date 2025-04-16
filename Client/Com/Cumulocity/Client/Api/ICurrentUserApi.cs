@@ -2,8 +2,8 @@
 // ICurrentUserApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Collections.Generic;
@@ -66,7 +66,7 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -79,7 +79,7 @@ public interface ICurrentUserApi
 	/// <summary> 
 	/// Update the current user's password <br />
 	/// Update the current user's  password. <br />
-	/// ������ Important: If the tenant uses OAI-Secure authentication, the current user will not be logged out. Instead, a new cookie will be set with a new token, and the previous token will expire within a minute. <br />
+	/// ⚠️ Important: If the tenant uses OAI-Secure authentication, the current user will not be logged out. Instead, a new cookie will be set with a new token, and the previous token will expire within a minute. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_ADMIN 
@@ -96,7 +96,7 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -220,7 +220,7 @@ public interface ICurrentUserApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

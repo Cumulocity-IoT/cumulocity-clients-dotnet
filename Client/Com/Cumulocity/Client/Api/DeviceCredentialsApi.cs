@@ -2,8 +2,8 @@
 // DeviceCredentialsApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System;
@@ -24,7 +24,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// <summary> 
 /// API methods to create device credentials in Cumulocity. <br />
 /// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://www.cumulocity.com/docs/additional-resources/contacting-support/" langword="contacting support" />. <br />
-/// ������ Important: Do not use your tenant credentials with this API. <br />
+/// ⚠️ Important: Do not use your tenant credentials with this API. <br />
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///

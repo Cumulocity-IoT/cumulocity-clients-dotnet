@@ -2,8 +2,8 @@
 // IOptionsApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ public interface IOptionsApi
 	/// <summary> 
 	/// Retrieve all options <br />
 	/// Retrieve all the options available on the tenant. <br />
-	/// ������ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
+	/// ⚠️ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_OPTION_MANAGEMENT_READ 
@@ -61,7 +61,7 @@ public interface IOptionsApi
 	/// alarm.type.mapping <br />
 	/// | Key  |	Predefined | Description ||--|--|--|| <ALARM_TYPE> | No | Overrides the severity and alarm text for the alarm with type <ALARM_TYPE>. The severity and text are specified as <c><ALARM_SEVERITY>\|<ALARM_TEXT></c>. If either part is empty, the value will not be overridden. If the severity is NONE, the alarm will be suppressed. Example: <c>"CRITICAL\|temperature too high"</c>| <br />
 	/// <br /> Encrypted credentials <br />
-	/// Adding a "credentials." prefix to the <c>key</c> will make the <c>value</c> of the option encrypted. When the option is  sent to a microservice, the "credentials." prefix is removed and the <c>value</c> is decrypted. For example: <br />
+	/// Adding a "credentials." prefix to the <c>key</c> will make the <c>value</c> of the option encrypted. When the option is sent to a microservice, the "credentials." prefix is removed, and the <c>value</c> is decrypted only if the tenant option category matches the category defined by the microservice. The category is determined based on the first non-blank value from: manifest settings category, context path or service name. If the tenant option category does not match any of these values, the encrypted value will not be decrypted. For example: <br />
 	/// <![CDATA[
 	/// {
 	///   "category": "secrets",
@@ -86,7 +86,7 @@ public interface IOptionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -99,7 +99,7 @@ public interface IOptionsApi
 	/// <summary> 
 	/// Retrieve all options by category <br />
 	/// Retrieve all the options (by a specified category) on your tenant. <br />
-	/// ������ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
+	/// ⚠️ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_OPTION_MANAGEMENT_READ 
@@ -141,7 +141,7 @@ public interface IOptionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -155,7 +155,7 @@ public interface IOptionsApi
 	/// <summary> 
 	/// Retrieve a specific option <br />
 	/// Retrieve a specific option (by a given category and key) on your tenant. <br />
-	/// ������ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
+	/// ⚠️ Important: Note that Enterprise Tenants are also allowed to read inherited tenant options from the management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_OPTION_MANAGEMENT_READ 
@@ -206,7 +206,7 @@ public interface IOptionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

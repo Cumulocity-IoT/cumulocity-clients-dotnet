@@ -2,8 +2,8 @@
 // IManagedObjectsApi.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using Client.Com.Cumulocity.Client.Model;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be ���smart objects���, for example, smart electricity meters, home automation gateways or GPS devices. <br />
+/// The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, for example, smart electricity meters, home automation gateways or GPS devices. <br />
 /// For further information, refer to <see href="https://www.cumulocity.com/docs/concepts/domain-model/#managed-objects" langword="Getting started > Technical concepts > Cumulocity's domain model > Inventory > Managed objects" /> in the Cumulocity user documentation. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
@@ -64,7 +64,7 @@ public interface IManagedObjectsApi
 	/// <param name="withParents">When set to <c>true</c>, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
-	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />������ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
+	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
 	///
 	Task<ManagedObjectCollection<TManagedObject>?> GetManagedObjects<TManagedObject>(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? withLatestValues = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -116,7 +116,7 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity ��� invalid payload. <br /> <br />
+	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -157,7 +157,7 @@ public interface IManagedObjectsApi
 	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
 	/// <param name="withParents">When set to <c>true</c>, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array. <br /></param>
-	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />������ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
+	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
 	///
 	Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null, bool? withLatestValues = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -198,7 +198,7 @@ public interface IManagedObjectsApi
 	/// Remove a specific managed object <br />
 	/// Remove a specific managed object (for example, device) by a given ID. <br />
 	/// ⓘ Info: Inventory DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted managed object has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested managed object is deleted after all associated data has been deleted. <br />
-	/// ⓘ Info: By default, the delete operation is always propagated to the subgroups, but only if the deleted object is a group. <br />
+	/// ⓘ Info: By default, the delete operation is propagated to subgroups, but only if the object being deleted is a group. Deleting a parent group will also delete its subgroups. The cascade parameter controls whether the devices assigned to the groups are also deleted. When set to false, the devices remain intact even as the groups and subgroups are deleted. When set to true, all groups, subgroups, and their assigned devices are deleted. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 
@@ -219,7 +219,7 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 409 Conflict ��� The managed object is associated to other objects, for example child devices. <br /> <br />
+	/// 		<description>HTTP 409 Conflict – The managed object is associated to other objects, for example child devices. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

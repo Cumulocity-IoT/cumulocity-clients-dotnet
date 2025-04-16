@@ -1,0 +1,53 @@
+//
+// CertificateAuthorityApi.cs
+// CumulocityCoreLibrary
+//
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
+//
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
+using Client.Com.Cumulocity.Client.Model;
+using Client.Com.Cumulocity.Client.Supplementary;
+
+namespace Client.Com.Cumulocity.Client.Api;
+
+/// <summary> 
+/// API to create a new CA certificate for tenant in Cumulocity. <br />
+/// </summary>
+///
+public sealed class CertificateAuthorityApi : ICertificateAuthorityApi
+{
+	private readonly HttpClient _httpClient;
+
+	public CertificateAuthorityApi(HttpClient httpClient)
+	{
+		_httpClient = httpClient;
+	}
+
+	/// <inheritdoc />
+	public async Task<TrustedCertificate?> CreateCertificateAuthority(CancellationToken cToken = default) 
+	{
+		const string resourcePath = $"certificate-authority";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Method = HttpMethod.Post,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<TrustedCertificate?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+	}
+}

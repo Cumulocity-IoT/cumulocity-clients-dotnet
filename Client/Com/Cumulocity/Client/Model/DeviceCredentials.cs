@@ -2,8 +2,8 @@
 // DeviceCredentials.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Text.Json;
@@ -52,7 +52,7 @@ public sealed class DeviceCredentials
 	public string? Username { get; set; }
 
 	/// <summary> 
-	/// Security token which is required and verified against during device request acceptance.See <see href="https://www.cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for more details on configuration.See <see href="/#operation/putNewDeviceRequestResource" langword="Update specific new device request status" /> for details on submitting token upon device acceptance. <br />
+	/// Security token which is required and verified against during device request acceptance.See <see href="https://www.cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for more details on configuration.See <see href="#operation/putNewDeviceRequestResource" langword="Update specific new device request status" /> for details on submitting token upon device acceptance. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("securityToken")]

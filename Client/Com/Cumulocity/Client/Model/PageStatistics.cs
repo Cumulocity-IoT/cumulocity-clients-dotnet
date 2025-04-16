@@ -2,8 +2,8 @@
 // PageStatistics.cs
 // CumulocityCoreLibrary
 //
-// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+// Copyright (c) 2014-present Cumulocity GmbH, Duesseldorf, Germany and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Cumulocity GmbH
 //
 
 using System.Text.Json;
@@ -43,7 +43,7 @@ public sealed class PageStatistics
 
 	/// <summary> 
 	/// The total number of paginated results (pages). <br />
-	/// ⓘ Info: This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using <c>dateFrom</c>���<c>dateTo</c>. In such cases, the query parameter <c>withTotalPages=true</c> should be used to include the total number of pages (at the expense of slightly slower performance). <br />
+	/// ⓘ Info: This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using <c>dateFrom</c>–<c>dateTo</c>. In such cases, the query parameter <c>withTotalPages=true</c> should be used to include the total number of pages (at the expense of slightly slower performance). <br />
 	/// </summary>
 	///
 	[JsonPropertyName("totalPages")]
