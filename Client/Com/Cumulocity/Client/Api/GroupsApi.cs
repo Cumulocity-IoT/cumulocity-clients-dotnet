@@ -86,13 +86,10 @@ public sealed class GroupsApi : IGroupsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<Group<TCustomProperties>?> GetUserGroup<TCustomProperties>(string tenantId, int groupId, bool? forceLogout = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties
+	public async Task<Group<TCustomProperties>?> GetUserGroup<TCustomProperties>(string tenantId, int groupId, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
 		string resourcePath = $"user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlPathEncode(groupId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
-		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-		queryString.TryAdd("forceLogout", forceLogout);
-		uriBuilder.Query = queryString.ToString();
 		using var request = new HttpRequestMessage 
 		{
 			Method = HttpMethod.Get,

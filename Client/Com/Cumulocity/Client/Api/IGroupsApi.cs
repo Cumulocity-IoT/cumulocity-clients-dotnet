@@ -61,7 +61,7 @@ public interface IGroupsApi
 	/// Create a user group for a specific tenant (by a given tenant ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_ADMIN 
+	///  ROLE_USER_MANAGEMENT_ADMIN OR ROLE_USER_MANAGEMENT_CREATE 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -125,9 +125,8 @@ public interface IGroupsApi
 	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	/// <param name="forceLogout">If set to <c>true</c>, users with this global role will be force logged out. <br /></param>
 	///
-	Task<Group<TCustomProperties>?> GetUserGroup<TCustomProperties>(string tenantId, int groupId, bool? forceLogout = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
+	Task<Group<TCustomProperties>?> GetUserGroup<TCustomProperties>(string tenantId, int groupId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 	
 	/// <summary> 
 	/// Update a specific user group for a specific tenant <br />

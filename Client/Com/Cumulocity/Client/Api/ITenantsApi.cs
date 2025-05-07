@@ -61,7 +61,7 @@ public interface ITenantsApi
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	/// <param name="company">Company name associated with the Cumulocity tenant. <br /></param>
 	/// <param name="domain">Domain name of the Cumulocity tenant. <br /></param>
-	/// <param name="parent">Identifier of the Cumulocity tenant's parent. <br /></param>
+	/// <param name="parent">Identifier of the Cumulocity tenant's parent. Works only for requests sent with management tenant credentials. <br /></param>
 	///
 	Task<TenantCollection<TCustomProperties>?> GetTenants<TCustomProperties>(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, string? company = null, string? domain = null, string? parent = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 	
