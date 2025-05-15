@@ -161,7 +161,7 @@ public sealed class User<TCustomProperties> where TCustomProperties : CustomProp
 	public bool? TwoFactorAuthenticationEnabled { get; set; }
 
 	/// <summary> 
-	/// The user's username. It can have a maximum of 1000 characters. <br />
+	/// The user's username. It cannot contain whitespace, slashes nor any of <c>+$:</c> characters. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("userName")]

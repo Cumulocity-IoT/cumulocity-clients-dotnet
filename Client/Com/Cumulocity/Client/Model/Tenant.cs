@@ -26,7 +26,7 @@ public sealed class Tenant<TCustomProperties> where TCustomProperties : CustomPr
 	public string? AdminEmail { get; set; }
 
 	/// <summary> 
-	/// Username of the tenant's administrator. <br />
+	/// Username of the tenant's administrator. It cannot contain whitespace, slashes nor any of <c>+$:</c> characters. <br />
 	/// ⓘ Info: When it is provided in the request body, also <c>adminEmail</c> and <c>adminPass</c> must be provided. <br />
 	/// </summary>
 	///

@@ -167,4 +167,26 @@ public sealed class OptionsApi : IOptionsApi
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 	}
+	
+	/// <inheritdoc />
+	public async Task<string?> UpdateOption(EditableOption body, string category, string key, string? targetTenant = null, CancellationToken cToken = default) 
+	{
+		var jsonNode = body.ToJsonNode<EditableOption>();
+		string resourcePath = $"tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}/editable";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
+		queryString.TryAdd("targetTenant", targetTenant);
+		uriBuilder.Query = queryString.ToString();
+		using var request = new HttpRequestMessage 
+		{
+			Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/json"),
+			Method = HttpMethod.Put,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+	}
 }

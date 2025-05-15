@@ -55,6 +55,7 @@ public interface IOptionsApi
 	/// Create an option on your tenant. <br />
 	/// Options are category-key-value tuples which store tenant configurations. Some categories of options allow the creation of new ones, while others are limited to predefined set of keys. <br />
 	/// Any option of any tenant can be defined as "non-editable" by the "management" tenant; once done, any PUT or DELETE requests made on that option by the tenant owner will result in a 403 error (Unauthorized). <br />
+	/// ⚠️ Important: Category names must not contain whitespaces nor the special characters <c>$ & + , / : ; = ? @ " < > # % { } | \ ^ ~ [ ] `</c>. This is necessary to ensure the new tenant option is processed correctly and saved successfully. <br />
 	/// <br /> Default option categories <br />
 	/// access.control <br />
 	/// | Key |	Default value |	Predefined | Description ||--|--|--|--|| allow.origin | * | Yes | Comma separated list of domains allowed for execution of CORS. Wildcards are allowed (for example, <c>*.cumulocity.com</c>) | <br />
@@ -247,4 +248,40 @@ public interface IOptionsApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteOption(string category, string key, CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Update a specific option editable flag. <br />
+	/// Updates the editable flag of a specific option (by a given category and key) on target tenant which determines if the option can be edited. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  ROLE_OPTION_MANAGEMENT_ADMIN AND is the management tenant 
+	/// 
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 200 An option was updated. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 400 Could not parse JSON request. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Option not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="body"></param>
+	/// <param name="category">The category of the options. <br /></param>
+	/// <param name="key">The key of an option. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	/// <param name="targetTenant">Unique identifier of a Cumulocity tenant. <br /></param>
+	///
+	Task<string?> UpdateOption(EditableOption body, string category, string key, string? targetTenant = null, CancellationToken cToken = default) ;
 }
