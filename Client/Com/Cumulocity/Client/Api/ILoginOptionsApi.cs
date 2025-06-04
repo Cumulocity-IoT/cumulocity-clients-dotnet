@@ -83,7 +83,7 @@ public interface ILoginOptionsApi
 	/// Retrieve a specific login option in the tenant by the given type or ID. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ((ROLE_TENANT_ADMIN OR ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_USER_MANAGEMENT_OWN_ADMIN OR ROLE_USER_MANAGEMENT_CREATE) AND tenant access to login option is not restricted by management tenant) 
+	///  ((ROLE_TENANT_ADMIN OR ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_USER_MANAGEMENT_ADMIN OR ROLE_USER_MANAGEMENT_CREATE) AND tenant access to login option is not restricted by management tenant) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />

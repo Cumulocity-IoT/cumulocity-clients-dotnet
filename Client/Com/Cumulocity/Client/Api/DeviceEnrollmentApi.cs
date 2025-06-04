@@ -39,7 +39,7 @@ public sealed class DeviceEnrollmentApi : IDeviceEnrollmentApi
 	public async Task<string> SimpleEnrollDevice(byte[] body, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<byte[]>();
-		const string resourcePath = $".well_known/est/simpleenroll";
+		const string resourcePath = $".well-known/est/simpleenroll";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -59,7 +59,7 @@ public sealed class DeviceEnrollmentApi : IDeviceEnrollmentApi
 	public async Task<byte[]> SimpleReEnrollDevice(byte[] body, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<byte[]>();
-		const string resourcePath = $".well_known/est/simplereenroll";
+		const string resourcePath = $".well-known/est/simplereenroll";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
