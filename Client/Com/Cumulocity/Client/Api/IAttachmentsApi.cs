@@ -54,6 +54,75 @@ public interface IAttachmentsApi
 	/// Replace the attached file of a specific event <br />
 	/// Upload and replace the attached file (binary) of a specific event by a given ID.<br />
 	/// The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB. <br />
+	/// You can use two types of Content-Type headers for your PUT requests: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>text/plain is the default. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>application/octet-stream indicates that the request body contains arbitrary binary data. In this case, parameters should be specified in the Content-Disposition header. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// <![CDATA[
+	/// PUT /event/events/{id}/binaries
+	/// Host: https://<TENANT_DOMAIN>
+	/// Authorization: <AUTHORIZATION>
+	/// Accept: application/json
+	/// Content-Type: application/octet-stream
+	/// Content-Disposition: attachment; filename="filename.txt"
+	/// ]]>
+	/// 
+	/// <br /> Required roles <br />
+	///  ROLE_EVENT_ADMIN OR owner of the source OR EVENT_ADMIN permission on the source 
+	/// 
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 201 A file was uploaded. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 404 Event not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="body"></param>
+	/// <param name="id">Unique identifier of the event. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Replace the attached file of a specific event <br />
+	/// Upload and replace the attached file (binary) of a specific event by a given ID.<br />
+	/// The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB. <br />
+	/// You can use two types of Content-Type headers for your PUT requests: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>text/plain is the default. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>application/octet-stream indicates that the request body contains arbitrary binary data. In this case, parameters should be specified in the Content-Disposition header. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// <![CDATA[
+	/// PUT /event/events/{id}/binaries
+	/// Host: https://<TENANT_DOMAIN>
+	/// Authorization: <AUTHORIZATION>
+	/// Accept: application/json
+	/// Content-Type: application/octet-stream
+	/// Content-Disposition: attachment; filename="filename.txt"
+	/// ]]>
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_EVENT_ADMIN OR owner of the source OR EVENT_ADMIN permission on the source 

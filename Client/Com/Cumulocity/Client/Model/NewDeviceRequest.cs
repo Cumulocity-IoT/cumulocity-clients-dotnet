@@ -81,6 +81,13 @@ public sealed class NewDeviceRequest
 	public string? SecurityToken { get; set; }
 
 	/// <summary> 
+	/// When creating <see href="#tag/Device-enrollment" langword="a new device enrollment request" /> this field is treated as device's one time password (OTP). <br />
+	/// </summary>
+	///
+	[JsonPropertyName("enrollmentToken")]
+	public string? EnrollmentToken { get; set; }
+
+	/// <summary> 
 	/// Status of this new device request. <br />
 	/// </summary>
 	///

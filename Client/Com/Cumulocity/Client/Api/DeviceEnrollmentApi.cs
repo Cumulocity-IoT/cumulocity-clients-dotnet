@@ -22,7 +22,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// Device enroll API to be used by a device to issue an X509 certificate signed by tenant's <see href="#operation/postBulkNewDeviceRequestCollectionResource" langword="certificate authority" />. The identifier and enrollment OTP for a device must be first shared as a pre-shared-key (PSK) with Cumulocity using the <see href="#operation/postBulkNewDeviceRequestCollectionResource" langword="bulkNewDeviceRequests" /> endpoint for certificate provisioning.Internally, ID and ENROLLMENT_OTP fields will be added to the NewDeviceRegistration list with a status of Accepted, serving as temporary device credentials for device authentication. <br />
+/// Device enroll API to be used by a device to issue an X509 certificate signed by tenant's <see href="#operation/postBulkNewDeviceRequestCollectionResource" langword="certificate authority" />. The identifier and enrollment OTP for a device must be first shared as a pre-shared-key (PSK) with Cumulocity using the <see href="#operation/postBulkNewDeviceRequestCollectionResource" langword="bulkNewDeviceRequests" /> endpoint or <see href="#operation/postNewDeviceRequestCollectionResource" langword="NewDeviceRequests" /> endpoint for certificate provisioning. Internally, ID and ENROLLMENT_OTP fields will be added to the NewDeviceRegistration list with a status of Accepted, serving as temporary device credentials for device authentication. <br />
 /// Device re-enroll API to be used by a device to renew its certificate or replace its certificate with its current credentials (being a password or a JWT token). <br />
 /// </summary>
 ///

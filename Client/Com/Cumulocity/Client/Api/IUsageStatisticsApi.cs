@@ -91,6 +91,29 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// 		</description>
 /// 	</item>
 /// </list>
+/// <br /> Notifications 2.0 specific counting details <br />
+/// <list type="bullet">
+/// 	<item>
+/// 		<description>Invalid requests are counted, for example, unsuccessful subscription. <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description>All Notifications 2.0 subscription API requests are counted. <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description>All Notifications 2.0 token API requests are counted. <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description>Notifications 2.0 WebSocket consumer connection requests are not counted. <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description>Messages delivered over Notifications 2.0 WebSocket connections are not counted. <br />
+/// 		</description>
+/// 	</item>
+/// </list>
 /// <br /> Total inbound data transfer <br />
 /// Inbound data transfer refers to the total number of inbound requests performed to transfer data into the Cumulocity platform. This includes sensor readings, alarms, events, commands and alike that are transferred between devices and the Cumulocity platform using the REST and/or MQTT interfaces. Such an inbound request could also originate from a custom microservice, website or any other client. <br />
 /// See the table below for more information on how the counters are increased. Additionally, it shows how inbound data transfers are handled for both MQTT and REST: <br />

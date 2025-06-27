@@ -25,6 +25,40 @@ public sealed class PasswordChange
 
 	/// <summary> 
 	/// The new password to be set for the user performing the request. <br />
+	/// By default, the password must meet the following conditions: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>Consist of at least eight characters (this parameter can be configured by the management tenant.) <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>It must not have been used previously by user. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Include each of the following character types: <br />
+	/// 		<list type="bullet">
+	/// 			<item>
+	/// 				<description>uppercase letters: <c>[A-Z]</c>, for example <c>ABCDEF</c>. <br />
+	/// 				</description>
+	/// 			</item>
+	/// 			<item>
+	/// 				<description>lowercase letters: <c>[a-z]</c>, for example <c>abcdef</c>. <br />
+	/// 				</description>
+	/// 			</item>
+	/// 			<item>
+	/// 				<description>numbers: <c>[0-9]</c>, for example: <c>123456</c>. <br />
+	/// 				</description>
+	/// 			</item>
+	/// 			<item>
+	/// 				<description>any other symbol from following list <c> `~!@#$%^&*()_|+-=?;:'",.<>{}[]\/</c> as a special character, for example <c>!@#$%^</c>. <br />
+	/// 				</description>
+	/// 			</item>
+	/// 		</list>
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// ⓘ Info: The password rules can be configured by the administrator, that means, your administrator can configure your account to enforce a password policy. You may be required to pick a strong password for example or to change your password regularly. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("newPassword")]

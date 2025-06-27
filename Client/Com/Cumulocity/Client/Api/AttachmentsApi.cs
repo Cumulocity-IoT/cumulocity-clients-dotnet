@@ -70,6 +70,26 @@ public sealed class AttachmentsApi : IAttachmentsApi
 	}
 	
 	/// <inheritdoc />
+	public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, CancellationToken cToken = default) 
+	{
+		var jsonNode = body.ToJsonNode<byte[]>();
+		string resourcePath = $"event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}/binaries";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/octet-stream"),
+			Method = HttpMethod.Put,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Content-Type", "application/octet-stream");
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+	}
+	
+	/// <inheritdoc />
 	public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}/binaries";
