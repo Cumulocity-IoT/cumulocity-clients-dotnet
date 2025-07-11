@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to retrieve the login options configured in the tenant. <br />
-/// More detailed information about the parameters and their meaning can be found in <see href="https://www.cumulocity.com/docs/standard-tenant/changing-settings/" langword="Platform administration > Standard tenant administration > Changing settings" /> in the Cumulocity user documentation. <br />
+/// More detailed information about the parameters and their meaning can be found in <see href="https://www.cumulocity.com/docs/authentication/basic-settings/" langword="Platform administration > Authentication" /> in the Cumulocity user documentation. <br />
 /// ⓘ Info: If OAuth external is the only login option shown in the response, the user will be automatically redirected to the SSO login screen. <br />
 /// </summary>
 ///
