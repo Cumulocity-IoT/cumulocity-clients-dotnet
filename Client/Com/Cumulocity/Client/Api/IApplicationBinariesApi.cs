@@ -40,6 +40,10 @@ public interface IApplicationBinariesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Application not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -81,6 +85,10 @@ public interface IApplicationBinariesApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="file">The ZIP file to be uploaded. <br /></param>
@@ -105,6 +113,10 @@ public interface IApplicationBinariesApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

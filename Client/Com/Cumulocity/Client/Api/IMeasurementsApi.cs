@@ -43,6 +43,10 @@ public interface IMeasurementsApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -50,7 +54,7 @@ public interface IMeasurementsApi
 	/// <param name="dateFrom">Start date or date and time of the measurement. <br /></param>
 	/// <param name="dateTo">End date or date and time of the measurement. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
-	/// <param name="revert">If you are using a range query (that is, at least one of the <c>dateFrom</c> or <c>dateTo</c> parameters is included in the request), then setting <c>revert=true</c> will sort the results by the newest measurements first.By default, the results are sorted by the oldest measurements first. <br /></param>
+	/// <param name="revert">If you are using a range query (that is, at least one of the <c>dateFrom</c> or <c>dateTo</c> parameters is included in the request), then setting <c>revert=false</c> will sort theresults by the oldest measurements first and <c>revert=true</c> will sort the results by the newest measurements first. By default, the results are sorted by the newestmeasurements first for time series and by the oldest first for legacy measurements. <br /></param>
 	/// <param name="source">The managed object ID to which the measurement is associated. <br /></param>
 	/// <param name="type">The type of measurement to search for. <br /></param>
 	/// <param name="valueFragmentSeries">The specific series to search for. <br /></param>
@@ -70,7 +74,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description><c>unit</c> - The unit of the measurements. <br />
+	/// 		<description><c>unit</c> - The unit of the measurements. This field is optional in the request body; however, if it is provided, it must be a non-empty string and must not be null. <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -189,8 +193,8 @@ public interface IMeasurementsApi
 	///   }
 	/// ]]>
 	/// To ensure data integrity, custom fragments should be used only with valid series. <br />
-	/// <br /> Create multiple measurements <br />
-	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
+	/// Create multiple measurements <br />
+	/// Using the same API request, it is also possible to create multiple measurements by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
 	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
@@ -233,7 +237,7 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description><c>unit</c> - The unit of the measurements. <br />
+	/// 		<description><c>unit</c> - The unit of the measurements. This field is optional in the request body; however, if it is provided, it must be a non-empty string and must not be null. <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -352,8 +356,8 @@ public interface IMeasurementsApi
 	///   }
 	/// ]]>
 	/// To ensure data integrity, custom fragments should be used only with valid series. <br />
-	/// <br /> Create multiple measurements <br />
-	/// It is also possible to create multiple measurements at once by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
+	/// Create multiple measurements <br />
+	/// Using the same API request, it is also possible to create multiple measurements by sending a <c>measurements</c> array containing all the measurements to be created. The content type must be <c>application/vnd.com.nsn.cumulocity.measurementcollection+json</c>. <br />
 	/// ⓘ Info: For more details about fragments with specific meanings, refer to <see href="https://www.cumulocity.com/docs/device-integration/fragment-library/" langword="Device management & connectivity > Device integration > Fragment library" /> in the Cumulocity user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
@@ -461,6 +465,10 @@ public interface IMeasurementsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Measurement not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -473,7 +481,7 @@ public interface IMeasurementsApi
 	
 	/// <summary> 
 	/// Remove a specific measurement <br />
-	/// Remove a specific measurement by a given ID.Note that you cannot delete time series measurements by ID.Instead, you can delete by query or use the retention rules to remove expired measurements data from the Operational Store.No behavior changes for tenants which do not have time series enabled. <br />
+	/// Remove a specific measurement by a given ID.For time series measurements, it is recommended to delete by query or use the retention rules to remove expireddata from the Operational Store. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_MEASUREMENT_ADMIN OR owner of the source OR MEASUREMENT_ADMIN permission on the source 
@@ -526,13 +534,17 @@ public interface IMeasurementsApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="aggregationType">Fetch aggregated results as specified. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the measurement. <br /></param>
 	/// <param name="dateTo">End date or date and time of the measurement. <br /></param>
-	/// <param name="revert">If you are using a range query (that is, at least one of the <c>dateFrom</c> or <c>dateTo</c> parameters is included in the request), then setting <c>revert=true</c> will sort the results by the newest measurements first.By default, the results are sorted by the oldest measurements first. <br /></param>
+	/// <param name="revert">If you are using a range query (that is, at least one of the <c>dateFrom</c> or <c>dateTo</c> parameters is included in the request), then setting <c>revert=false</c> will sort theresults by the oldest measurements first and <c>revert=true</c> will sort the results by the newest measurements first. By default, the results are sorted by the newestmeasurements first for time series and by the oldest first for legacy measurements. <br /></param>
 	/// <param name="series">The specific series to search for. <br />ⓘ Info: If you want to query multiple series at once, you must specify the parameter multiple times. <br /></param>
 	/// <param name="source">The managed object ID to which the measurement is associated. <br /></param>
 	///

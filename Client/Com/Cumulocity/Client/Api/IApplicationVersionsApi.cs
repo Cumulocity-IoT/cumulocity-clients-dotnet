@@ -40,6 +40,10 @@ public interface IApplicationVersionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Application not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -75,6 +79,10 @@ public interface IApplicationVersionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Application version not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -106,6 +114,10 @@ public interface IApplicationVersionsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -148,6 +160,10 @@ public interface IApplicationVersionsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Application version not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -184,6 +200,10 @@ public interface IApplicationVersionsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>

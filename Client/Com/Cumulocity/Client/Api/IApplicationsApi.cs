@@ -43,6 +43,10 @@ public interface IApplicationsApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -80,6 +84,10 @@ public interface IApplicationsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 409 Duplicate key/name. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -114,6 +122,10 @@ public interface IApplicationsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Application not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -140,6 +152,10 @@ public interface IApplicationsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -215,6 +231,10 @@ public interface IApplicationsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 422 Unprocessable Entity – method not supported <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -246,6 +266,10 @@ public interface IApplicationsApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="name">The name of the application. <br /></param>
@@ -271,6 +295,10 @@ public interface IApplicationsApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="tenantId">Unique identifier of a Cumulocity tenant. <br /></param>
@@ -294,6 +322,10 @@ public interface IApplicationsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -323,6 +355,10 @@ public interface IApplicationsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

@@ -40,6 +40,10 @@ public interface IAttachmentsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Attachment not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -86,6 +90,10 @@ public interface IAttachmentsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -136,6 +144,10 @@ public interface IAttachmentsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -194,6 +206,10 @@ public interface IAttachmentsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -259,6 +275,10 @@ public interface IAttachmentsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Event not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -291,6 +311,10 @@ public interface IAttachmentsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>

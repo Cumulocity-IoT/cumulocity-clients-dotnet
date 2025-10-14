@@ -38,6 +38,10 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 422 Invalid data was sent. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -58,13 +62,13 @@ public interface IManagedObjectsApi
 	/// <param name="skipChildrenNames">When set to <c>true</c>, the returned references of child devices won't contain their names. <br /></param>
 	/// <param name="text">Search for managed objects where a property value is equal to the given one.The following properties are examined: <c>id, type, name, owner, externalIds</c>. <br /></param>
 	/// <param name="type">The type of managed object to search for. <br /></param>
-	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
+	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. The default behavior can be controlled by the feature toggle <c>core.inventory.without.children</c>. When this toggle is disabled, the default value reverts to <c>true</c> for backward compatibility. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
 	/// <param name="withGroups">When set to <c>true</c> it returns additional information about the groups to which the searched managed object belongs. This results in setting the <c>assetParents</c> property with additional information about the groups. <br /></param>
-	/// <param name="withParents">When withParents is set to <c>true</c>, the request will include the device’s parent groups up to a maximum depth of three levels above the device in the group hierarchy. If no parent groups exist, an empty array will be returned. <br /></param>
+	/// <param name="withParents">When withParents is set to <c>true</c>, the request will include all ancestors from all the levels above the device in the hierarchy. If no parents exist, an empty array will be returned. <br />ⓘ Info: Inventory roles are not taken into consideration when collecting managed object parents, so basic information about all ancestors will be returned. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
-	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
+	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment <c>c8y_LatestMeasurements</c>, which contains the latest measurement values reported by the device to the platform. Additionally returned managed objects can have fragment <c>c8y_PreviousMeasurements</c> if there was a value of a given series previous to the latest. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
 	///
 	Task<ManagedObjectCollection<TManagedObject>?> GetManagedObjects<TManagedObject>(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? withLatestValues = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -116,6 +120,10 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -146,6 +154,10 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -154,10 +166,10 @@ public interface IManagedObjectsApi
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="skipChildrenNames">When set to <c>true</c>, the returned references of child devices won't contain their names. <br /></param>
-	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
+	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. The default behavior can be controlled by the feature toggle <c>core.inventory.without.children</c>. When this toggle is disabled, the default value reverts to <c>true</c> for backward compatibility. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
-	/// <param name="withParents">When withParents is set to <c>true</c>, the request will include the device’s parent groups up to a maximum depth of three levels above the device in the group hierarchy. If no parent groups exist, an empty array will be returned. <br /></param>
-	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment `c8y_LatestMeasurements, which contains the latest measurement values reported by the device to the platform. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
+	/// <param name="withParents">When withParents is set to <c>true</c>, the request will include all ancestors from all the levels above the device in the hierarchy. If no parents exist, an empty array will be returned. <br />ⓘ Info: Inventory roles are not taken into consideration when collecting managed object parents, so basic information about all ancestors will be returned. <br /></param>
+	/// <param name="withLatestValues">If set to true the platform returns managed objects with the fragment <c>c8y_LatestMeasurements</c>, which contains the latest measurement values reported by the device to the platform. Additionally returned managed objects can have fragment <c>c8y_PreviousMeasurements</c> if there was a value of a given series previous to the latest. <br />⚠️ Feature Preview: The parameter is a part of the Latest Measurement feature which is still under public preview. <br /></param>
 	///
 	Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null, bool? withLatestValues = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -179,6 +191,10 @@ public interface IManagedObjectsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -212,6 +228,10 @@ public interface IManagedObjectsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -252,6 +272,10 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 A device with provided ID is not monitored. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -278,6 +302,10 @@ public interface IManagedObjectsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -310,6 +338,10 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -339,6 +371,10 @@ public interface IManagedObjectsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Managed object not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -365,6 +401,10 @@ public interface IManagedObjectsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>

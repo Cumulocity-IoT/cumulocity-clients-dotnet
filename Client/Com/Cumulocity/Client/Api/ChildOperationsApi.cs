@@ -110,6 +110,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		jsonNode?.RemoveFromNode("childDevices");
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
+		jsonNode?.RemoveFromNode("c8y_PreviousMeasurements");
 		jsonNode?.RemoveFromNode("childAdditions");
 		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");
@@ -261,6 +262,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		jsonNode?.RemoveFromNode("childDevices");
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
+		jsonNode?.RemoveFromNode("c8y_PreviousMeasurements");
 		jsonNode?.RemoveFromNode("childAdditions");
 		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");
@@ -412,6 +414,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		jsonNode?.RemoveFromNode("childDevices");
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
+		jsonNode?.RemoveFromNode("c8y_PreviousMeasurements");
 		jsonNode?.RemoveFromNode("childAdditions");
 		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");

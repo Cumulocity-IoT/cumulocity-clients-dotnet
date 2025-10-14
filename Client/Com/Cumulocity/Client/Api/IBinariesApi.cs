@@ -36,6 +36,10 @@ public interface IBinariesApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -115,6 +119,10 @@ public interface IBinariesApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
@@ -141,6 +149,10 @@ public interface IBinariesApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>
@@ -165,6 +177,10 @@ public interface IBinariesApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

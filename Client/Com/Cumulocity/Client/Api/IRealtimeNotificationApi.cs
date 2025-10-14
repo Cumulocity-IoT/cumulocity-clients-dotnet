@@ -202,6 +202,10 @@ public interface IRealtimeNotificationApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="body"></param>

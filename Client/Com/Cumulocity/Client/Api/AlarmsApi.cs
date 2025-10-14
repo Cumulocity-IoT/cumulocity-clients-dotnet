@@ -36,7 +36,7 @@ public sealed class AlarmsApi : IAlarmsApi
 	}
 
 	/// <inheritdoc />
-	public async Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAlarm : Alarm
+	public async Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceChildren = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withSourceAdditions = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAlarm : Alarm
 	{
 		const string resourcePath = $"alarm/alarms";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -54,8 +54,10 @@ public sealed class AlarmsApi : IAlarmsApi
 		queryString.TryAdd("source", source);
 		queryString.TryAdd("status", status, false);
 		queryString.TryAdd("type", type, false);
+		queryString.TryAdd("withSourceChildren", withSourceChildren);
 		queryString.TryAdd("withSourceAssets", withSourceAssets);
 		queryString.TryAdd("withSourceDevices", withSourceDevices);
+		queryString.TryAdd("withSourceAdditions", withSourceAdditions);
 		queryString.TryAdd("withTotalElements", withTotalElements);
 		queryString.TryAdd("withTotalPages", withTotalPages);
 		uriBuilder.Query = queryString.ToString();
@@ -72,7 +74,7 @@ public sealed class AlarmsApi : IAlarmsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> UpdateAlarms<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) where TAlarm : Alarm
+	public async Task<string?> UpdateAlarms<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, bool? withSourceChildren = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withSourceAdditions = null, CancellationToken cToken = default) where TAlarm : Alarm
 	{
 		var jsonNode = body.ToJsonNode<TAlarm>();
 		jsonNode?.RemoveFromNode("firstOccurrenceTime");
@@ -97,8 +99,10 @@ public sealed class AlarmsApi : IAlarmsApi
 		queryString.TryAdd("severity", severity, false);
 		queryString.TryAdd("source", source);
 		queryString.TryAdd("status", status, false);
+		queryString.TryAdd("withSourceChildren", withSourceChildren);
 		queryString.TryAdd("withSourceAssets", withSourceAssets);
 		queryString.TryAdd("withSourceDevices", withSourceDevices);
+		queryString.TryAdd("withSourceAdditions", withSourceAdditions);
 		uriBuilder.Query = queryString.ToString();
 		using var request = new HttpRequestMessage 
 		{
@@ -143,7 +147,7 @@ public sealed class AlarmsApi : IAlarmsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> DeleteAlarms(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) 
+	public async Task<string?> DeleteAlarms(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceChildren = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withSourceAdditions = null, CancellationToken cToken = default) 
 	{
 		const string resourcePath = $"alarm/alarms";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -157,8 +161,10 @@ public sealed class AlarmsApi : IAlarmsApi
 		queryString.TryAdd("source", source);
 		queryString.TryAdd("status", status, false);
 		queryString.TryAdd("type", type, false);
+		queryString.TryAdd("withSourceChildren", withSourceChildren);
 		queryString.TryAdd("withSourceAssets", withSourceAssets);
 		queryString.TryAdd("withSourceDevices", withSourceDevices);
+		queryString.TryAdd("withSourceAdditions", withSourceAdditions);
 		uriBuilder.Query = queryString.ToString();
 		using var request = new HttpRequestMessage 
 		{
@@ -220,7 +226,7 @@ public sealed class AlarmsApi : IAlarmsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) 
+	public async Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceChildren = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withSourceAdditions = null, CancellationToken cToken = default) 
 	{
 		const string resourcePath = $"alarm/alarms/count";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -232,8 +238,10 @@ public sealed class AlarmsApi : IAlarmsApi
 		queryString.TryAdd("source", source);
 		queryString.TryAdd("status", status, false);
 		queryString.TryAdd("type", type, false);
+		queryString.TryAdd("withSourceChildren", withSourceChildren);
 		queryString.TryAdd("withSourceAssets", withSourceAssets);
 		queryString.TryAdd("withSourceDevices", withSourceDevices);
+		queryString.TryAdd("withSourceAdditions", withSourceAdditions);
 		uriBuilder.Query = queryString.ToString();
 		using var request = new HttpRequestMessage 
 		{

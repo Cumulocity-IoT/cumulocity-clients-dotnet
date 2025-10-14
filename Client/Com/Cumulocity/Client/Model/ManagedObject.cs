@@ -126,6 +126,14 @@ public class ManagedObject
 	public C8yLatestMeasurements? PC8yLatestMeasurements { get; set; }
 
 	/// <summary> 
+	/// The read only fragment which contains the previous to latest measurements reported by the device.The returned optionally only if the query parameter <c>withLatestValues=true</c> is used. <br />
+	/// ⚠️ Feature Preview: The feature is part of the Latest Measurement feature which is still under public feature preview. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("c8y_PreviousMeasurements")]
+	public C8yPreviousMeasurements? PC8yPreviousMeasurements { get; set; }
+
+	/// <summary> 
 	/// A fragment which identifies this managed object as a device group. <br />
 	/// </summary>
 	///

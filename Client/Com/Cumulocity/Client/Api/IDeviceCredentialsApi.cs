@@ -17,7 +17,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// API methods to create device credentials in Cumulocity. <br />
 /// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://www.cumulocity.com/docs/additional-resources/contacting-support/" langword="contacting support" />. <br />
 /// ⚠️ Important: Do not use your tenant credentials with this API. <br />
-/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
+/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.ⓘ Info: Device credential passwords must comply with all the requirements listed <see href="https://cumulocity.com/docs/get-familiar-with-the-ui/user-settings/#to-change-your-password" langword="here" />. <br />
 /// </summary>
 ///
 public interface IDeviceCredentialsApi
@@ -39,6 +39,10 @@ public interface IDeviceCredentialsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
@@ -138,6 +142,10 @@ public interface IDeviceCredentialsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>

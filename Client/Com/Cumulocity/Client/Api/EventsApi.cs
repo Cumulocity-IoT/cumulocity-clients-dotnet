@@ -36,7 +36,7 @@ public sealed class EventsApi : IEventsApi
 	}
 
 	/// <inheritdoc />
-	public async Task<EventCollection<TEvent>?> GetEvents<TEvent>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? fragmentValue = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TEvent : Event
+	public async Task<EventCollection<TEvent>?> GetEvents<TEvent>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? fragmentValue = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, bool? withSourceChildren = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withSourceAdditions = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TEvent : Event
 	{
 		const string resourcePath = $"event/events";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -54,8 +54,10 @@ public sealed class EventsApi : IEventsApi
 		queryString.TryAdd("revert", revert);
 		queryString.TryAdd("source", source);
 		queryString.TryAdd("type", type);
+		queryString.TryAdd("withSourceChildren", withSourceChildren);
 		queryString.TryAdd("withSourceAssets", withSourceAssets);
 		queryString.TryAdd("withSourceDevices", withSourceDevices);
+		queryString.TryAdd("withSourceAdditions", withSourceAdditions);
 		queryString.TryAdd("withTotalElements", withTotalElements);
 		queryString.TryAdd("withTotalPages", withTotalPages);
 		uriBuilder.Query = queryString.ToString();

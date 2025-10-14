@@ -82,10 +82,11 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		var jsonNode = body.ToJsonNode<TManagedObject>();
 		jsonNode?.RemoveFromNode("owner");
 		jsonNode?.RemoveFromNode("additionParents");
-		jsonNode?.RemoveFromNode("lastUpdated");
 		jsonNode?.RemoveFromNode("childDevices");
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
+		jsonNode?.RemoveFromNode("lastUpdated");
+		jsonNode?.RemoveFromNode("c8y_PreviousMeasurements");
 		jsonNode?.RemoveFromNode("childAdditions");
 		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");
@@ -142,6 +143,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		jsonNode?.RemoveFromNode("childDevices");
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
+		jsonNode?.RemoveFromNode("c8y_PreviousMeasurements");
 		jsonNode?.RemoveFromNode("childAdditions");
 		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");

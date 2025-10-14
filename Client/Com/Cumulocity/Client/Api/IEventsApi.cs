@@ -41,6 +41,10 @@ public interface IEventsApi
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
 	/// 		</description>
 	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
 	/// </list>
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
@@ -57,12 +61,14 @@ public interface IEventsApi
 	/// <param name="revert">If you are using a range query (that is, at least one of the <c>dateFrom</c> or <c>dateTo</c> parameters is included in the request), then setting <c>revert=true</c> will sort the results by the oldest events first.By default, the results are sorted by the newest events first. <br /></param>
 	/// <param name="source">The managed object ID to which the event is associated. <br /></param>
 	/// <param name="type">The type of event to search for. <br /></param>
-	/// <param name="withSourceAssets">When set to <c>true</c> also events for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
-	/// <param name="withSourceDevices">When set to <c>true</c> also events for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
+	/// <param name="withSourceChildren">When set to <c>true</c>, events for related source assets, devices and additions will also be included in the response. When this parameter is provided a <c>source</c> must be specified. <br /></param>
+	/// <param name="withSourceAssets">When set to <c>true</c>, events for related source assets will also be included in the response. When this parameter is provided a <c>source</c> must be specified. <br /></param>
+	/// <param name="withSourceDevices">When set to <c>true</c>, events for related source devices will also be included in the response. When this parameter is provided a <c>source</c> must be specified. <br /></param>
+	/// <param name="withSourceAdditions">When set to <c>true</c>, events for related source additions will also be included in the response. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalElements</c> statistics are cached for 10 seconds. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
-	Task<EventCollection<TEvent>?> GetEvents<TEvent>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? fragmentValue = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TEvent : Event;
+	Task<EventCollection<TEvent>?> GetEvents<TEvent>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? fragmentValue = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, bool? withSourceChildren = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withSourceAdditions = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TEvent : Event;
 	
 	/// <summary> 
 	/// Create an event <br />
@@ -174,6 +180,10 @@ public interface IEventsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 404 Event not found. <br /> <br />
 	/// 		</description>
 	/// 	</item>
@@ -200,6 +210,10 @@ public interface IEventsApi
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>

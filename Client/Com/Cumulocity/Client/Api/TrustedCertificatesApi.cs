@@ -37,7 +37,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	}
 
 	/// <inheritdoc />
-	public async Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
+	public async Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? certificateAuthority = null, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -46,6 +46,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 		queryString.TryAdd("pageSize", pageSize);
 		queryString.TryAdd("withTotalElements", withTotalElements);
 		queryString.TryAdd("withTotalPages", withTotalPages);
+		queryString.TryAdd("certificateAuthority", certificateAuthority);
 		uriBuilder.Query = queryString.ToString();
 		using var request = new HttpRequestMessage 
 		{

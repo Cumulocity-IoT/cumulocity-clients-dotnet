@@ -50,4 +50,21 @@ public sealed class CertificateAuthorityApi : ICertificateAuthorityApi
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<TrustedCertificate?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
+	
+	/// <inheritdoc />
+	public async Task<TrustedCertificate?> RenewCertificateAuthority(CancellationToken cToken = default) 
+	{
+		const string resourcePath = $"certificate-authority/renew";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Method = HttpMethod.Post,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<TrustedCertificate?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+	}
 }
