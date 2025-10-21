@@ -66,15 +66,37 @@ public interface IOptionsApi
 	/// alarm.type.mapping <br />
 	/// | Key  |	Predefined | Description ||--|--|--|| <ALARM_TYPE> | No | Overrides the severity and alarm text for the alarm with type <ALARM_TYPE>. The severity and text are specified as <c><ALARM_SEVERITY>\|<ALARM_TEXT></c>. If either part is empty, the value will not be overridden. If the severity is NONE, the alarm will be suppressed. Example: <c>"CRITICAL\|temperature too high"</c>| <br />
 	/// <br /> Encrypted credentials <br />
-	/// Adding a "credentials." prefix to the <c>key</c> will make the <c>value</c> of the option encrypted. When the option is sent to a microservice, the "credentials." prefix is removed, and the <c>value</c> is decrypted only if the tenant option category matches the category defined by the microservice. The category is determined based on the first non-blank value from: manifest settings category, context path or service name. If the tenant option category does not match any of these values, the encrypted value will not be decrypted. For example: <br />
+	/// Adding a <c>credentials.</c> prefix to the key causes the value of the option to be stored in an encrypted form. When the option is retrieved from a microservice, the <c>credentials.</c> prefix is removed, and the value is decrypted only if the microservice is the owner of the option. A microservice is considered the owner when the tenant option category matches its own category, which is determined based on the first non-blank value from the following, in order of priority: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>the <c>settingsCategory</c> defined in the microservice manifest <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>the microservice’s context path <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>the microservice name <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// Decryption is performed only for system users (such as service users or the bootstrap user) who are the owners of the option. For example: <br />
 	/// <![CDATA[
 	/// {
-	///   "category": "secrets",
-	///   "key": "credentials.mykey",
-	///   "value": "myvalue"
+	///   "category": "microservice1",
+	///   "key": "secret",
+	///   "value": "secret-content"
 	/// }
 	/// ]]>
-	/// In that particular example, the request will contain an additional header <c>"Mykey": "myvalue"</c>. <br />
+	/// If the tenant option category does not match any of these values, the encrypted value will not be decrypted, and static string will be returned. For example: <br />
+	/// <![CDATA[
+	/// {
+	///   "category": "microservice2",
+	///   "key": "credentials.secret",
+	///   "value": "<<Encrypted>>"
+	/// }
+	/// ]]>
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_OPTION_MANAGEMENT_ADMIN 

@@ -50,11 +50,10 @@ public interface IBinariesApi
 	/// <param name="ids">The managed object IDs to search for. <br />ⓘ Info: If you query for multiple IDs at once, comma-separate the values. <br /></param>
 	/// <param name="owner">Username of the owner of the managed objects. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
-	/// <param name="text">Search for managed objects where a property value is equal to the given one.The following properties are examined: <c>id, type, name, owner, externalIds</c>. <br /></param>
 	/// <param name="type">The type of managed object to search for. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br />ⓘ Info: To improve performance, the <c>totalPages</c> statistics are cached for 10 seconds. <br /></param>
 	///
-	Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
+	Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? type = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Upload a file <br />
