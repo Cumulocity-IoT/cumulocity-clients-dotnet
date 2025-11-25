@@ -140,10 +140,6 @@ public interface IAlarmsApi
 	/// 		<description>The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING. <br />
 	/// 		</description>
 	/// 	</item>
-	/// 	<item>
-	/// 		<description>A history of changes to the event in form of audit logs. <br />
-	/// 		</description>
-	/// 	</item>
 	/// </list>
 	/// <br /> Alarm suppression <br />
 	/// If the source device is in maintenance mode, the alarm is not created and not reported to the Cumulocity event processing engine. When sending a POST request to create a new alarm and if the source device is in maintenance mode, the self link of the alarm will be: <br />
@@ -151,7 +147,7 @@ public interface IAlarmsApi
 	/// "self": "https://<TENANT_DOMAIN>/alarm/alarms/null"
 	/// ]]>
 	/// <br /> Alarm de-duplication <br />
-	/// If an ACTIVE or ACKNOWLEDGED alarm with the same source and type exists, no new alarm is created.Instead, the existing alarm is updated by incrementing the <c>count</c> property; the <c>time</c> property is also updated.Any other changes are ignored, and the alarm history is not updated. Alarms with status CLEARED are not de-duplicated.The first occurrence of the alarm is recorded in the <c>firstOccurrenceTime</c> property. <br />
+	/// If an ACTIVE or ACKNOWLEDGED alarm with the same source and type exists, no new alarm is created.Instead, the existing alarm is updated by incrementing the <c>count</c> property; the <c>time</c> property is also updated.Any other changes are ignored, and the audit log is not created. Alarms with status CLEARED are not de-duplicated.The first occurrence of the alarm is recorded in the <c>firstOccurrenceTime</c> property. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_ALARM_ADMIN OR owner of the source OR ALARM_ADMIN permission on the source 

@@ -173,11 +173,13 @@ public sealed class MeasurementsApi : IMeasurementsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null, CancellationToken cToken = default) 
+	public async Task<MeasurementSeries?> GetMeasurementSeries(List<string>? aggregationFunction = null, string? aggregationInterval = null, string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null, CancellationToken cToken = default) 
 	{
 		const string resourcePath = $"measurement/measurements/series";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
+		queryString.TryAdd("aggregationFunction", aggregationFunction, true);
+		queryString.TryAdd("aggregationInterval", aggregationInterval);
 		queryString.TryAdd("aggregationType", aggregationType);
 		queryString.TryAdd("dateFrom", dateFrom);
 		queryString.TryAdd("dateTo", dateTo);

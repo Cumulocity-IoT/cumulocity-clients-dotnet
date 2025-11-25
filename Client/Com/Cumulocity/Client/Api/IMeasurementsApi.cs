@@ -541,12 +541,14 @@ public interface IMeasurementsApi
 	/// </list>
 	/// </summary>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	/// <param name="aggregationType">Fetch aggregated results as specified. <br /></param>
+	/// <param name="aggregationFunction">Selects aggregation functions that are calculated for each selected aggregation interval.Providing this parameter requires also providing the <c>aggregationInterval</c> parameter.By default <c>min</c> and <c>max</c> functions are calculated. <br />ⓘ Info: This parameter is only available when time series persistence is enabled. For legacy persistence only <c>min</c> and <c>max</c> are calculated. If you want to calculate multiple functions at once, you must specify the parameter multiple times. <br /></param>
+	/// <param name="aggregationInterval">Fetch results are aggregated using a time interval specified by an integer followed by a unit.Available units of <c>s</c>econd, <c>m</c>inute, <c>h</c>our, <c>d</c>ay, <c>w</c>eek, <c>M</c>onth, <c>q</c>uarter and <c>y</c>ear are specified using their first letter.Provided integer value must be positive with maximum three digits and without leading zeros. <br />ⓘ Info: Full range of values for <c>aggregationInterval</c> parameter is only available when time series persistence is enabled. For legacy persistence the implementation will always fall back to <c>1d</c>, <c>1h</c> or <c>1m</c> based on the closest unit used. <br /></param>
+	/// <param name="aggregationType">Fetch aggregated results as specified. <br />ⓘ Info: When time series persistence is enabled, then this parameter is superseded by <c>aggregationInterval</c> and will be ignored if that parameter is specified. <c>aggregationType</c> should only be used for legacy persistence. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the measurement. <br /></param>
 	/// <param name="dateTo">End date or date and time of the measurement. <br /></param>
 	/// <param name="revert">If you are using a range query (that is, at least one of the <c>dateFrom</c> or <c>dateTo</c> parameters is included in the request), then setting <c>revert=false</c> will sort theresults by the oldest measurements first and <c>revert=true</c> will sort the results by the newest measurements first. By default, the results are sorted by the newestmeasurements first for time series and by the oldest first for legacy measurements. <br /></param>
 	/// <param name="series">The specific series to search for. <br />ⓘ Info: If you want to query multiple series at once, you must specify the parameter multiple times. <br /></param>
 	/// <param name="source">The managed object ID to which the measurement is associated. <br /></param>
 	///
-	Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null, CancellationToken cToken = default) ;
+	Task<MeasurementSeries?> GetMeasurementSeries(List<string>? aggregationFunction = null, string? aggregationInterval = null, string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null, CancellationToken cToken = default) ;
 }
