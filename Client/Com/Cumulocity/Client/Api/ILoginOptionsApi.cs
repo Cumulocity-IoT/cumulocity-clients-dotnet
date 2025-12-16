@@ -151,8 +151,9 @@ public interface ILoginOptionsApi
 	/// <param name="typeOrId">The type or ID of the login option. The type's value is case insensitive and can be <c>OAUTH2</c>, <c>OAUTH2_INTERNAL</c> or <c>BASIC</c>. <br /></param>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	/// <param name="terminateUserSessions">When set to 'true', all active sessions for all users within the tenant will be terminated. <br /></param>
 	///
-	Task<AuthConfig?> UpdateLoginOption(AuthConfig body, string typeOrId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
+	Task<AuthConfig?> UpdateLoginOption(AuthConfig body, bool? terminateUserSessions = null, string typeOrId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Delete a specific login option <br />

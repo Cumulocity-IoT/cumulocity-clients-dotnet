@@ -97,12 +97,15 @@ public sealed class LoginOptionsApi : ILoginOptionsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<AuthConfig?> UpdateLoginOption(AuthConfig body, string typeOrId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
+	public async Task<AuthConfig?> UpdateLoginOption(AuthConfig body, bool? terminateUserSessions = null, string typeOrId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<AuthConfig>();
 		jsonNode?.RemoveFromNode("self");
 		string resourcePath = $"tenant/loginOptions/{HttpUtility.UrlPathEncode(typeOrId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
+		queryString.TryAdd("terminateUserSessions", terminateUserSessions);
+		uriBuilder.Query = queryString.ToString();
 		using var request = new HttpRequestMessage 
 		{
 			Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.authconfig+json"),
