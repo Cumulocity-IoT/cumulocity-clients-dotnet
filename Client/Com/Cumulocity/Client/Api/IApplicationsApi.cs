@@ -101,7 +101,7 @@ public interface IApplicationsApi
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<Application?> CreateApplication(Application body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
+	Task<Application?> CreateApplication(ApplicationNoMicroserviceManifest body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve a specific application <br />
@@ -169,7 +169,7 @@ public interface IApplicationsApi
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<Application?> UpdateApplication(Application body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
+	Task<Application?> UpdateApplication(ApplicationNoMicroserviceManifest body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Delete an application <br />

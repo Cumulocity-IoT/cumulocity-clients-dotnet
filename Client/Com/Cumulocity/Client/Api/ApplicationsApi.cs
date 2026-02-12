@@ -70,9 +70,9 @@ public sealed class ApplicationsApi : IApplicationsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<Application?> CreateApplication(Application body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
+	public async Task<Application?> CreateApplication(ApplicationNoMicroserviceManifest body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		var jsonNode = body.ToJsonNode<Application>();
+		var jsonNode = body.ToJsonNode<ApplicationNoMicroserviceManifest>();
 		jsonNode?.RemoveFromNode("owner");
 		jsonNode?.RemoveFromNode("activeVersionId");
 		jsonNode?.RemoveFromNode("self");
@@ -113,9 +113,9 @@ public sealed class ApplicationsApi : IApplicationsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<Application?> UpdateApplication(Application body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
+	public async Task<Application?> UpdateApplication(ApplicationNoMicroserviceManifest body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		var jsonNode = body.ToJsonNode<Application>();
+		var jsonNode = body.ToJsonNode<ApplicationNoMicroserviceManifest>();
 		jsonNode?.RemoveFromNode("owner");
 		jsonNode?.RemoveFromNode("activeVersionId");
 		jsonNode?.RemoveFromNode("self");
